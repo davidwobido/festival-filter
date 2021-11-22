@@ -1,0 +1,30 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* COLORS */
+  --color-primary: #fff;
+  --color-background: #000;
+
+  /* FONT */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 p,
+a {
+  margin: 0;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
