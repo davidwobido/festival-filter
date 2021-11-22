@@ -1,10 +1,9 @@
 ---
 name: Issue Template
 about: Description, Tasks, Screenshot
-title: ''
-labels: ''
-assignees: ''
-
+title: ""
+labels: ""
+assignees: ""
 ---
 
 ## Description
