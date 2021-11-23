@@ -1,3 +1,6 @@
+/* Import fonts Epilogue (600) and DM Sans (400, 500, 700) from googlefonts */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Epilogue:wght@600&display=swap");
+
 *,
 *::after,
 *::before {
@@ -7,10 +10,69 @@
 
 :root {
   /* COLORS */
-  --color-primary: #fff;
-  --color-background: #000;
+  --color-primary-text: #b4fa64;
+  --color-primary-bg: #1a313b;
+  --color-primary-accent: #f091ff;
+  --color-secondary: #009150;
+  --color-neutral: #7e7f80;
+  --color-neutral-grade: #fafafa;
+  --color-match-best-bg: #b4fa64;
+  --color-match-best-text: #1a313b;
+  --color-match-okay-bg: #ff9429;
+  --color-match-okay-text: #8a4000;
 
-  /* FONT */
+  /* FONT 
+  Epilogue in font-weight 600 is used for headlines. 
+  DM Sans in font-weights 400, 500 and 700 for everything else.
+  */
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Global font styles */
+
+a {
+  font-weight: 700;
+  text-decoration: underline;
+  color: var(--color-primary-accent);
+  font-size: 0.875rem;
+}
+
+p,
+a,
+button {
+  font-family: "DM Sans", sans-serif;
+}
+
+h1 {
+  font-size: 2.625rem;
+  line-height: 120%;
+}
+
+h2 {
+  font-size: 2rem;
+  line-height: 110%;
+}
+
+h3 {
+  font-size: 1.625rem;
+  line-height: 110%;
+}
+
+h4 {
+  font-size: 1.25rem;
+  line-height: 110%;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: Epilogue, sans-serif;
 }
 
 h1,
@@ -23,8 +85,44 @@ a {
   margin: 0;
 }
 
-body {
-  margin: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Specific type classes to use CSS Modules dependencies in components */
+
+.text-intro {
+  font-size: 1.125rem;
+  color: var(--color-neutral-grade);
+}
+
+.text-info {
+  font-size: 0.875rem;
+}
+
+.text-info-small {
+  font-size: 0.75rem;
+}
+
+.text-preline {
+  color: var(--color-secondary);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.145rem;
+}
+
+.text-preline-small {
+  color: var(--color-secondary);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.145rem;
+}
+
+.text-button {
+  font-size: 0.8125rem;
+}
+
+.text-button-large {
+  font-size: 1.125rem;
+}
+
+.text-match {
+  font-size: 0.875rem;
+  font-weight: 700;
 }
