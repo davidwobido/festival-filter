@@ -23,7 +23,7 @@
 
   /* FONT 
   Epilogue in font-weight 600 is used for headlines. 
-  DM Sans in font-weight 400, 500 and 700 for everything else.
+  DM Sans in font-weights 400, 500 and 700 for everything else.
   */
 }
 
@@ -115,7 +115,7 @@ a {
 }
 
 .text-button {
-  font-size: 0.8125;
+  font-size: 0.8125rem;
 }
 
 .text-button-large {
