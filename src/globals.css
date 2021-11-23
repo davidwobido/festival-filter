@@ -22,7 +22,27 @@
   --color-match-okay-bg: #ff9429;
   --color-match-okay-text: #8a4000;
 
-  /* FONTS */
+  /* FONT 
+  Epilogue in font-weight 600 used for Headlines. 
+  DM Sans in font-weight 400, 500 and 700 for everything else.
+  */
+}
+
+a {
+  font-weight: 700;
+}
+
+p,
+a,
+button {
+  font-family: "DM Sans", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: Epilogue, sans-serif;
 }
 
 h1,
