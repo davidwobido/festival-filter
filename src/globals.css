@@ -1,3 +1,7 @@
+/* Import fonts Epilogue (600) and DM Sans (400, 500, 700) */
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Epilogue:wght@600&display=swap");
+
 *,
 *::after,
 *::before {
@@ -7,10 +11,18 @@
 
 :root {
   /* COLORS */
-  --color-primary: #fff;
-  --color-background: #000;
+  --color-primary-text: #b4fa64;
+  --color-primary-bg: #1a313b;
+  --color-primary-accent: #f091ff;
+  --color-secondary: #009150;
+  --color-neutral: #7e7f80;
+  --color-secondary-bg: #fafafa;
+  --color-match-best-bg: #b4fa64;
+  --color-match-best-text: #1a313b;
+  --color-match-okay-bg: #ff9429;
+  --color-match-okay-text: #8a4000;
 
-  /* FONT */
+  /* FONTS */
 }
 
 h1,
