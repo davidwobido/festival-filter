@@ -1,0 +1,5 @@
+.button-default {
+  /* composes: text-button-default from "globals.css"; */
+  color: var(--color-primary-bg);
+  background-color: var(--color-primary-text);
+}

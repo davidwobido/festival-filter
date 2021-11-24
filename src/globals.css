@@ -103,6 +103,7 @@ a {
 .text-preline {
   color: var(--color-secondary);
   font-size: 0.875rem;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.145rem;
 }
@@ -110,16 +111,17 @@ a {
 .text-preline-small {
   color: var(--color-secondary);
   font-size: 0.75rem;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.145rem;
 }
 
-.text-button {
-  font-size: 0.8125rem;
+.text-button-default {
+  font-size: 1.125rem;
 }
 
-.text-button-large {
-  font-size: 1.125rem;
+.text-button-small {
+  font-size: 0.8125rem;
 }
 
 .text-match {
