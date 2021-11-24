@@ -2,8 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import express from "express";
-// import path from "path";
-import { connectDatabase, getUserCollection } from "../src/utils/database";
+import { connectDatabase, getUserCollection } from "../src/utils/Database";
 
 if (!process.env.MONGODB_URI) {
   throw new Error("No MongoDB URL dotenv variable");
