@@ -16,7 +16,7 @@ function SearchBar({ onSearch }: SearchBarProps): JSX.Element {
       value={value}
       onChange={(event) => setValue(event.target.value)}
       placeholder="Enter search"
-      className={styles.searchBar}
+      className={styles["search-bar"]}
     />
   );
 }
