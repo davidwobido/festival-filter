@@ -21,8 +21,8 @@
   --color-match-okay-bg: #ff9429;
   --color-match-okay-text: #8a4000;
 
-  /* FONT 
-  Epilogue in font-weight 600 is used for headlines. 
+  /* FONT
+  Epilogue in font-weight 600 is used for headlines.
   DM Sans in font-weights 400, 500 and 700 for everything else.
   */
 }
@@ -81,7 +81,8 @@ h3,
 h4,
 h5,
 h6 p,
-a {
+a,
+button {
   margin: 0;
 }
 
@@ -103,6 +104,7 @@ a {
 .text-preline {
   color: var(--color-secondary);
   font-size: 0.875rem;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.145rem;
 }
@@ -110,16 +112,18 @@ a {
 .text-preline-small {
   color: var(--color-secondary);
   font-size: 0.75rem;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.145rem;
 }
 
-.text-button {
-  font-size: 0.8125rem;
+.text-button-normal {
+  font-size: 1.125rem;
+  font-weight: 500;
 }
 
-.text-button-large {
-  font-size: 1.125rem;
+.text-button-small {
+  font-size: 0.8125rem;
 }
 
 .text-match {

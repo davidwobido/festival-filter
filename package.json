@@ -16,7 +16,9 @@
     "lint-fix": "stylelint \"**/*.css\" --fix && eslint . --fix && prettier . --write"
   },
   "dependencies": {
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "mongodb": "^4.2.0",
     "react": "^17.0.0",
     "react-dom": "^17.0.0"
   },
@@ -41,6 +43,7 @@
     "prettier": "^2.4.1",
     "storybook-builder-vite": "^0.1.8",
     "stylelint": "^14.1.0",
+    "stylelint-config-css-modules": "^2.3.0",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-standard": "^24.0.0",
     "ts-node-dev": "^1.1.8",
