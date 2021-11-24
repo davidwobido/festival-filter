@@ -16,6 +16,7 @@
     "lint-fix": "stylelint \"**/*.css\" --fix && eslint . --fix && prettier . --write"
   },
   "dependencies": {
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "mongodb": "^4.2.0",
     "react": "^17.0.0",
