@@ -21,8 +21,8 @@
   --color-match-okay-bg: #ff9429;
   --color-match-okay-text: #8a4000;
 
-  /* FONT 
-  Epilogue in font-weight 600 is used for headlines. 
+  /* FONT
+  Epilogue in font-weight 600 is used for headlines.
   DM Sans in font-weights 400, 500 and 700 for everything else.
   */
 }
@@ -81,7 +81,8 @@ h3,
 h4,
 h5,
 h6 p,
-a {
+a,
+button {
   margin: 0;
 }
 
@@ -118,6 +119,7 @@ a {
 
 .text-button-default {
   font-size: 1.125rem;
+  font-weight: 700;
 }
 
 .text-button-small {

@@ -41,6 +41,7 @@
     "prettier": "^2.4.1",
     "storybook-builder-vite": "^0.1.8",
     "stylelint": "^14.1.0",
+    "stylelint-config-css-modules": "^2.3.0",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-standard": "^24.0.0",
     "ts-node-dev": "^1.1.8",
