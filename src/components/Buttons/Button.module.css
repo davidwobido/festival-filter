@@ -22,5 +22,6 @@
 .small {
   composes: text-button-small from global;
   composes: normal;
+  padding: 0.7rem 2.2rem;
   background-color: rgb(0 0 0 / 0%);
 }
