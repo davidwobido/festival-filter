@@ -1,7 +1,7 @@
 import Button from "../Buttons/Button";
 import styles from "./FestivalCardMedium.module.css";
 
-function FestivalCardLarge() {
+function FestivalCardMedium() {
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -19,11 +19,13 @@ function FestivalCardLarge() {
           Artist 1, Artist 2, Artist 3, Artist 4, Artist 5, Artist 6, Artist 7,
           Artist 8, Artist 9, Artist 10
         </span>
-        <div className={styles.price}>€€</div>
-        <Button size="small" text="More" className={styles.button} />
+        <span className={styles.price}>€€</span>
+        <div className={styles.button}>
+          <Button size="small" text="More" />
+        </div>
       </div>
     </div>
   );
 }
 
-export default FestivalCardLarge;
+export default FestivalCardMedium;
