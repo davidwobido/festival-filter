@@ -5,10 +5,10 @@ function FestivalCardLarge() {
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
-        <div className={styles.header}>
-          <h3 className={styles.title}>Melt!</h3>
+        <section className={styles.header}>
+          <h3 className={styles.title}>Festival</h3>
           <img src="../../../lib/Icon_Close.svg" className={styles.close} />
-        </div>
+        </section>
         <section className={styles.list}>
           <div className={styles.column}>
             <span className={styles.item}>Location</span>
@@ -16,7 +16,7 @@ function FestivalCardLarge() {
             <span className={styles.item}>Visitors</span>
             <span className={styles.item}>Acts</span>
             <span className={styles.item}>Price</span>
-            <span className={styles.url}>Link to official website</span>
+            <a className={styles.url}>Official website</a>
           </div>
           <div className={styles.column}>
             <span className={styles.item}>Value</span>
@@ -28,9 +28,11 @@ function FestivalCardLarge() {
         </section>
         <section className={styles.acts}>
           <h4>Acts</h4>
-          <p>Alle the acts</p>
+          <p>All the acts</p>
         </section>
-        <Button size="small" text="Back to top" />
+        <div className={styles.button}>
+          <Button size="small" text="Back to top" />
+        </div>
       </div>
     </div>
   );

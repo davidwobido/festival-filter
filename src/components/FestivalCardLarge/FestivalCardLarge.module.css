@@ -46,3 +46,8 @@
   composes: text-info from global;
   padding: 0.25rem 0;
 }
+
+.button {
+  display: grid;
+  justify-items: center;
+}
