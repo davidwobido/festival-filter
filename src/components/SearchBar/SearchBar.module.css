@@ -18,6 +18,11 @@
 
 .input::placeholder {
   color: var(--color-primary-text);
+  font-weight: 500;
+}
+
+.input:hover {
+  border-radius: 0.2rem;
 }
 
 .button {
