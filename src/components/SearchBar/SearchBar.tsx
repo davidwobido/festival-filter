@@ -12,12 +12,17 @@ function SearchBar({ onSearch }: SearchBarProps): JSX.Element {
   console.log(onSearch);
 
   return (
-    <input
-      value={value}
-      onChange={(event) => setValue(event.target.value)}
-      placeholder="Enter search"
-      className={styles["search-bar"]}
-    />
+    <form className={styles.wrapper}>
+      <input
+        value={value}
+        onChange={(event) => setValue(event.target.value)}
+        placeholder="Search"
+        className={styles.input}
+      />
+      <button type="submit" className={styles.button} value="">
+        Search
+      </button>
+    </form>
   );
 }
 
