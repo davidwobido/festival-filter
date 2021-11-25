@@ -2,7 +2,7 @@ import styles from "./Button.module.css";
 import "../../globals.css";
 
 type ButtonProps = {
-  size: string;
+  size: "normal" | "wide" | "small";
   text: string;
 };
 
