@@ -25,3 +25,46 @@ app.get("/api/users/", async (_request, response) => {
   const allUsers = await cursor.toArray();
   response.send(allUsers);
 });
+
+// Read one with mongoDB
+app.get("/api/users/:username", async (request, response) => {
+  const userCollection = getUserCollection(); // Datenbank
+  const user = request.params.username; //Eingabe
+
+  const isUserKnown = await userCollection.findOne({
+    username: user,
+  });
+  if (isUserKnown) {
+    response.status(200).send(isUserKnown);
+  } else {
+    response.status(404).send("User does not exist");
+  }
+});
+
+// Post with mongoDB
+app.post("/api/users", async (request, response) => {
+  const userCollection = getUserCollection();
+  const newUser = request.body;
+
+  if (
+    typeof newUser.name !== "string" ||
+    typeof newUser.username !== "string" ||
+    typeof newUser.password !== "string"
+  ) {
+    response.status(400).send("Missing properties");
+    return;
+  }
+  const isUserKnown = await userCollection.findOne({
+    username: newUser.username,
+  });
+  if (isUserKnown) {
+    response.status(409).send(newUser + " already exist.");
+  } else {
+    userCollection.insertOne(newUser);
+    response.send(newUser.name + " added");
+  }
+});
+
+app.get("/", (_req, res) => {
+  res.send("Hello World!");
+});
