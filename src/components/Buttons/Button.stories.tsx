@@ -5,6 +5,6 @@ export default {
   title: "Components/Button",
 };
 
-export const Normal = () => <Button size="normal" text="Filter" />;
-export const Wide = () => <Button size="wide" text="hallo" />;
-export const Small = () => <Button size="small" text="Filter" />;
+export const Normal = () => <Button size="normal" text="Enter" />;
+export const Wide = () => <Button size="wide" text="Filter" />;
+export const Small = () => <Button size="small" text="More" />;
