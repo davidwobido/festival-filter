@@ -15,7 +15,9 @@ function Loading() {
 
   return (
     <div className={styles.wrapper}>
-      <Lottie options={defaultOptions} height={400} width={400} />
+      <div className={styles.animation}>
+        <Lottie options={defaultOptions} height={"100%"} width={"100%"} />
+      </div>
     </div>
   );
 }
