@@ -1,0 +1,33 @@
+.container {
+  width: 160px;
+}
+
+.wrapper {
+  display: grid;
+  background-color: var(--color-neutral-grade);
+  gap: 0.2rem;
+  padding: 1rem 1.2rem;
+  border-radius: 1.25rem;
+}
+
+.genres {
+  opacity: 0.5;
+}
+
+.location,
+.date,
+.genres {
+  composes: text-info-small from global;
+}
+
+.location-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.date-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}

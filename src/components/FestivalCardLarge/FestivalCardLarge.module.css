@@ -1,0 +1,53 @@
+.container {
+  width: 366px;
+}
+
+.wrapper {
+  display: grid;
+  background-color: var(--color-neutral-grade);
+  padding: 1.1rem 1.3rem;
+  border-radius: 1.25rem;
+  width: 90%;
+  gap: 2rem;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.close {
+  justify-self: end;
+  height: 90%;
+}
+
+.title {
+  align-self: center;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+.column {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.item {
+  composes: text-info from global;
+  padding: 0.25rem 0;
+  border-bottom: 0.1rem solid rgb(0 0 0 / 10%);
+}
+
+.url {
+  composes: text-info from global;
+  padding: 0.25rem 0;
+}
+
+.button {
+  display: grid;
+  justify-items: center;
+}

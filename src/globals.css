@@ -17,7 +17,7 @@
   --color-neutral: #7e7f80;
   --color-neutral-grade: #fafafa;
   --color-match-best-bg: #b4fa64;
-  --color-match-best-text: #1a313b;
+  --color-match-best-text: #009150;
   --color-match-okay-bg: #ff9429;
   --color-match-okay-text: #8a4000;
 
@@ -44,8 +44,13 @@ a {
 
 p,
 a,
-button {
+button,
+span {
   font-family: "DM Sans", sans-serif;
+}
+
+button {
+  font-weight: 500;
 }
 
 h1 {
@@ -68,10 +73,16 @@ h4 {
   line-height: 110%;
 }
 
+h5 {
+  font-size: 1rem;
+  line-height: 110%;
+}
+
 h1,
 h2,
 h3,
-h4 {
+h4,
+h5 {
   font-family: Epilogue, sans-serif;
 }
 
