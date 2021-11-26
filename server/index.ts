@@ -11,12 +11,8 @@ if (!process.env.MONGODB_URI) {
 const port = process.env.PORT || 3001;
 const app = express();
 
-// Connect to database
-connectDatabase(process.env.MONGODB_URI).then(() =>
-  app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
-  })
-);
+// For parsing application/json
+app.use(express.json());
 
 // Read all with mongoDB
 app.get("/api/users/", async (_request, response) => {
@@ -68,3 +64,10 @@ app.post("/api/users", async (request, response) => {
 app.get("/", (_req, res) => {
   res.send("Hello World!");
 });
+
+// Connect to database
+connectDatabase(process.env.MONGODB_URI).then(() =>
+  app.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port}`);
+  })
+);

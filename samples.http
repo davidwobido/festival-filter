@@ -3,10 +3,9 @@
 GET http://localhost:3001/api/users HTTP/1.1
 
 ### Get a single user
-GET http://localhost:3001/api/users/Ralf HTTP/1.1
+GET http://localhost:3001/api/users/ralf666 HTTP/1.1
 
 ### Get a single user who doesn’t exist
-
 GET http://localhost:3001/api/users/Rolf HTTP/1.1
 
 ### Delete a user
@@ -21,7 +20,6 @@ Content-Type: application/json
     "username": "Michl",
     "password": "Gott"
 } 
-
 
 ### Login a user
 POST http://localhost:3001/api/login HTTP/1.1
