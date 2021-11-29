@@ -1,23 +1,30 @@
-import React from "react";
-import Lottie from "react-lottie";
+import React, { useEffect, useRef } from "react";
+import Lottie from "lottie-web";
 import animationData from "../../../lib/FF_Animation_loading.json";
 import styles from "./Loading.module.css";
 
 function Loading() {
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
+  const animationElement = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!animationElement.current) {
+      return;
+    }
+
+    Lottie.loadAnimation({
+      container: animationElement.current,
+      loop: true,
+      autoplay: true,
+      animationData: animationData,
+      rendererSettings: {
+        preserveAspectRatio: "xMidYMid slice",
+      },
+    });
+  }, []);
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.animation}>
-        <Lottie options={defaultOptions} height={"100%"} width={"100%"} />
-      </div>
+      <div className={styles.animation} ref={animationElement} />
     </div>
   );
 }
