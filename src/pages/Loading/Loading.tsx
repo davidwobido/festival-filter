@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import Lottie from "lottie-web";
-import animationData from "../../../lib/FF_Animation_loading.json";
+import animationData from "../../../lib/FF_Animation_loading_03.json";
 import styles from "./Loading.module.css";
 
 function Loading() {
