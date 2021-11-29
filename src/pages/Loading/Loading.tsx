@@ -7,19 +7,17 @@ function Loading() {
   const animationElement = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if (!animationElement.current) {
-      return;
+    if (animationElement.current) {
+      Lottie.loadAnimation({
+        container: animationElement.current,
+        loop: true,
+        autoplay: true,
+        animationData: animationData,
+        rendererSettings: {
+          preserveAspectRatio: "xMidYMid slice",
+        },
+      });
     }
-
-    Lottie.loadAnimation({
-      container: animationElement.current,
-      loop: true,
-      autoplay: true,
-      animationData: animationData,
-      rendererSettings: {
-        preserveAspectRatio: "xMidYMid slice",
-      },
-    });
   }, []);
 
   return (
