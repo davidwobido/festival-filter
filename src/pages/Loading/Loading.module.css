@@ -1,0 +1,13 @@
+.wrapper {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--color-primary-bg);
+}
+
+.animation {
+  transform: translate(0.1rem, -1.2rem);
+  width: 60%;
+}
