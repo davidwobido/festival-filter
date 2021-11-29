@@ -14,6 +14,9 @@ const app = express();
 // For parsing application/json
 app.use(express.json());
 
+// Serve production bundle
+app.use(express.static("dist"));
+
 // Read all with mongoDB
 app.get("/api/users/", async (_request, response) => {
   const userCollection = getUserCollection();
