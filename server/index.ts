@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 dotenv.config();
-
+import path from "path";
 import express from "express";
 import { connectDatabase, getUserCollection } from "./utils/Database";
 
@@ -14,8 +14,10 @@ const app = express();
 // For parsing application/json
 app.use(express.json());
 
-// Serve production bundle
-app.use(express.static("dist"));
+// Say Hello
+app.get("/", (_req, res) => {
+  res.send("Hello World!");
+});
 
 // Read all with mongoDB
 app.get("/api/users/", async (_request, response) => {
@@ -64,8 +66,12 @@ app.post("/api/users", async (request, response) => {
   }
 });
 
-app.get("/", (_req, res) => {
-  res.send("Hello World!");
+// Serve production bundle
+app.use(express.static("dist"));
+
+// Handle client routing, return all requests to the app
+app.get("*", (_request, response) => {
+  response.sendFile(path.join(__dirname, "../index.html"));
 });
 
 // Connect to database
