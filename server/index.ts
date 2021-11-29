@@ -123,9 +123,10 @@ app.post("/api/festivals", async (request, response) => {
     typeof newFestival.location !== "string" ||
     typeof newFestival.begin !== "string" ||
     typeof newFestival.end !== "string" ||
-    typeof newFestival.visitors !== "string" ||
-    typeof newFestival.acts !== "string" ||
-    typeof newFestival.price !== "string"
+    typeof newFestival.visitors !== "number" ||
+    typeof newFestival.acts !== "number" ||
+    typeof newFestival.price !== "number" ||
+    typeof newFestival.allacts !== "string"
   ) {
     response.status(400).send("Missing properties");
     return;
