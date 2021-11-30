@@ -11,6 +11,10 @@ function AddUser() {
     localStorage.setItem("LocalStorageValue", user);
   }, [user]);
 
+  useEffect(() => {
+    user && setLoggedInUser(user);
+  }, []);
+
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
     setLoggedInUser(user);
@@ -26,7 +30,6 @@ function AddUser() {
       <form className={styles.wrapper} onSubmit={handleSubmit}>
         <input
           type="text"
-          value={user}
           onChange={(event) => setUser(event.target.value)}
           className={styles.input}
         ></input>
@@ -34,11 +37,12 @@ function AddUser() {
       </form>
       {loggedInUser ? (
         <button className={styles.reset} onClick={deleteUser}>
-          Logout {user}
+          Delete {loggedInUser}
         </button>
       ) : (
         <button className={styles.reset}>No user logged in</button>
       )}
+      <button onClick={() => console.log(user)}>LoginCheck</button>
     </div>
   );
 }
