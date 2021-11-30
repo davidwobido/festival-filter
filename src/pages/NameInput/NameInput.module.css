@@ -1,0 +1,9 @@
+.wrapper {
+  display: grid;
+  gap: 2rem;
+  background-color: var(--color-primary-bg);
+}
+
+.preline {
+  composes: text-preline from global;
+}
