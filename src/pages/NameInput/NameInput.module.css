@@ -1,20 +1,26 @@
 .wrapper {
+  position: relative;
+  display: grid;
   height: 100vh;
   background-color: var(--color-primary-bg);
 }
 
 .content {
   display: grid;
-  gap: 2rem;
+  gap: 1rem;
+  justify-items: start;
   align-content: center;
+  padding: 1.25rem;
+  width: 19rem;
 }
 
 .preline {
   composes: text-preline from global;
 }
 
-/* ADD following css to global when previous branch is merged! */
-
-h2 {
-  color: var(--color-neutral-grade);
+.footer {
+  position: absolute;
+  display: grid;
+  justify-self: center;
+  bottom: 2rem;
 }
