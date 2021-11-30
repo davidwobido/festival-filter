@@ -62,16 +62,19 @@ h1 {
 h2 {
   font-size: 2rem;
   line-height: 110%;
+  color: var(--color-primary-text);
 }
 
 h3 {
   font-size: 1.625rem;
   line-height: 110%;
+  color: var(--color-primary-bg);
 }
 
 h4 {
   font-size: 1.25rem;
   line-height: 110%;
+  color: var(--color-primary-bg);
 }
 
 h5 {

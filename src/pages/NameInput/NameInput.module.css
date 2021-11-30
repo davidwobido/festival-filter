@@ -1,7 +1,12 @@
 .wrapper {
+  height: 100vh;
+  background-color: var(--color-primary-bg);
+}
+
+.content {
   display: grid;
   gap: 2rem;
-  background-color: var(--color-primary-bg);
+  align-content: center;
 }
 
 .preline {
