@@ -7,3 +7,9 @@
 .preline {
   composes: text-preline from global;
 }
+
+/* ADD following css to global when previous branch is merged! */
+
+h2 {
+  color: var(--color-neutral-grade);
+}
