@@ -15,6 +15,28 @@
   border-radius: 0.2rem;
 }
 
+.input:target {
+  border-radius: 0.2rem;
+}
+
+input[type="text"] {
+  color: var(--color-neutral-grade);
+  font-size: 1rem;
+}
+
 .button {
   composes: button from "../SearchBar/SearchBar.module.css";
+}
+
+.reset {
+  padding-top: 1rem;
+  border: none;
+  background: none;
+  color: var(--color-neutral);
+  font-size: 0.875rem;
+  text-decoration: underline;
+}
+
+.invisible {
+  visibility: hidden;
 }
