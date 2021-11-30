@@ -11,6 +11,7 @@ function AddUser() {
     localStorage.setItem("LocalStorageValue", user);
   }, [user]);
 
+  // User is still displayed as logged in when refreshing the page
   useEffect(() => {
     user && setLoggedInUser(user);
   }, []);
@@ -23,6 +24,7 @@ function AddUser() {
 
   function deleteUser() {
     setUser("");
+    setLoggedInUser("");
   }
 
   return (
@@ -36,13 +38,12 @@ function AddUser() {
         <button type="submit" className={styles.button}></button>
       </form>
       {loggedInUser ? (
-        <button className={styles.reset} onClick={deleteUser}>
+        <button className={styles["reset-active"]} onClick={deleteUser}>
           Delete {loggedInUser}
         </button>
       ) : (
-        <button className={styles.reset}>No user logged in</button>
+        <button className={styles["reset-inactive"]}>No user logged in</button>
       )}
-      <button onClick={() => console.log(user)}>LoginCheck</button>
     </div>
   );
 }
