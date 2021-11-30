@@ -1,6 +1,6 @@
 import React from "react";
 
-import AddUser from "./AddUser";
+import AddUser from "./AddUserForm";
 
 export default {
   component: AddUser,
