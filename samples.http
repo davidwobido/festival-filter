@@ -1,5 +1,4 @@
 ###Get all users
-
 GET http://localhost:3001/api/users HTTP/1.1
 
 ### Get a single user
@@ -21,15 +20,32 @@ Content-Type: application/json
     "password": "Gott"
 } 
 
-### Login a user
-POST http://localhost:3001/api/login HTTP/1.1
+### Get all festivals
+GET http://localhost:3001/api/festivals HTTP/1.1
+
+
+### Get a single festival
+GET http://localhost:3001/api/festivals/Southside HTTP/1.1
+
+
+### POST a festival
+POST http://localhost:3001/api/festivals HTTP/1.1
 Content-Type: application/json
 
 {
-    "username": "dw_182",
-    "password": "pw123!"
+    "name": "Southside",
+    "location": "Neuhausen ob Eck",
+    "begin": "17.06.2022",
+    "end": "19.06.2022",
+    "visitors": 60000,
+    "acts": 100,
+    "price": 250,
+    "allacts": "The Killers, Kings of Leon, Twenty One Pilots, Martin Garrix, Bring Me The Horizon, Foals, Rise Against, Jimmy Eat World, CHVRCHES, Bombay Bicycle Club, Oh Wonder, Mayday Parade, Royal Blood, Killswitch Engage, The Hives, Bad Religion, Nothing But Thieves, AURORA, LP, Tones and I, Dermot Kennedy, Half Moon Run, Neck Deep, Mando Diao, Sam Fender, Millencolin, IDLES, Seeed, While She Sleeps, Skindred, The Dead South, Deichkind, Kollektiv Turmstrasse, Dubvision, Fontaines D.C., K.I.Z., Kontra K, Reignwolf, Left Boy, SDP, Giant Rooks, Von wegen Lisbeth, Fil Bo Riva, Miya Folick, Inhaler, Justin Mylo, Blues Pills, Frittenbude, KitschKrieg, Bart B More, Thees Uhlmann, Holly Humberstone, JC Stewart, Antilopen Gang, Brutus, Kelvyn Colt, Mine, Nura, Kat Frankie, The Lathums, Kummer, Turbostaat, Provinz, Press Club, Hot Milk, Swiss & Die Andern, Ferdinand, Blond, Flash Forward, Helgen, Juju (DE), LARI LUKE"
 }
 
-### Get logged in user
-POST http://localhost:3001/api/me HTTP/1.1
+### Delete a festival
+DELETE http://localhost:3001/api/festivals/Southside HTTP/1.1
+
+
+
 
