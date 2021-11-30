@@ -8,10 +8,8 @@
 .content {
   display: grid;
   gap: 1rem;
-  justify-items: start;
   align-content: center;
   padding: 1.25rem;
-  width: 19rem;
 }
 
 .preline {
