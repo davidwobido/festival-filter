@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./Start.module.css";
 import Button from "../../components/Buttons/Button";
+import { Link } from "react-router-dom";
 
 function StartPage() {
   return (
@@ -10,7 +11,9 @@ function StartPage() {
         <h1 className={styles.headline}>
           We filter the best festivals for you.
         </h1>
-        <Button size="normal" text="Enter" />
+        <Link to="/NameInput">
+          <Button size="normal" text="Enter" />
+        </Link>
       </section>
     </div>
   );

@@ -1,16 +1,12 @@
-.app {
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100vw;
-  height: 100vh;
-}
-
-.app-header {
-  color: var(--color-primary);
-  background-color: var(--color-background);
-  width: 100%;
-  height: 100%;
-}
-
-.text {
-  display: grid;
-  height: 100%;
+  height: 5rem;
+  color: var(--color-neutral-grade);
+  border-bottom: solid var(--color-neutral-grade) 0.0125em;
 }
