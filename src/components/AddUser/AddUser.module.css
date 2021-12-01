@@ -1,0 +1,47 @@
+.wrapper {
+  composes: wrapper from "../SearchBar/SearchBar.module.css";
+}
+
+.input {
+  composes: input from "../SearchBar/SearchBar.module.css";
+}
+
+.input::placeholder {
+  color: var(--color-primary-text);
+  font-weight: 500;
+}
+
+.input:hover {
+  border-radius: 0.2rem;
+}
+
+.input:target {
+  border-radius: 0.2rem;
+}
+
+input[type="text"] {
+  color: var(--color-neutral-grade);
+  font-size: 1rem;
+}
+
+.button {
+  composes: button from "../SearchBar/SearchBar.module.css";
+}
+
+.reset-active,
+.reset-inactive {
+  padding-top: 1rem;
+  border: none;
+  background: none;
+  color: var(--color-neutral);
+  font-size: 0.875rem;
+}
+
+.reset-active {
+  text-decoration: underline;
+}
+
+.reset-inactive {
+  text-decoration: none;
+  opacity: 0.5;
+}
