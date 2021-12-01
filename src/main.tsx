@@ -11,11 +11,11 @@ ReactDOM.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
-          <Route path="StartPage" element={<StartPage />} />
-          <Route path="NameInput" element={<NameInput />} />
+          <Route index element={<StartPage />} />
+          <Route path="name-input" element={<NameInput />} />
         </Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
-  document.getElementById("root")
+  document.querySelector("#root")
 );

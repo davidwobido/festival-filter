@@ -11,7 +11,7 @@ function StartPage() {
         <h1 className={styles.headline}>
           We filter the best festivals for you.
         </h1>
-        <Link to="/NameInput">
+        <Link to="/name-input">
           <Button size="normal" text="Enter" />
         </Link>
       </section>
