@@ -45,7 +45,3 @@ input[type="text"] {
   text-decoration: none;
   opacity: 0.5;
 }
-
-.invisible {
-  visibility: hidden;
-}
