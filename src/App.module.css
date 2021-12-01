@@ -1,13 +1,4 @@
-.navbar {
-  /* position: fixed; */
-  top: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  height: 5rem;
-  color: var(--color-primary-text);
-  background-color: var(--color-primary-bg);
-  border-bottom: solid var(--color-primary-bg) 0.0125em;
+.app {
+  position: relative;
+  height: 100%;
 }
