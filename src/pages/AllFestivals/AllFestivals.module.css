@@ -1,7 +1,15 @@
 .wrapper {
+  display: grid;
+  gap: 2rem;
   background-color: var(--color-primary-bg);
 }
 
 .intro {
   composes: text-intro from global;
+}
+
+.list {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 10rem));
 }

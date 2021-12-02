@@ -20,12 +20,14 @@ function AllFestivals() {
 
   return (
     <div className={styles.wrapper}>
-      <h1>All Festivals</h1>
-      <span className={styles.intro}>
-        Here’s an overview of all festivals in our database sorted by name.
-      </span>
+      <section className={styles.text}>
+        <h1>All Festivals</h1>
+        <span className={styles.intro}>
+          Here’s an overview of all festivals in our database sorted by name.
+        </span>
+      </section>
       <SearchBar onSearch={console.log} />
-      <div>
+      <section className={styles.list}>
         {festivals?.map((festival) => (
           // eslint-disable-next-line react/jsx-key
           <FestivalCardSmall
@@ -35,7 +37,7 @@ function AllFestivals() {
             end={festival.end}
           />
         ))}
-      </div>
+      </section>
     </div>
   );
 }
