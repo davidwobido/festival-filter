@@ -1,0 +1,7 @@
+.wrapper {
+  background-color: var(--color-primary-bg);
+}
+
+.intro {
+  composes: text-intro from global;
+}
