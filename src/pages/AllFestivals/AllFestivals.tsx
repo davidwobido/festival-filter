@@ -8,14 +8,13 @@ import styles from "./AllFestivals.module.css";
 function AllFestivals() {
   const [festivals, setFestivals] = useState<FestivalCardSmallProps[]>([]);
 
-  async function getFestivals() {
-    const response = await fetch("api/festivals");
-    const body = await response.json();
-    console.log(body);
-    setFestivals(body.festivals);
-  }
-
   useEffect(() => {
+    async function getFestivals() {
+      const response = await fetch("api/festivals");
+      const body = await response.json();
+      console.log(body);
+      setFestivals(body);
+    }
     getFestivals();
   }, []);
 
@@ -27,13 +26,13 @@ function AllFestivals() {
       </span>
       <SearchBar onSearch={console.log} />
       <div>
-        {festivals?.map((data) => (
+        {festivals?.map((festival) => (
           // eslint-disable-next-line react/jsx-key
           <FestivalCardSmall
-            name={data.name}
-            location={data.location}
-            begin={data.begin}
-            end={data.end}
+            name={festival.name}
+            location={festival.location}
+            begin={festival.begin}
+            end={festival.end}
           />
         ))}
       </div>
