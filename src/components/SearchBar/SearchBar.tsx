@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import styles from "./SearchBar.module.css";
 
 type SearchBarProps = {
@@ -8,11 +8,13 @@ type SearchBarProps = {
 function SearchBar({ onSearch }: SearchBarProps): JSX.Element {
   const [value, setValue] = useState("");
 
-  console.log(value);
-  console.log(onSearch);
+  function handleSubmit(event: FormEvent) {
+    event.preventDefault();
+    onSearch(value);
+  }
 
   return (
-    <form className={styles.wrapper}>
+    <form className={styles.wrapper} onSubmit={handleSubmit}>
       <input
         value={value}
         onChange={(event) => setValue(event.target.value)}

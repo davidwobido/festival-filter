@@ -105,6 +105,7 @@ button {
 
 .text-intro {
   font-size: 1.125rem;
+  font-weight: 500;
   color: var(--color-neutral-grade);
 }
 

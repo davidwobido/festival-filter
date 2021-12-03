@@ -93,7 +93,7 @@ app.delete("/api/users/:username", async (request, response) => {
 // Read all festivals with mongoDB
 app.get("/api/festivals/", async (_request, response) => {
   const festivalCollection = getFestivalCollection();
-  const cursor = festivalCollection.find();
+  const cursor = festivalCollection.find().sort({ name: 1 });
   const allFestivals = await cursor.toArray();
   response.send(allFestivals);
 });
