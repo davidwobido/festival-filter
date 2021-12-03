@@ -7,6 +7,11 @@ import styles from "./AllFestivals.module.css";
 
 function AllFestivals() {
   const [festivals, setFestivals] = useState<FestivalCardSmallProps[]>([]);
+  const [search, setSearch] = useState("");
+
+  const searchFestivals = festivals?.filter((festival) =>
+    festival.name.toLocaleLowerCase().includes(search.toLowerCase())
+  );
 
   useEffect(() => {
     async function getFestivals() {
@@ -26,9 +31,12 @@ function AllFestivals() {
           Here’s an overview of all festivals in our database sorted by name.
         </span>
       </section>
-      <SearchBar onSearch={console.log} />
+      <SearchBar onSearch={setSearch} />
       <section className={styles.list}>
-        {festivals?.map((festival) => (
+        {searchFestivals?.length === 0 && (
+          <span className={styles["no-documents"]}>No Docouments found</span>
+        )}
+        {searchFestivals?.map((festival) => (
           // eslint-disable-next-line react/jsx-key
           <FestivalCardSmall
             name={festival.name}
