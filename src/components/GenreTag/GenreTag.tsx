@@ -7,14 +7,17 @@ type GenreTagProps = {
 };
 
 function GenreTag({ text }: GenreTagProps): JSX.Element {
-  const [active, setActive] = useState<boolean>(false);
+  const [selected, setActive] = useState<boolean>(false);
 
   function handleClick() {
-    active ? setActive(false) : setActive(true);
+    selected ? setActive(false) : setActive(true);
   }
 
   return (
-    <button className={styles.tag} onClick={handleClick}>
+    <button
+      className={selected ? styles.tag_selected : styles.tag_unselected}
+      onClick={handleClick}
+    >
       {text}
     </button>
   );

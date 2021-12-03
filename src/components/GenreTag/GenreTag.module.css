@@ -4,12 +4,22 @@
   gap: 1rem;
 }
 
-.tag {
+.tag_selected,
+.tag_unselected {
   composes: text-button-small from global;
   padding: 0.7rem 1.4rem;
-  color: var(--color-primary-bg);
-  background-color: var(--color-neutral-grade);
-  border: none;
   border-radius: 1.875rem;
   box-shadow: 0 0 0.35em rgb(0 0 0 / 25%);
+}
+
+.tag_selected {
+  color: var(--color-primary-bg);
+  border: var(--color-primary-bg) solid 0.0625rem;
+  background-color: var(--color-neutral-grade);
+}
+
+.tag_unselected {
+  color: var(--color-neutral-grade);
+  border: var(--color-neutral-grade) solid 0.0625rem;
+  background-color: var(--color-nprimary-bg);
 }
