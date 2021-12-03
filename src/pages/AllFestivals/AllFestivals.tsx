@@ -17,7 +17,6 @@ function AllFestivals() {
     async function getFestivals() {
       const response = await fetch("api/festivals");
       const body = await response.json();
-      console.log(body);
       setFestivals(body);
     }
     getFestivals();
