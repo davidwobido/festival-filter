@@ -11,11 +11,8 @@
   font-weight: 500;
 }
 
+.input:target,
 .input:hover {
-  border-radius: 0.2rem;
-}
-
-.input:target {
   border-radius: 0.2rem;
 }
 

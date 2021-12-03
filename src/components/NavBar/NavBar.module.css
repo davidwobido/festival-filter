@@ -1,0 +1,16 @@
+.wrapper {
+  position: fixed;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+  height: 5rem;
+  border-bottom: solid var(--color-neutral-grade) 0.0125em;
+  color: var(--color-primary-text);
+  background-color: var(--color-primary-bg);
+}
+
+.logo {
+  height: 1.5rem;
+}

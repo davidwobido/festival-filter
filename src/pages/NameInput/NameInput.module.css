@@ -1,5 +1,4 @@
 .wrapper {
-  position: relative;
   display: grid;
   height: 100vh;
   background-color: var(--color-primary-bg);
@@ -7,8 +6,8 @@
 
 .content {
   display: grid;
-  gap: 1rem;
   align-content: center;
+  gap: 1rem;
   padding: 1.25rem;
 }
 
@@ -18,7 +17,7 @@
 
 .footer {
   position: absolute;
+  bottom: 2rem;
   display: grid;
   justify-self: center;
-  bottom: 2rem;
 }
