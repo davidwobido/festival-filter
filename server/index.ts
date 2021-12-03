@@ -24,8 +24,8 @@ app.get("/api/festivals/", async (_request, response) => {
 
 // Read one festival with mongoDB
 app.get("/api/festivals/:name", async (request, response) => {
-  const festivalCollection = getFestivalCollection(); // Datenbank
-  const festival = request.params.name; //Eingabe
+  const festivalCollection = getFestivalCollection();
+  const festival = request.params.name;
 
   const isFestivalKnown = await festivalCollection.findOne({
     name: festival,
