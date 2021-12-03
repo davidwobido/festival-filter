@@ -18,11 +18,6 @@ const app = express();
 // For parsing application/json
 app.use(express.json());
 
-// Say Hello
-app.get("/", (_req, res) => {
-  res.send("Hello World!");
-});
-
 // USERS
 
 // Read all users with mongoDB
@@ -164,6 +159,11 @@ app.use(express.static("dist"));
 // Handle client routing, return all requests to the app
 app.get("*", (_request, response) => {
   response.sendFile(path.join(__dirname, "../index.html"));
+});
+
+// Say Hello
+app.get("/", (_req, res) => {
+  res.send("Hello World!");
 });
 
 // Connect to database
