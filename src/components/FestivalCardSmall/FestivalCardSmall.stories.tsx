@@ -7,9 +7,9 @@ export default {
 
 export const Card = () => (
   <FestivalCardSmall
-    name="Southside"
-    location="Neuhausen ob Eck"
-    begin="17.06.2022"
-    end="19.06.2022"
+    name="Summer Breeze"
+    location="Dinkelsbühl"
+    begin="17.08.2022"
+    end="20.08.2022"
   />
 );
