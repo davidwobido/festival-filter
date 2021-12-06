@@ -7,14 +7,14 @@ type GenreTagProps = {
     selected: boolean;
     id: number;
   };
-  onClick: () => void;
+  handleClick: (value: number) => void;
 };
 
-function GenreTag({ tag, onClick }: GenreTagProps): JSX.Element {
+function GenreTag({ tag, handleClick }: GenreTagProps): JSX.Element {
   return (
     <button
       className={tag.selected ? styles.tag_selected : styles.tag_unselected}
-      onClick={() => onClick(tag.id)}
+      onClick={() => handleClick(tag.id)}
     >
       {tag.text}
     </button>

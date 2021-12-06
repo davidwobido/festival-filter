@@ -17,10 +17,12 @@ function SelectGenre() {
     { text: "Classical", selected: false, id: 9 },
   ]);
 
-  function onTagClicked(id) {
+  function onTagClicked(id: number) {
     const newTags = [...tags];
     const tag = newTags.find((tag) => tag.id === id);
-    tag.selected = !tag.selected;
+    if (tag) {
+      tag.selected = !tag.selected;
+    }
     setTags(newTags);
   }
 
@@ -34,13 +36,7 @@ function SelectGenre() {
           <h2>Choose your favorite genres:</h2>
           <section className={styles.tags}>
             {tags.map((tag) => (
-              <GenreTag
-                tag={tag}
-                text={tag.text}
-                selected={tag.selected}
-                key={tag.id}
-                onClick={onTagClicked}
-              />
+              <GenreTag tag={tag} key={tag.id} handleClick={onTagClicked} />
             ))}
           </section>
         </div>
