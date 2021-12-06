@@ -1,6 +1,6 @@
 import styles from "./GenreTag.module.css";
 import "../../globals.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 type GenreTagProps = {
   text: string;
@@ -8,6 +8,10 @@ type GenreTagProps = {
 
 function GenreTag({ text }: GenreTagProps): JSX.Element {
   const [selected, setActive] = useState<boolean>(false);
+
+  useEffect(() => {
+    console.log(selected, text);
+  }, [selected]);
 
   function handleClick() {
     selected ? setActive(false) : setActive(true);
