@@ -2,7 +2,6 @@
   "name": "template",
   "version": "0.0.0",
   "scripts": {
-    "dev": "concurrently \"npm run dev-client\" \"npm run dev-server\" \"npm run storybook\"",
     "dev-client": "vite",
     "dev-server": "ts-node-dev --project server/tsconfig.json server/index.ts",
     "storybook": "start-storybook -p 6006",
@@ -17,7 +16,6 @@
     "lint-fix": "stylelint \"**/*.css\" --fix && eslint . --fix && prettier . --write"
   },
   "dependencies": {
-    "concurrently": "^6.4.0",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "lottie-web": "^5.8.1",
