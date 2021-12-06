@@ -1,17 +1,27 @@
 import styles from "./FilterPage.module.css";
 import GenreTag from "../../components/GenreTag/GenreTag";
 import Button from "../../components/Buttons/Button";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function SelectGenre() {
-  const [selected, setActive] = useState<boolean>(false);
+  const [tags, setTags] = useState([
+    { text: "Pop", selected: false, id: 0 },
+    { text: "HipHop", selected: false, id: 1 },
+    { text: "Rock", selected: false, id: 2 },
+    { text: "Indie", selected: false, id: 3 },
+    { text: "Punk", selected: false, id: 4 },
+    { text: "Metal", selected: false, id: 5 },
+    { text: "Electronic", selected: false, id: 6 },
+    { text: "Reggae", selected: false, id: 7 },
+    { text: "Jazz", selected: false, id: 8 },
+    { text: "Classical", selected: false, id: 9 },
+  ]);
 
-  useEffect(() => {
-    console.log(selected);
-  }, [selected]);
-
-  function handleClick() {
-    selected ? setActive(false) : setActive(true);
+  function onTagClicked(id) {
+    const newTags = [...tags];
+    const tag = newTags.find((tag) => tag.id === id);
+    tag.selected = !tag.selected;
+    setTags(newTags);
   }
 
   return (
@@ -23,16 +33,15 @@ function SelectGenre() {
           </span>
           <h2>Choose your favorite genres:</h2>
           <section className={styles.tags}>
-            <GenreTag text="Pop" selected={false} onClick={handleClick} />
-            <GenreTag text="HipHop" selected={false} onClick={handleClick} />
-            <GenreTag text="Rock" selected={false} />
-            <GenreTag text="Indie" selected={false} />
-            <GenreTag text="Punk" selected={false} />
-            <GenreTag text="Metal" selected={false} />
-            <GenreTag text="Electronic" selected={false} />
-            <GenreTag text="Reggae" selected={false} />
-            <GenreTag text="Jazz" selected={false} />
-            <GenreTag text="Classical" selected={false} />
+            {tags.map((tag) => (
+              <GenreTag
+                tag={tag}
+                text={tag.text}
+                selected={tag.selected}
+                key={tag.id}
+                onClick={onTagClicked}
+              />
+            ))}
           </section>
         </div>
         <footer className={styles.footer}>
