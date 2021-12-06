@@ -2,13 +2,11 @@ import { FormEvent, useEffect, useState } from "react";
 import styles from "./AddUser.module.css";
 
 function AddUser() {
-  const [user, setUser] = useState(
-    localStorage.getItem("LocalStorageValue") || ""
-  );
+  const [user, setUser] = useState(localStorage.getItem("ActiveUser") || "");
   const [loggedInUser, setLoggedInUser] = useState<string | null>(null);
 
   useEffect(() => {
-    localStorage.setItem("LocalStorageValue", user);
+    localStorage.setItem("ActiveUser", user);
   }, [user]);
 
   // User is still displayed as logged in when refreshing the page
