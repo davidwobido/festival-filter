@@ -28,6 +28,14 @@ function SelectGenre(): JSX.Element {
     setTags(newTags);
   }
 
+  function FilterFunction(): void {
+    const chosenGenres = tags.filter((tag) => tag.selected === true);
+    console.log(chosenGenres);
+
+    const readGenres = chosenGenres.map((genre) => genre.text);
+    console.log(readGenres);
+  }
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.content}>
@@ -50,6 +58,9 @@ function SelectGenre(): JSX.Element {
         <a>Show all festivals</a>
       </footer>
       <Button size="normal" text="filter" />
+      <button type="submit" onClick={FilterFunction}>
+        FestivalFilter
+      </button>
     </div>
   );
 }
