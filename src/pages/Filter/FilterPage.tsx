@@ -13,7 +13,7 @@ const initialTags = [
   { text: "Electronic", selected: false, id: 6 },
   { text: "Reggae", selected: false, id: 7 },
   { text: "Jazz", selected: false, id: 8 },
-  { text: "Classical", selected: false, id: 9 },
+  { text: "Classic", selected: false, id: 9 },
 ];
 
 function SelectGenre(): JSX.Element {
