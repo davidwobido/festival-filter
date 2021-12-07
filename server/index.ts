@@ -22,6 +22,17 @@ app.get("/api/festivals/", async (_request, response) => {
   response.send(allFestivals);
 });
 
+// Search genre
+app.get("/api/festivals/:genre", async (request, response) => {
+  const festivalCollection = getFestivalCollection();
+  const genre = request.params.genre;
+  console.log(genre);
+  const query = { genre: { $gte: 20 } };
+  const cursor = festivalCollection.find(query).sort({ name: 1 });
+  const filteredFestivals = await cursor.toArray();
+  response.send(filteredFestivals);
+});
+
 // Read one festival with mongoDB
 app.get("/api/festivals/:name", async (request, response) => {
   const festivalCollection = getFestivalCollection();

@@ -1,27 +1,10 @@
-###Get all users
-GET http://localhost:3001/api/users HTTP/1.1
-
-### Get a single user
-GET http://localhost:3001/api/users/ralf666 HTTP/1.1
-
-### Get a single user who doesn’t exist
-GET http://localhost:3001/api/users/Rolf HTTP/1.1
-
-### Delete a user
-DELETE http://localhost:3001/api/users/Michl HTTP/1.1 
-
-### POST a user
-POST http://localhost:3001/api/users HTTP/1.1
-Content-Type: application/json
-
-{
-    "name": "Michl",
-    "username": "Michl",
-    "password": "Gott"
-} 
-
 ### Get all festivals
 GET http://localhost:3001/api/festivals HTTP/1.1
+
+
+### Get searched festivals
+GET http://localhost:3001/api/festivals/Electro HTTP/1.1
+
 
 
 ### Get a single festival
