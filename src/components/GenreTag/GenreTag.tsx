@@ -2,11 +2,28 @@ import styles from "./GenreTag.module.css";
 import "../../globals.css";
 
 type GenreTagProps = {
-  text: string;
+  tag: {
+    text: string;
+    selected: boolean;
+    id: number;
+  };
+  onClick: (value: number) => void;
 };
 
-function GenreTag({ text }: GenreTagProps): JSX.Element {
-  return <button className={styles.tag}>{text}</button>;
+function GenreTag({ tag, onClick }: GenreTagProps): JSX.Element {
+  return (
+    <button
+      // className={tag.selected ? styles.tag_selected : styles.tag_unselected}
+      className={`${styles.tag} ${
+        tag.selected
+          ? styles["tag--state-selected"]
+          : styles["tag--state-unselected"]
+      }`}
+      onClick={() => onClick(tag.id)}
+    >
+      {tag.text}
+    </button>
+  );
 }
 
 export default GenreTag;
