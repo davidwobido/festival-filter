@@ -17,10 +17,6 @@
   max-width: 30rem;
 }
 
-.preline {
-  composes: text-preline from global;
-}
-
 .footer {
   position: absolute;
   bottom: 2rem;
