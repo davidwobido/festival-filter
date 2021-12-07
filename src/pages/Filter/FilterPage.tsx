@@ -31,7 +31,7 @@ function SelectGenre(): JSX.Element {
   return (
     <div className={styles.wrapper}>
       <div className={styles.content}>
-        <span className={styles.preline}>
+        <span className={"text-preline"}>
           Hi {localStorage.getItem("ActiveUser")}
         </span>
         <h2>Choose your favorite genres:</h2>
@@ -47,7 +47,7 @@ function SelectGenre(): JSX.Element {
         </section>
       </div>
       <footer className={styles.footer}>
-        <a className={styles.skip}>Show all festivals</a>
+        <a>Show all festivals</a>
       </footer>
       <Button size="normal" text="filter" />
     </div>

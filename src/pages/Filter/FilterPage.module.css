@@ -7,7 +7,14 @@
 }
 
 .content {
+  display: grid;
+  align-content: center;
+  gap: 1rem;
   padding: 1.25rem;
+}
+
+.tags {
+  max-width: 30rem;
 }
 
 .preline {
