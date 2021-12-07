@@ -4,8 +4,7 @@
   gap: 1rem;
 }
 
-.tag_selected,
-.tag_unselected {
+.tag {
   composes: text-button-small from global;
   padding: 0.7rem 1.4rem;
   margin: 0.2rem;
@@ -14,12 +13,12 @@
   border: var(--color-neutral-grade) solid 0.0625rem;
 }
 
-.tag_selected {
+.tag--state-selected {
   color: var(--color-primary-bg);
   background-color: var(--color-neutral-grade);
 }
 
-.tag_unselected {
+.tag--state-unselected {
   color: var(--color-neutral-grade);
   background-color: var(--color-primary-bg);
 }
