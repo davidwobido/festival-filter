@@ -3,6 +3,7 @@ import GenreTag from "../../components/GenreTag/GenreTag";
 import Button from "../../components/Buttons/Button";
 import { useState } from "react";
 
+// Genre tags
 const initialTags = [
   { text: "Pop", selected: false, id: 0 },
   { text: "HipHop", selected: false, id: 1 },
@@ -18,7 +19,9 @@ const initialTags = [
 
 function SelectGenre(): JSX.Element {
   const [tags, setTags] = useState(initialTags);
+  const [filteredFestivals, setFilteredFestivals] = useState("");
 
+  // Select Tag
   function onTagClicked(id: number): void {
     const newTags = [...tags];
     const tag = newTags.find((tag) => tag.id === id);
@@ -28,12 +31,19 @@ function SelectGenre(): JSX.Element {
     setTags(newTags);
   }
 
+  // Get selected genre
   function FilterFunction(): void {
-    const chosenGenres = tags.filter((tag) => tag.selected === true);
-    console.log(chosenGenres);
+    const selectedGenres = tags.filter((tag) => tag.selected === true);
+    const mapGenres = selectedGenres.map((genre) => genre.text);
+    console.log(mapGenres);
+  }
 
-    const readGenres = chosenGenres.map((genre) => genre.text);
-    console.log(readGenres);
+  // Request to API for filtered festivals
+  async function getFilteredFestivals(): Promise<void> {
+    const response = await fetch("api/festivals/electronic");
+    const body = await response.json();
+    setFilteredFestivals(body);
+    console.log(filteredFestivals);
   }
 
   return (
@@ -60,6 +70,9 @@ function SelectGenre(): JSX.Element {
       <Button size="normal" text="filter" />
       <button type="submit" onClick={FilterFunction}>
         FestivalFilter
+      </button>
+      <button type="submit" onClick={getFilteredFestivals}>
+        Show filteredFestivals
       </button>
     </div>
   );
