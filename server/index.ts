@@ -27,26 +27,37 @@ app.get("/api/festivals/:genre", async (request, response) => {
   const festivalCollection = getFestivalCollection();
   const genre = request.params.genre;
   console.log(genre);
-  const query = { genre: { $gte: 20 } };
+  // const isGenreKnown = await festivalCollection.find({
+  //   name: genre,
+  // });
+  // if (isGenreKnown) {
+  //   console.log(genre);
+  // } else {
+  //   console.log("not");
+  // }
+
+  const query = { electronic: { $gte: 20 } };
+  console.log(query);
   const cursor = festivalCollection.find(query).sort({ name: 1 });
   const filteredFestivals = await cursor.toArray();
+  console.log(filteredFestivals);
   response.send(filteredFestivals);
 });
 
-// Read one festival with mongoDB
-app.get("/api/festivals/:name", async (request, response) => {
-  const festivalCollection = getFestivalCollection();
-  const festival = request.params.name;
+// // Read one festival with mongoDB
+// app.get("/api/festivals/:name", async (request, response) => {
+//   const festivalCollection = getFestivalCollection();
+//   const festival = request.params.name;
 
-  const isFestivalKnown = await festivalCollection.findOne({
-    name: festival,
-  });
-  if (isFestivalKnown) {
-    response.status(200).send(isFestivalKnown);
-  } else {
-    response.status(404).send("Festival does not exist");
-  }
-});
+//   const isFestivalKnown = await festivalCollection.findOne({
+//     name: festival,
+//   });
+//   if (isFestivalKnown) {
+//     response.status(200).send(isFestivalKnown);
+//   } else {
+//     response.status(404).send("Festival does not exist");
+//   }
+// });
 
 // Post festival with mongoDB
 app.post("/api/festivals", async (request, response) => {
