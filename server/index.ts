@@ -25,15 +25,27 @@ app.get("/api/festivals/", async (_request, response) => {
 // Search by genre
 app.get("/api/festivals/:genre", async (request, response) => {
   const festivalCollection = getFestivalCollection();
-  const genre: string = request.params.genre;
-  const value = { $gt: 0 };
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const query: any = {};
-  query[genre] = value;
-  const cursor = festivalCollection.find(query).sort({ name: 1 });
-  const filteredFestivals = await cursor.toArray();
-  response.send(filteredFestivals);
+  const genres: string = request.params.genre;
+  console.log("genres:", genres);
+  const genresString = genres.split("+");
+  console.log("genresString:", genresString);
+  console.log("genresString.length:", genresString.length);
+
+  for (let counter = 0; counter < genresString.length; counter++) {
+    const value = { $gt: 0 };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const query: any = {};
+    query[genresString[counter]] = value;
+    const cursor = festivalCollection.find(query).sort({ name: 1 });
+    console.log("counter:", counter);
+
+    const filteredFestivals = await cursor.toArray();
+    console.log(filteredFestivals);
+    response.send(filteredFestivals);
+  }
 });
+
+// const query = { genre: { $gt: 0 } };
 
 // Post festival with mongoDB
 app.post("/api/festivals", async (request, response) => {
