@@ -3,6 +3,8 @@ dotenv.config();
 import path from "path";
 import express from "express";
 import { connectDatabase, getFestivalCollection } from "./utils/Database";
+import { useState } from "react";
+// import React from "react";
 
 if (!process.env.MONGODB_URI) {
   throw new Error("No MongoDB URL dotenv variable");
@@ -24,6 +26,8 @@ app.get("/api/festivals/", async (_request, response) => {
 
 // Search by genre
 app.get("/api/festivals/:genre", async (request, response) => {
+  const [result, setResult] = useState("");
+
   const festivalCollection = getFestivalCollection();
   const genres: string = request.params.genre;
   console.log("genres:", genres);
@@ -37,15 +41,21 @@ app.get("/api/festivals/:genre", async (request, response) => {
     const query: any = {};
     query[genresString[counter]] = value;
     const cursor = festivalCollection.find(query).sort({ name: 1 });
+    const filteredFestivals: any = await cursor.toArray();
     console.log("counter:", counter);
-
-    const filteredFestivals = await cursor.toArray();
-    console.log(filteredFestivals);
-    response.send(filteredFestivals);
+    if (counter === 0) {
+      setResult(filteredFestivals);
+      console.log(filteredFestivals, "counter 0");
+    } else if (counter < genresString.length) {
+      const newLocal: any = [...result, filteredFestivals];
+      // füge das Ergebnis zum Objekt filteredFestivals hinzu statt es zu überschreiben
+      setResult(newLocal);
+      console.log(newLocal);
+    } else if (counter === genresString.length) {
+      response.send(result);
+    }
   }
 });
-
-// const query = { genre: { $gt: 0 } };
 
 // Post festival with mongoDB
 app.post("/api/festivals", async (request, response) => {
