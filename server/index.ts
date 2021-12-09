@@ -25,7 +25,6 @@ app.get("/api/festivals/", async (_request, response) => {
 // Search by genre
 app.get("/api/festivals/:genre", async (request, response) => {
   console.log("S T A R T");
-
   const festivalCollection = getFestivalCollection();
   const genres: string = request.params.genre;
   console.log("genres:", genres);
@@ -45,8 +44,10 @@ app.get("/api/festivals/:genre", async (request, response) => {
     if (counter < genresString.length) {
       const searchedFestivals: any = await cursor.toArray();
       prefilteredFestivals.push(...searchedFestivals);
-      console.log(prefilteredFestivals, "counter 0");
+      console.log("Prefiltered Festivals:", prefilteredFestivals);
+      console.log("Counter end of if:", counter);
     } else {
+      console.log("else if");
       response.send(prefilteredFestivals);
     }
   }
