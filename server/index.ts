@@ -38,7 +38,7 @@ app.get("/api/festivals/:genre", async (request, response) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const query: any = {};
     query[genresString[counter]] = value;
-    const cursor = await festivalCollection.find(query).sort({ name: 1 });
+    const cursor = festivalCollection.find(query).sort({ name: 1 });
     console.log("counter:", counter);
     const prefilteredFestivals: any[] = [];
 

@@ -5,23 +5,22 @@ import { useState } from "react";
 
 // Genre tags
 const initialTags = [
-  { text: "Pop", selected: false, id: 0 },
-  { text: "HipHop", selected: false, id: 1 },
-  { text: "Rock", selected: false, id: 2 },
-  { text: "Indie", selected: false, id: 3 },
-  { text: "Punk", selected: false, id: 4 },
-  { text: "Metal", selected: false, id: 5 },
-  { text: "Electronic", selected: false, id: 6 },
-  { text: "Reggae", selected: false, id: 7 },
-  { text: "Jazz", selected: false, id: 8 },
-  { text: "Classic", selected: false, id: 9 },
+  { text: "pop", selected: false, id: 0 },
+  { text: "hiphop", selected: false, id: 1 },
+  { text: "rock", selected: false, id: 2 },
+  { text: "indie", selected: false, id: 3 },
+  { text: "punk", selected: false, id: 4 },
+  { text: "metal", selected: false, id: 5 },
+  { text: "electronic", selected: false, id: 6 },
+  { text: "reggae", selected: false, id: 7 },
+  { text: "jazz", selected: false, id: 8 },
+  { text: "classic", selected: false, id: 9 },
 ];
-
-// let counter = 1;
 
 function SelectGenre(): JSX.Element {
   const [tags, setTags] = useState(initialTags);
   const [prefilteredFestivals, setPrefilteredFestivals] = useState([]);
+  const [searchQuery, setsearchQuery] = useState("");
 
   // Select Tag
   function onTagClicked(id: number): void {
@@ -39,14 +38,14 @@ function SelectGenre(): JSX.Element {
       .filter((tag) => tag.selected === true)
       .map((genre) => genre.text);
     const selectedGenresList = selectedGenres.join("+");
-    console.log(`Hi List : ${selectedGenresList}`);
+    console.log(`To search : ${selectedGenresList}`);
+    setsearchQuery(selectedGenresList);
   }
 
   // Fetch prefiltered festivals
-  async function getFilteredFestivals() {
-    // const response = await fetch(`api/festivals/${selectedGenresList}`);
-    const response = await fetch("api/festivals/metal+reggae");
-    console.log("jhi");
+  async function getFilteredFestivals(): Promise<void> {
+    const response = await fetch(`api/festivals/${searchQuery}`);
+    console.log(searchQuery);
     const body = await response.json();
     setPrefilteredFestivals(body);
     console.log(prefilteredFestivals);
@@ -84,12 +83,3 @@ function SelectGenre(): JSX.Element {
   );
 }
 export default SelectGenre;
-
-// const reducer: any = (previousValue: number, currentValue: number) =>
-// previousValue + currentValue;
-// const fitting = percentage.reduce(reducer);
-
-// if (fitting > 100) {
-// console.log("100%");
-// } else {
-// console.log(fitting);
