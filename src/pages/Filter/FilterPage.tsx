@@ -17,9 +17,11 @@ const initialTags = [
   { text: "Classic", selected: false, id: 9 },
 ];
 
+// let counter = 1;
+
 function SelectGenre(): JSX.Element {
   const [tags, setTags] = useState(initialTags);
-  const [filteredFestivals, setFilteredFestivals] = useState("");
+  const [prefilteredFestivals, setPrefilteredFestivals] = useState([]);
 
   // Select Tag
   function onTagClicked(id: number): void {
@@ -33,17 +35,21 @@ function SelectGenre(): JSX.Element {
 
   // Get selected genre
   function FilterFunction(): void {
-    const selectedGenres = tags.filter((tag) => tag.selected === true);
-    const mapGenres = selectedGenres.map((genre) => genre.text);
-    console.log(mapGenres);
+    const selectedGenres = tags
+      .filter((tag) => tag.selected === true)
+      .map((genre) => genre.text);
+    const selectedGenresList = selectedGenres.join("+");
+    console.log(`Hi List : ${selectedGenresList}`);
   }
 
-  // Request to API for filtered festivals
-  async function getFilteredFestivals(): Promise<void> {
-    const response = await fetch("api/festivals/electronic");
+  // Fetch prefiltered festivals
+  async function getFilteredFestivals() {
+    // const response = await fetch(`api/festivals/${selectedGenresList}`);
+    const response = await fetch("api/festivals/metal+reggae");
+    console.log("jhi");
     const body = await response.json();
-    setFilteredFestivals(body);
-    console.log(filteredFestivals);
+    setPrefilteredFestivals(body);
+    console.log(prefilteredFestivals);
   }
 
   return (
@@ -78,3 +84,12 @@ function SelectGenre(): JSX.Element {
   );
 }
 export default SelectGenre;
+
+// const reducer: any = (previousValue: number, currentValue: number) =>
+// previousValue + currentValue;
+// const fitting = percentage.reduce(reducer);
+
+// if (fitting > 100) {
+// console.log("100%");
+// } else {
+// console.log(fitting);

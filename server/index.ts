@@ -38,16 +38,16 @@ app.get("/api/festivals/:genre", async (request, response) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const query: any = {};
     query[genresString[counter]] = value;
-    const cursor = festivalCollection.find(query).sort({ name: 1 });
+    const cursor = await festivalCollection.find(query).sort({ name: 1 });
     console.log("counter:", counter);
-    const filteredFestivals: any[] = [];
+    const prefilteredFestivals: any[] = [];
 
     if (counter < genresString.length) {
       const searchedFestivals: any = await cursor.toArray();
-      filteredFestivals.push(...searchedFestivals);
-      console.log(filteredFestivals, "counter 0");
+      prefilteredFestivals.push(...searchedFestivals);
+      console.log(prefilteredFestivals, "counter 0");
     } else {
-      response.send(filteredFestivals);
+      response.send(prefilteredFestivals);
     }
   }
 });
