@@ -28,28 +28,32 @@ app.get("/api/festivals/:genre", async (request, response) => {
   const festivalCollection = getFestivalCollection();
   const genres: string = request.params.genre;
   console.log("genres:", genres);
-  const genresString = genres.split("+");
-  console.log("genresString:", genresString);
-  console.log("genresString.length:", genresString.length);
+  const genresArray = genres.split("+");
+  console.log("genresArry:", genresArray);
+  console.log("genresArray.length:", genresArray.length);
 
-  for (let counter = 0; counter < genresString.length; counter++) {
+  let counter;
+  const prefilteredFestivals: any[] = [];
+
+  for (counter = 0; counter < genresArray.length; counter++) {
     const value = { $gt: 0 };
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const query: any = {};
-    query[genresString[counter]] = value;
+    query[genresArray[counter]] = value;
     const cursor = festivalCollection.find(query).sort({ name: 1 });
     console.log("counter:", counter);
-    const prefilteredFestivals: any[] = [];
+    console.log("Leo");
 
-    if (counter < genresString.length) {
+    if (counter < genresArray.length) {
       const searchedFestivals: any = await cursor.toArray();
       prefilteredFestivals.push(...searchedFestivals);
       console.log("Prefiltered Festivals:", prefilteredFestivals);
       console.log("Counter end of if:", counter);
-    } else {
-      console.log("else if");
-      response.send(prefilteredFestivals);
     }
+  }
+  if (counter === genresArray.length) {
+    console.log("done");
+    response.send(prefilteredFestivals);
   }
 });
 
