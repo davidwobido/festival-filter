@@ -1,7 +1,7 @@
 import styles from "./FilterPage.module.css";
 import GenreTag from "../../components/GenreTag/GenreTag";
 import Button from "../../components/Buttons/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // Genre tags
 const initialTags = [
@@ -42,62 +42,72 @@ function SelectGenre(): JSX.Element {
     setsearchQuery(selectedGenresList);
   }
 
-  // Fetch prefiltered festivals from API
-  async function getPrefilteredFestivals(): Promise<void> {
-    const response = await fetch(`/api/festivals/${searchQuery}`);
-    console.log(searchQuery);
-    const body = await response.json();
-    setPrefilteredFestivals(body);
-    console.log(prefilteredFestivals);
-  }
+  useEffect(() => {
+    async function getPrefilteredFestivals(): Promise<void> {
+      const response = await fetch(`/api/festivals/${searchQuery}`);
+      const body = await response.json();
+      setPrefilteredFestivals(body);
 
-  // Match and filter festivals
-  function filterFestival(): void {
-    const selectedGenres = tags.filter((tag) => tag.selected === true);
-    const mapGenres = selectedGenres.map((genre) => genre.text);
-    let counterFestivals;
-    let counterGenre;
-    const matchSummands: number[] = [];
-    let match: number;
+      // Match and filter prefiltered festivals
+      async (): Promise<void> => {
+        await getPrefilteredFestivals();
+        const selectedGenres = tags.filter((tag) => tag.selected === true);
+        const mapGenres = selectedGenres.map((genre) => genre.text);
+        let counterFestivals: number;
+        let counterGenre: number;
+        const matchSummands: number[] = [];
+        let match: number;
 
-    for (
-      counterFestivals = 0;
-      counterFestivals < prefilteredFestivals.length;
-      counterFestivals++
-    ) {
-      for (counterGenre = 0; counterGenre < mapGenres.length; counterGenre++) {
-        const searchedGenre = mapGenres[counterGenre];
-        const result: number[] = [
-          prefilteredFestivals[counterFestivals][searchedGenre],
-        ];
-        if (counterGenre < mapGenres.length) {
-          matchSummands.push(...result);
+        for (
+          counterFestivals = 0;
+          counterFestivals < prefilteredFestivals.length;
+          counterFestivals++
+        ) {
+          for (
+            counterGenre = 0;
+            counterGenre < mapGenres.length;
+            counterGenre++
+          ) {
+            const searchedGenre = mapGenres[counterGenre];
+            const result: number[] = [
+              prefilteredFestivals[counterFestivals][searchedGenre],
+            ];
+            if (counterGenre < mapGenres.length) {
+              matchSummands.push(...result);
+            }
+          }
+
+          if (counterGenre === mapGenres.length) {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const reducer: any = (
+              previousValue: number,
+              currentValue: number
+            ) => previousValue + currentValue;
+            match = matchSummands.reduce(reducer);
+
+            console.log(
+              "Festivalmatch:",
+              prefilteredFestivals[counterFestivals]["name"],
+              match
+            );
+            if (match < 50) {
+              console.log("will not be displayed");
+            }
+            if (match < 50 && match <= 70) {
+              console.log("FestivalCardMedium yellow");
+            }
+            if (match > 70) {
+              console.log("FestivalCardMedium green");
+            }
+            if (match > 100) {
+              console.log("FestivalCardMedium green, display match as 100");
+            }
+          }
         }
-      }
-      if (counterGenre === mapGenres.length) {
-        const reducer: any = (previousValue: number, currentValue: number) =>
-          previousValue + currentValue;
-        match = matchSummands.reduce(reducer);
-        console.log(
-          "Festivalmatch:",
-          prefilteredFestivals[counterFestivals]["name"],
-          match
-        );
-        if (match < 50) {
-          console.log("will not be displayed");
-        }
-        if (match < 50 && match <= 70) {
-          console.log("FestivalCardMedium yellow");
-        }
-        if (match > 70) {
-          console.log("FestivalCardMedium green");
-        }
-        if (match > 100) {
-          console.log("FestivalCardMedium yellow, display match as 100");
-        }
-      }
+      };
     }
-  }
+    getPrefilteredFestivals();
+  }, [searchQuery]);
 
   return (
     <div className={styles.wrapper}>
@@ -108,12 +118,7 @@ function SelectGenre(): JSX.Element {
         <h2>Choose your favorite genres:</h2>
         <section className={styles.tags}>
           {tags.map((tag) => (
-            <GenreTag
-              // text={tag.text} selected={tag.selected} instead of tag={tag} does not work
-              tag={tag}
-              key={tag.id}
-              onClick={onTagClicked}
-            />
+            <GenreTag tag={tag} key={tag.id} onClick={onTagClicked} />
           ))}
         </section>
       </div>
@@ -122,10 +127,6 @@ function SelectGenre(): JSX.Element {
       <button type="submit" onClick={getSelectedGenre}>
         getSelectedGenre
       </button>
-      <button type="submit" onClick={getPrefilteredFestivals}>
-        getPrefilteredFestivals
-      </button>
-      <h2 onClick={filterFestival}>final filter</h2>
     </div>
   );
 }

@@ -29,7 +29,7 @@ app.get("/api/festivals/:genre", async (request, response) => {
   const genresArray = genres.split("+");
 
   let counter;
-  const prefilteredFestivals: any[] = [];
+  const prefilteredFestivals: number[] = [];
 
   for (counter = 0; counter < genresArray.length; counter++) {
     const value = { $gt: 0 };
@@ -39,9 +39,9 @@ app.get("/api/festivals/:genre", async (request, response) => {
     const cursor = festivalCollection.find(query).sort({ name: 1 });
 
     if (counter < genresArray.length) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const searchedFestivals: any = await cursor.toArray();
       prefilteredFestivals.push(...searchedFestivals);
-      console.log("HALLO", prefilteredFestivals, searchedFestivals);
     }
   }
   if (counter === genresArray.length) {
