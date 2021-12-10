@@ -33,7 +33,7 @@ function SelectGenre(): JSX.Element {
   }
 
   // Get selected genre
-  function FilterFunction(): void {
+  function getSelectedGenre(): void {
     const selectedGenres = tags
       .filter((tag) => tag.selected === true)
       .map((genre) => genre.text);
@@ -43,12 +43,62 @@ function SelectGenre(): JSX.Element {
   }
 
   // Fetch prefiltered festivals
-  async function getFilteredFestivals(): Promise<void> {
-    const response = await fetch(`api/festivals/${searchQuery}`);
+  async function getPrefilteredFestivals(): Promise<void> {
+    const response = await fetch(`/api/festivals/${searchQuery}`);
     console.log(searchQuery);
     const body = await response.json();
     setPrefilteredFestivals(body);
     console.log(prefilteredFestivals);
+  }
+
+  // Match and filter festivals
+  function filterFestival(): void {
+    const selectedGenres = tags.filter((tag) => tag.selected === true);
+    console.log("selectedGenres", selectedGenres);
+    const mapGenres = selectedGenres.map((genre) => genre.text);
+    console.log("mapGenres", mapGenres[0]);
+    const matchSummands: number[] = [];
+    let match: number;
+
+    const counterFestivals = 0;
+    let counterGenre;
+    for (counterGenre = 0; counterGenre < mapGenres.length; counterGenre++) {
+      console.log("ITERATION START");
+      const searchedGenre = mapGenres[counterGenre];
+      const result: number[] = [
+        prefilteredFestivals[counterFestivals][searchedGenre],
+      ];
+      console.log(
+        "FESTIVAL:",
+        prefilteredFestivals[counterFestivals]["name"],
+        "GENRE:",
+        searchedGenre,
+        "RESULT:",
+        result
+      );
+      if (counterGenre < mapGenres.length) {
+        matchSummands.push(...result);
+      }
+    }
+    if (counterGenre === mapGenres.length) {
+      console.log("matchSummands:", matchSummands);
+      const reducer: any = (previousValue: number, currentValue: number) =>
+        previousValue + currentValue;
+      match = matchSummands.reduce(reducer);
+      console.log("Festivalmatch:", match);
+      if (match < 50) {
+        console.log("will not be displayed");
+      }
+      if (match < 50 && match <= 70) {
+        console.log("FestivalCardMedium yellow");
+      }
+      if (match > 70) {
+        console.log("FestivalCardMedium green");
+      }
+      if (match > 100) {
+        console.log("FestivalCardMedium yellow, display match as 100");
+      }
+    }
   }
 
   return (
@@ -69,16 +119,15 @@ function SelectGenre(): JSX.Element {
           ))}
         </section>
       </div>
-      <footer className={styles.footer}>
-        <a>Show all festivals</a>
-      </footer>
+
       <Button size="normal" text="filter" />
-      <button type="submit" onClick={FilterFunction}>
-        FestivalFilter
+      <button type="submit" onClick={getSelectedGenre}>
+        getSelectedGenre
       </button>
-      <button type="submit" onClick={getFilteredFestivals}>
-        Show filteredFestivals
+      <button type="submit" onClick={getPrefilteredFestivals}>
+        getPrefilteredFestivals
       </button>
+      <h2 onClick={filterFestival}>final filter</h2>
     </div>
   );
 }
