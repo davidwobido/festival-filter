@@ -24,13 +24,9 @@ app.get("/api/festivals/", async (_request, response) => {
 
 // Search by genre
 app.get("/api/festivals/:genre", async (request, response) => {
-  console.log("S T A R T");
   const festivalCollection = getFestivalCollection();
   const genres: string = request.params.genre;
-  console.log("genres:", genres);
   const genresArray = genres.split("+");
-  console.log("genresArry:", genresArray);
-  console.log("genresArray.length:", genresArray.length);
 
   let counter;
   const prefilteredFestivals: any[] = [];
@@ -41,18 +37,14 @@ app.get("/api/festivals/:genre", async (request, response) => {
     const query: any = {};
     query[genresArray[counter]] = value;
     const cursor = festivalCollection.find(query).sort({ name: 1 });
-    console.log("counter:", counter);
-    console.log("Leo");
 
     if (counter < genresArray.length) {
       const searchedFestivals: any = await cursor.toArray();
       prefilteredFestivals.push(...searchedFestivals);
-      console.log("Prefiltered Festivals:", prefilteredFestivals);
-      console.log("Counter end of if:", counter);
+      console.log("HALLO", prefilteredFestivals, searchedFestivals);
     }
   }
   if (counter === genresArray.length) {
-    console.log("done");
     response.send(prefilteredFestivals);
   }
 });
