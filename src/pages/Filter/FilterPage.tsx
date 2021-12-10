@@ -32,7 +32,7 @@ function SelectGenre(): JSX.Element {
     setTags(newTags);
   }
 
-  // Get selected genre
+  // Get selected genre tags
   function getSelectedGenre(): void {
     const selectedGenres = tags
       .filter((tag) => tag.selected === true)
@@ -42,7 +42,7 @@ function SelectGenre(): JSX.Element {
     setsearchQuery(selectedGenresList);
   }
 
-  // Fetch prefiltered festivals
+  // Fetch prefiltered festivals from API
   async function getPrefilteredFestivals(): Promise<void> {
     const response = await fetch(`/api/festivals/${searchQuery}`);
     console.log(searchQuery);
@@ -54,49 +54,47 @@ function SelectGenre(): JSX.Element {
   // Match and filter festivals
   function filterFestival(): void {
     const selectedGenres = tags.filter((tag) => tag.selected === true);
-    console.log("selectedGenres", selectedGenres);
     const mapGenres = selectedGenres.map((genre) => genre.text);
-    console.log("mapGenres", mapGenres[0]);
+    let counterFestivals;
+    let counterGenre;
     const matchSummands: number[] = [];
     let match: number;
 
-    const counterFestivals = 0;
-    let counterGenre;
-    for (counterGenre = 0; counterGenre < mapGenres.length; counterGenre++) {
-      console.log("ITERATION START");
-      const searchedGenre = mapGenres[counterGenre];
-      const result: number[] = [
-        prefilteredFestivals[counterFestivals][searchedGenre],
-      ];
-      console.log(
-        "FESTIVAL:",
-        prefilteredFestivals[counterFestivals]["name"],
-        "GENRE:",
-        searchedGenre,
-        "RESULT:",
-        result
-      );
-      if (counterGenre < mapGenres.length) {
-        matchSummands.push(...result);
+    for (
+      counterFestivals = 0;
+      counterFestivals < prefilteredFestivals.length;
+      counterFestivals++
+    ) {
+      for (counterGenre = 0; counterGenre < mapGenres.length; counterGenre++) {
+        const searchedGenre = mapGenres[counterGenre];
+        const result: number[] = [
+          prefilteredFestivals[counterFestivals][searchedGenre],
+        ];
+        if (counterGenre < mapGenres.length) {
+          matchSummands.push(...result);
+        }
       }
-    }
-    if (counterGenre === mapGenres.length) {
-      console.log("matchSummands:", matchSummands);
-      const reducer: any = (previousValue: number, currentValue: number) =>
-        previousValue + currentValue;
-      match = matchSummands.reduce(reducer);
-      console.log("Festivalmatch:", match);
-      if (match < 50) {
-        console.log("will not be displayed");
-      }
-      if (match < 50 && match <= 70) {
-        console.log("FestivalCardMedium yellow");
-      }
-      if (match > 70) {
-        console.log("FestivalCardMedium green");
-      }
-      if (match > 100) {
-        console.log("FestivalCardMedium yellow, display match as 100");
+      if (counterGenre === mapGenres.length) {
+        const reducer: any = (previousValue: number, currentValue: number) =>
+          previousValue + currentValue;
+        match = matchSummands.reduce(reducer);
+        console.log(
+          "Festivalmatch:",
+          prefilteredFestivals[counterFestivals]["name"],
+          match
+        );
+        if (match < 50) {
+          console.log("will not be displayed");
+        }
+        if (match < 50 && match <= 70) {
+          console.log("FestivalCardMedium yellow");
+        }
+        if (match > 70) {
+          console.log("FestivalCardMedium green");
+        }
+        if (match > 100) {
+          console.log("FestivalCardMedium yellow, display match as 100");
+        }
       }
     }
   }
