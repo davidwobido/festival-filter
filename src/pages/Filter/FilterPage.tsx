@@ -1,6 +1,5 @@
 import styles from "./FilterPage.module.css";
 import GenreTag from "../../components/GenreTag/GenreTag";
-import Button from "../../components/Buttons/Button";
 import { useEffect, useState } from "react";
 
 // Genre tags
