@@ -122,8 +122,6 @@ function SelectGenre(): JSX.Element {
           ))}
         </section>
       </div>
-
-      <Button size="normal" text="filter" />
       <button type="submit" onClick={getSelectedGenre}>
         getSelectedGenre
       </button>
