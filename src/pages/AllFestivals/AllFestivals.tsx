@@ -39,29 +39,37 @@ function AllFestivals() {
 
   return (
     <div className={styles.wrapper}>
-      <section className={styles.text}>
-        <h1>All Festivals</h1>
-        <span className={styles.intro}>
-          Here’s an overview of all festivals in our database sorted by name.
-        </span>
-      </section>
-      <SearchBar onSearch={setSearch} />
-      <section className={styles.list}>
-        {searchFestivals?.length === 0 && (
-          <span className={styles["no-documents"]}>No Docouments found</span>
-        )}
+      {!query && (
+        <>
+          <section className={styles.text}>
+            <h1>All Festivals</h1>
 
-        {searchFestivals?.map((festival) => (
-          // eslint-disable-next-line react/jsx-key
-          <FestivalCardSmall
-            name={festival.name}
-            location={festival.location}
-            begin={festival.begin}
-            end={festival.end}
-            toSearch={setQuery}
-          />
-        ))}
-      </section>
+            <span className={styles.intro}>
+              Here’s an overview of all festivals in our database sorted by
+              name.
+            </span>
+          </section>
+          <SearchBar onSearch={setSearch} />
+          <section className={styles.list}>
+            {searchFestivals?.length === 0 && (
+              <span className={styles["no-documents"]}>
+                No Docouments found
+              </span>
+            )}
+
+            {searchFestivals?.map((festival) => (
+              // eslint-disable-next-line react/jsx-key
+              <FestivalCardSmall
+                name={festival.name}
+                location={festival.location}
+                begin={festival.begin}
+                end={festival.end}
+                toSearch={setQuery}
+              />
+            ))}
+          </section>
+        </>
+      )}
       <button onClick={() => setQuery(null)}> NULL</button>
 
       <section>
