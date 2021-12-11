@@ -23,7 +23,7 @@ app.get("/api/festivals/", async (_request, response) => {
 });
 
 // Read one festival with mongoDB
-app.get("/api/festivals/:name", async (request, response) => {
+app.get("/api/festivals/name/:name", async (request, response) => {
   const festivalCollection = getFestivalCollection();
   const festival = request.params.name;
 

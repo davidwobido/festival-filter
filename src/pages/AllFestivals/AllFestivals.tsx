@@ -30,7 +30,7 @@ function AllFestivals() {
   useEffect(() => {
     async function clickedFestival() {
       if (query != "") {
-        const response = await fetch(`/api/festivals/${query}`);
+        const response = await fetch(`/api/festivals/name/${query}`);
         const body = await response.json();
         setFestival(body);
       }
