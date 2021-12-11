@@ -11,6 +11,7 @@ export type FestivalCardLargeProps = {
   price: number;
   allacts: string;
   website: string;
+  close: () => void;
 };
 
 function FestivalCardLarge({
@@ -23,13 +24,18 @@ function FestivalCardLarge({
   price,
   allacts,
   website,
-}: FestivalCardLargeProps) {
+  close,
+}: FestivalCardLargeProps): JSX.Element {
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
         <section className={styles.header}>
           <h3 className={styles.title}>{name}</h3>
-          <img src="../../../lib/Icon_Close.svg" className={styles.close} />
+          <img
+            src="../../../lib/Icon_Close.svg"
+            className={styles.close}
+            onClick={close}
+          />
         </section>
 
         <section className={styles.list}>

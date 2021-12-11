@@ -38,7 +38,7 @@ function AllFestivals() {
     clickedFestival();
   }, [query]);
 
-  function showLargeFestivalCard() {
+  function close() {
     setFestival("");
   }
 
@@ -75,11 +75,11 @@ function AllFestivals() {
           </section>
         </>
       )}
-      <button onClick={() => showLargeFestivalCard()}> NULL</button>
 
       <section>
         {festival && (
           <FestivalCardLarge
+            close={() => close()}
             key=""
             name={festival.name}
             location={festival.location}
