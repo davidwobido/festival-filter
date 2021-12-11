@@ -11,7 +11,7 @@ import styles from "./AllFestivals.module.css";
 function AllFestivals() {
   const [festivals, setFestivals] = useState<FestivalCardSmallProps[]>([]);
   const [search, setSearch] = useState("");
-  const [festival, setFestival] = useState<FestivalCardLargeProps | null>(null);
+  const [festival, setFestival] = useState<FestivalCardLargeProps | "">("");
   const [query, setQuery] = useState<string | null>(null);
 
   const searchFestivals = festivals?.filter((festival) =>
@@ -29,17 +29,22 @@ function AllFestivals() {
 
   useEffect(() => {
     async function clickedFestival() {
-      const response = await fetch(`/api/festivals/${query}`);
-      const body = await response.json();
-      setFestival(body);
-      console.log(festival);
+      if (query != "") {
+        const response = await fetch(`/api/festivals/${query}`);
+        const body = await response.json();
+        setFestival(body);
+      }
     }
     clickedFestival();
   }, [query]);
 
+  function showLargeFestivalCard() {
+    setFestival("");
+  }
+
   return (
     <div className={styles.wrapper}>
-      {!query && (
+      {!festival && (
         <>
           <section className={styles.text}>
             <h1>All Festivals</h1>
@@ -70,10 +75,10 @@ function AllFestivals() {
           </section>
         </>
       )}
-      <button onClick={() => setQuery(null)}> NULL</button>
+      <button onClick={() => showLargeFestivalCard()}> NULL</button>
 
       <section>
-        {query && festival && (
+        {festival && (
           <FestivalCardLarge
             key=""
             name={festival.name}
