@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { useEffect } from "react";
 import styles from "./FestivalCardSmall.module.css";
 
 export type FestivalCardSmallProps = {
@@ -5,6 +7,7 @@ export type FestivalCardSmallProps = {
   location: string;
   begin: string;
   end: string;
+  toSearch: (value: string) => void;
 };
 
 function FestivalCardSmall({
@@ -12,7 +15,14 @@ function FestivalCardSmall({
   location,
   begin,
   end,
+  toSearch,
 }: FestivalCardSmallProps) {
+  const [query, setQuery] = useState("");
+
+  useEffect(() => {
+    toSearch(query);
+  }, [query]);
+
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -27,7 +37,7 @@ function FestivalCardSmall({
             {begin} {end}
           </span>
         </div>
-        <a>More</a>
+        <a onClick={() => setQuery(name)}>More</a>
       </div>
     </div>
   );

@@ -1,4 +1,7 @@
 import { useEffect, useState } from "react";
+import FestivalCardLarge, {
+  FestivalCardLargeProps,
+} from "../../components/FestivalCardLarge/FestivalCardLarge";
 import FestivalCardSmall, {
   FestivalCardSmallProps,
 } from "../../components/FestivalCardSmall/FestivalCardSmall";
@@ -8,6 +11,8 @@ import styles from "./AllFestivals.module.css";
 function AllFestivals() {
   const [festivals, setFestivals] = useState<FestivalCardSmallProps[]>([]);
   const [search, setSearch] = useState("");
+  const [festival, setFestival] = useState<FestivalCardLargeProps | null>(null);
+  const [query, setQuery] = useState<string | null>(null);
 
   const searchFestivals = festivals?.filter((festival) =>
     festival.name.toLocaleLowerCase().includes(search.toLowerCase())
@@ -22,6 +27,16 @@ function AllFestivals() {
     getFestivals();
   }, []);
 
+  useEffect(() => {
+    async function clickedFestival() {
+      const response = await fetch(`/api/festivals/${query}`);
+      const body = await response.json();
+      setFestival(body);
+      console.log(festival);
+    }
+    clickedFestival();
+  }, [query]);
+
   return (
     <div className={styles.wrapper}>
       <section className={styles.text}>
@@ -35,6 +50,7 @@ function AllFestivals() {
         {searchFestivals?.length === 0 && (
           <span className={styles["no-documents"]}>No Docouments found</span>
         )}
+
         {searchFestivals?.map((festival) => (
           // eslint-disable-next-line react/jsx-key
           <FestivalCardSmall
@@ -42,8 +58,27 @@ function AllFestivals() {
             location={festival.location}
             begin={festival.begin}
             end={festival.end}
+            toSearch={setQuery}
           />
         ))}
+      </section>
+      <button onClick={() => setQuery(null)}> NULL</button>
+
+      <section>
+        {query && festival && (
+          <FestivalCardLarge
+            key=""
+            name={festival.name}
+            location={festival.location}
+            begin={festival.begin}
+            end={festival.end}
+            visitors={festival.visitors}
+            acts={festival.acts}
+            price={festival.price}
+            allacts={festival.allacts}
+            website={festival.website}
+          />
+        )}
       </section>
     </div>
   );
