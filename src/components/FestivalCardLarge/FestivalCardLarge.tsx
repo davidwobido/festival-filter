@@ -46,7 +46,7 @@ function FestivalCardLarge({
             <span className={styles.item}>Acts</span>
             <span className={styles.item}>Price</span>
             <a href={website} className={styles.url}>
-              Official Website
+              Website
             </a>
           </div>
           <div className={styles.column}>
@@ -55,7 +55,7 @@ function FestivalCardLarge({
               {begin} — {end}
             </span>
             <span className={styles.item}>{visitors}</span>
-            <span className={styles.item}>{price}</span>
+            <span className={styles.item}>{price} €</span>
             <span className={styles.item}>{acts}</span>
           </div>
         </section>
