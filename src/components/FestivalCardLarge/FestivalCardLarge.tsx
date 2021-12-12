@@ -63,9 +63,6 @@ function FestivalCardLarge({
           <h4>Acts</h4>
           <p>{allacts}</p>
         </section>
-        <div className={styles.button}>
-          <Button size="small" text="Back to top" />
-        </div>
       </div>
     </div>
   );
