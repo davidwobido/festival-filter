@@ -1,4 +1,3 @@
-import Button from "../Buttons/Button";
 import styles from "./FestivalCardLarge.module.css";
 
 export type FestivalCardLargeProps = {
@@ -11,7 +10,7 @@ export type FestivalCardLargeProps = {
   price: number;
   allacts: string;
   website: string;
-  close: () => void;
+  close?: () => void;
 };
 
 function FestivalCardLarge({
