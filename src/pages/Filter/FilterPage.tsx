@@ -56,12 +56,13 @@ function SelectGenre(): JSX.Element {
         let counterGenre: number;
         const matchSummands: number[] = [];
         let match: number;
-
+        // Iterate festivals
         for (
           counterFestivals = 0;
           counterFestivals < prefilteredFestivals.length;
           counterFestivals++
         ) {
+          // Iterate each festival with selected genres
           for (
             counterGenre = 0;
             counterGenre < mapGenres.length;
