@@ -1,11 +1,12 @@
 .container {
-  width: 366px;
+  width: 375px;
 }
 
 .wrapper {
+  position: relative;
   display: grid;
   background-color: var(--color-neutral-grade);
-  padding: 1.1rem 1.3rem;
+  padding: 1.75rem 1.5rem;
   border-radius: 1.25rem;
   width: 90%;
   gap: 2rem;
@@ -17,8 +18,10 @@
 }
 
 .close {
-  justify-self: end;
-  height: 90%;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  height: 1.8rem;
 }
 
 .title {

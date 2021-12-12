@@ -37,7 +37,9 @@ function FestivalCardSmall({
             {begin} {end}
           </span>
         </div>
-        <a onClick={() => setQuery(name)}>More</a>
+        <a onClick={() => setQuery(name)} className={styles.more}>
+          More
+        </a>
       </div>
     </div>
   );
