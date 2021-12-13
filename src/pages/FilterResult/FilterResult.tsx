@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "./FilterResult.module.css";
+import FestivalCardMedium from "../../components/FestivalCardMedium/FestivalCardMedium";
 
 type FestivalPlaceholderTypes = {
   id: string;
@@ -113,6 +114,17 @@ function festivalFilter() {
         </span>
       </section>
       <button onClick={() => test()}>DO</button>
+      {prefilteredFestivals?.map((festival) => (
+        // eslint-disable-next-line react/jsx-key
+        <FestivalCardMedium
+          name={festival.name}
+          location={festival.location}
+          begin={festival.begin}
+          end={festival.end}
+          price={festival.price}
+          allacts={festival.allacts}
+        />
+      ))}
     </div>
   );
 }
