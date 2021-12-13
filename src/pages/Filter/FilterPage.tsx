@@ -1,6 +1,7 @@
 import styles from "./FilterPage.module.css";
 import GenreTag from "../../components/GenreTag/GenreTag";
 import { useEffect, useState } from "react";
+// import FestivalCardMedium from "../../components/FestivalCardMedium/FestivalCardMedium";
 
 // Genre tags
 const initialTags = [
@@ -20,8 +21,8 @@ function SelectGenre() {
   const [tags, setTags] = useState(initialTags);
   const [prefilteredFestivals, setPrefilteredFestivals] = useState([]);
   const [searchQuery, setsearchQuery] = useState("");
-  const [stateResult, setStateResult] = useState(0);
-  const [finalResult, setfinalResult] = useState();
+  // const [stateResult, setStateResult] = useState(0);
+  // const [finalResult, setfinalResult] = useState();
 
   // Select Tag
   function onTagClicked(id: number): void {
@@ -45,12 +46,12 @@ function SelectGenre() {
   }
 
   useEffect(() => {
-    async function getPrefilteredFestivals(): Promise<void> {
+    async function festivalFilter(): Promise<void> {
       let genreCounter: number;
       let genreValue: number;
       const result = [];
 
-      //fetch
+      //fetch of prefiltered festivals
       const response = await fetch(`/api/festivals/${searchQuery}`);
       const body = await response.json();
       setPrefilteredFestivals(body);
@@ -66,19 +67,24 @@ function SelectGenre() {
       // Loop through genres to extract each genre value
       for (
         genreCounter = 0;
-        genreCounter < mappedGenres.length;
+        genreCounter <= mappedGenres.length;
         genreCounter++
       ) {
         const genrePlaceholder = mappedGenres[genreCounter];
         genreValue = festivalPlaceholder[genrePlaceholder];
 
         if (genreCounter < mappedGenres.length) {
-          // result.splice(genreValue);
-          await setStateResult(genreValue + stateResult);
-          // console.log(stateResult);
-          // result.push(...genreValue);
-          console.log("SR:", stateResult);
+          // Add numbers to an array
+          result.push(genreValue);
+          console.log("result", result);
 
+          // Sum the numbers from the Array
+          // result += arr[i];
+
+          // result.splice(genreValue);
+          // await setStateResult(genreValue + stateResult);
+          // console.log(stateResult);
+          // Festival: result
           console.log(
             festivalPlaceholder.name,
             ":",
@@ -87,12 +93,16 @@ function SelectGenre() {
             genreValue
           );
         }
-        // if (genreCounter === mappedGenres.length) {
-        //   function map result to mediumcard
-        // }
+        if (genreCounter === mappedGenres.length) {
+          const total = result.reduce(function (a, b) {
+            return a + b;
+          });
+          console.log(festivalPlaceholder.name, total);
+          localStorage.setItem(`${festivalPlaceholder}`, total);
+        }
       }
-    }
-    getPrefilteredFestivals();
+    } // when looped through all festival:
+    festivalFilter();
   }, [searchQuery]);
 
   return (
@@ -111,7 +121,7 @@ function SelectGenre() {
       <button type="submit" onClick={getSelectedGenre}>
         filter
       </button>
-      {/* {finalResult && <div>{finalResult}</div>} */}
+      {/* Show <FestivalCardMedium /> when festivalFilter is done */}
     </div>
   );
 }
