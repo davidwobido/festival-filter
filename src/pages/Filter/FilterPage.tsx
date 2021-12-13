@@ -3,6 +3,28 @@ import GenreTag from "../../components/GenreTag/GenreTag";
 import { useEffect, useState } from "react";
 // import FestivalCardMedium from "../../components/FestivalCardMedium/FestivalCardMedium";
 
+type FestivalPlaceholderTypes = {
+  id: string;
+  name: string;
+  location: string;
+  begin: string;
+  end: string;
+  visitors: number;
+  acts: number;
+  price: number;
+  allacts: string;
+  electronic?: number;
+  metal?: number;
+  reggae?: number;
+  pop?: number;
+  classic?: number;
+  jazz?: number;
+  punk?: number;
+  indie?: number;
+  rock?: number;
+  hiphop?: number;
+};
+
 // Genre tags
 const initialTags = [
   { text: "pop", selected: false, id: 0 },
@@ -48,8 +70,9 @@ function SelectGenre() {
   useEffect(() => {
     async function festivalFilter(): Promise<void> {
       let genreCounter: number;
+      let festivalCounter: number;
       let genreValue: number;
-      const result = [];
+      let result: number[] = [];
 
       //fetch of prefiltered festivals
       const response = await fetch(`/api/festivals/${searchQuery}`);
@@ -61,47 +84,41 @@ function SelectGenre() {
       const selectedGenres = tags.filter((tag) => tag.selected === true);
       const mappedGenres = selectedGenres.map((genre) => genre.text);
 
-      // example first festival (Will loop through all later on)
-      const festivalPlaceholder = prefilteredFestivals[1];
-
-      // Loop through genres to extract each genre value
+      // Loop through festivals
       for (
-        genreCounter = 0;
-        genreCounter <= mappedGenres.length;
-        genreCounter++
+        festivalCounter = 0;
+        festivalCounter <= prefilteredFestivals.length;
+        festivalCounter++
       ) {
-        const genrePlaceholder = mappedGenres[genreCounter];
-        genreValue = festivalPlaceholder[genrePlaceholder];
+        const festivalPlaceholder: FestivalPlaceholderTypes =
+          prefilteredFestivals[festivalCounter];
+        console.log(festivalPlaceholder);
+        // Loop through genres to extract each genre value
+        for (
+          genreCounter = 0;
+          genreCounter <= mappedGenres.length;
+          genreCounter++
+        ) {
+          const genrePlaceholder: string = mappedGenres[genreCounter];
+          genreValue = festivalPlaceholder[genrePlaceholder];
 
-        if (genreCounter < mappedGenres.length) {
-          // Add numbers to an array
-          result.push(genreValue);
-          console.log("result", result);
-
-          // Sum the numbers from the Array
-          // result += arr[i];
-
-          // result.splice(genreValue);
-          // await setStateResult(genreValue + stateResult);
-          // console.log(stateResult);
-          // Festival: result
-          console.log(
-            festivalPlaceholder.name,
-            ":",
-            genrePlaceholder,
-            ":",
-            genreValue
-          );
-        }
-        if (genreCounter === mappedGenres.length) {
-          const total = result.reduce(function (a, b) {
-            return a + b;
-          });
-          console.log(festivalPlaceholder.name, total);
-          localStorage.setItem(`${festivalPlaceholder}`, total);
+          if (genreCounter < mappedGenres.length) {
+            result.push(genreValue);
+            console.log("01_result", genreValue, result);
+          }
+          if (genreCounter === mappedGenres.length) {
+            const total = result.reduce(function (a, b) {
+              return a + b;
+            });
+            result = [0];
+            // Save result to local storage
+            console.log(festivalPlaceholder.name, total);
+            // localStorage.setItem(`${festivalPlaceholder.name}`, total);
+            // localStorage.getItem(Immergut);
+          }
         }
       }
-    } // when looped through all festival:
+    }
     festivalFilter();
   }, [searchQuery]);
 
