@@ -92,7 +92,6 @@ function SelectGenre() {
       ) {
         const festivalPlaceholder: FestivalPlaceholderTypes =
           prefilteredFestivals[festivalCounter];
-        console.log(festivalPlaceholder);
         // Loop through genres to extract each genre value
         for (
           genreCounter = 0;
@@ -104,15 +103,19 @@ function SelectGenre() {
 
           if (genreCounter < mappedGenres.length) {
             result.push(genreValue);
-            console.log("01_result", genreValue, result);
+            // console.log("01_result", genreValue, result);
           }
           if (genreCounter === mappedGenres.length) {
-            const total = result.reduce(function (a, b) {
+            let total = result.reduce(function (a, b) {
               return a + b;
             });
             result = [0];
-            // Save result to local storage
+            if (total > 100) {
+              total = 100;
+            }
             console.log(festivalPlaceholder.name, total);
+
+            // Save result to local storage
             // localStorage.setItem(`${festivalPlaceholder.name}`, total);
             // localStorage.getItem(Immergut);
           }
