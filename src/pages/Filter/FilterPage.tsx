@@ -1,29 +1,6 @@
 import styles from "./FilterPage.module.css";
 import GenreTag from "../../components/GenreTag/GenreTag";
 import { useEffect, useState } from "react";
-// import FestivalCardMedium from "../../components/FestivalCardMedium/FestivalCardMedium";
-
-type FestivalPlaceholderTypes = {
-  id: string;
-  name: string;
-  location: string;
-  begin: string;
-  end: string;
-  visitors: number;
-  acts: number;
-  price: number;
-  allacts: string;
-  electronic?: number;
-  metal?: number;
-  reggae?: number;
-  pop?: number;
-  classic?: number;
-  jazz?: number;
-  punk?: number;
-  indie?: number;
-  rock?: number;
-  hiphop?: number;
-};
 
 // Genre tags
 const initialTags = [
@@ -41,10 +18,7 @@ const initialTags = [
 
 function SelectGenre() {
   const [tags, setTags] = useState(initialTags);
-  const [prefilteredFestivals, setPrefilteredFestivals] = useState([]);
-  const [searchQuery, setsearchQuery] = useState("");
-  // const [stateResult, setStateResult] = useState(0);
-  // const [finalResult, setfinalResult] = useState();
+  const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
 
   // Select Tag
   function onTagClicked(id: number): void {
@@ -56,74 +30,21 @@ function SelectGenre() {
     setTags(newTags);
   }
 
-  // Get selected genre tags and set them as search Query
+  // Get tags and map them to an string[]
   function getSelectedGenre(): void {
-    const selectedGenres = tags
+    const selectedGenres: string[] = tags
       .filter((tag) => tag.selected === true)
       .map((genre) => genre.text);
-
-    const selectedGenresList = selectedGenres.join("+");
-    console.log(`To search : ${selectedGenresList}`);
-    setsearchQuery(selectedGenresList);
+    setSelectedGenres(selectedGenres);
   }
 
   useEffect(() => {
-    async function festivalFilter(): Promise<void> {
-      let genreCounter: number;
-      let festivalCounter: number;
-      let genreValue: number;
-      let result: number[] = [];
+    getSelectedGenre();
+  }, [tags]);
 
-      //fetch of prefiltered festivals
-      const response = await fetch(`/api/festivals/${searchQuery}`);
-      const body = await response.json();
-      setPrefilteredFestivals(body);
-      console.log(prefilteredFestivals);
-
-      // Extract genres to String Array
-      const selectedGenres = tags.filter((tag) => tag.selected === true);
-      const mappedGenres = selectedGenres.map((genre) => genre.text);
-
-      // Loop through festivals
-      for (
-        festivalCounter = 0;
-        festivalCounter <= prefilteredFestivals.length;
-        festivalCounter++
-      ) {
-        const festivalPlaceholder: FestivalPlaceholderTypes =
-          prefilteredFestivals[festivalCounter];
-        // Loop through genres to extract each genre value
-        for (
-          genreCounter = 0;
-          genreCounter <= mappedGenres.length;
-          genreCounter++
-        ) {
-          const genrePlaceholder: string = mappedGenres[genreCounter];
-          genreValue = festivalPlaceholder[genrePlaceholder];
-
-          if (genreCounter < mappedGenres.length) {
-            result.push(genreValue);
-            // console.log("01_result", genreValue, result);
-          }
-          if (genreCounter === mappedGenres.length) {
-            let total = result.reduce(function (a, b) {
-              return a + b;
-            });
-            result = [0];
-            if (total > 100) {
-              total = 100;
-            }
-            console.log(festivalPlaceholder.name, total);
-
-            // Save result to local storage
-            // localStorage.setItem(`${festivalPlaceholder.name}`, total);
-            // localStorage.getItem(Immergut);
-          }
-        }
-      }
-    }
-    festivalFilter();
-  }, [searchQuery]);
+  useEffect(() => {
+    localStorage.setItem("SelectedGenres", selectedGenres);
+  }, [selectedGenres]);
 
   return (
     <div className={styles.wrapper}>
@@ -138,10 +59,10 @@ function SelectGenre() {
           ))}
         </section>
       </div>
-      <button type="submit" onClick={getSelectedGenre}>
+      <button type="submit" onClick={SelectGenre}>
         filter
       </button>
-      {/* Show <FestivalCardMedium /> when festivalFilter is done */}
+      <h2>{localStorage.getItem("SelectedGenres")}</h2>
     </div>
   );
 }
