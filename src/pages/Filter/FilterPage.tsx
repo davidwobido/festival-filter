@@ -32,18 +32,18 @@ function SelectGenre() {
 
   // Get tags and map them to an string[]
   function getSelectedGenre(): void {
-    const selectedGenres: string[] = tags
+    const selectedGenresLocal: string[] = tags
       .filter((tag) => tag.selected === true)
       .map((genre) => genre.text);
-    setSelectedGenres(selectedGenres);
+    setSelectedGenres(selectedGenresLocal);
   }
 
-  useEffect(() => {
-    getSelectedGenre();
-  }, [tags]);
+  // useEffect(() => {
+  //   getSelectedGenre();
+  // }, [tags]);
 
   useEffect(() => {
-    localStorage.setItem("SelectedGenres", selectedGenres);
+    localStorage.setItem("SelectedGenres", selectedGenres.toString());
   }, [selectedGenres]);
 
   return (
@@ -59,7 +59,7 @@ function SelectGenre() {
           ))}
         </section>
       </div>
-      <button type="submit" onClick={SelectGenre}>
+      <button type="submit" onClick={getSelectedGenre}>
         filter
       </button>
       <h2>{localStorage.getItem("SelectedGenres")}</h2>
@@ -67,3 +67,161 @@ function SelectGenre() {
   );
 }
 export default SelectGenre;
+
+// import styles from "./FilterPage.module.css";
+// import GenreTag from "../../components/GenreTag/GenreTag";
+// import { useEffect, useState } from "react";
+// // import FestivalCardMedium from "../../components/FestivalCardMedium/FestivalCardMedium";
+
+// type FestivalPlaceholderTypes = {
+//   id: string;
+//   name: string;
+//   location: string;
+//   begin: string;
+//   end: string;
+//   visitors: number;
+//   acts: number;
+//   price: number;
+//   allacts: string;
+//   electronic?: number;
+//   metal?: number;
+//   reggae?: number;
+//   pop?: number;
+//   classic?: number;
+//   jazz?: number;
+//   punk?: number;
+//   indie?: number;
+//   rock?: number;
+//   hiphop?: number;
+// };
+
+// // Genre tags
+// const initialTags = [
+//   { text: "pop", selected: false, id: 0 },
+//   { text: "hiphop", selected: false, id: 1 },
+//   { text: "rock", selected: false, id: 2 },
+//   { text: "indie", selected: false, id: 3 },
+//   { text: "punk", selected: false, id: 4 },
+//   { text: "metal", selected: false, id: 5 },
+//   { text: "electronic", selected: false, id: 6 },
+//   { text: "reggae", selected: false, id: 7 },
+//   { text: "jazz", selected: false, id: 8 },
+//   { text: "classic", selected: false, id: 9 },
+// ];
+
+// function SelectGenre() {
+//   const [tags, setTags] = useState(initialTags);
+//   const [prefilteredFestivals, setPrefilteredFestivals] = useState([]);
+//   const [searchQuery, setsearchQuery] = useState("");
+//   // const [finalResult, setfinalResult] = useState();
+
+//   // Select Tag
+//   function onTagClicked(id: number): void {
+//     const newTags = [...tags];
+//     const tag = newTags.find((tag) => tag.id === id);
+//     if (tag) {
+//       tag.selected = !tag.selected;
+//     }
+//     setTags(newTags);
+//   }
+
+//   // Get selected genre tags and set them as search Query
+//   function getSelectedGenre(): void {
+//     const selectedGenres = tags
+//       .filter((tag) => tag.selected === true)
+//       .map((genre) => genre.text);
+//     // console.log("selectedGenres",selectedGenres,"Typeof",typeof selectedGenres );
+
+//     const selectedGenresList = selectedGenres.join("+");
+//     console.log(`To search : ${selectedGenresList}`);
+//     setsearchQuery(selectedGenresList);
+//     console.log("searchQuery", searchQuery);
+
+//     const selectedGenresToString = selectedGenres.toString();
+//     useEffect(() => {
+//       localStorage.setItem("SelectedGenres", selectedGenresToString);
+//     }, [tags]);
+//   }
+
+//   useEffect(() => {
+//     async function festivalFilter(): Promise<void> {
+//       let genreCounter: number;
+//       let festivalCounter: number;
+//       let genreValue: number;
+//       let result: number[] = [];
+
+//       //fetch prefiltered festivals
+//       const response = await fetch(`/api/festivals/${searchQuery}`);
+//       const body = await response.json();
+//       setPrefilteredFestivals(body);
+
+//       console.log("prefilteredFestivals", prefilteredFestivals);
+
+//       // Extract genres to String Array
+//       const selectedGenres = tags.filter((tag) => tag.selected === true);
+//       const mappedGenres = selectedGenres.map((genre) => genre.text);
+//       console.log("mappegGenres type", typeof mappedGenres);
+
+//       // Loop through festivals
+//       for (
+//         festivalCounter = 0;
+//         festivalCounter <= prefilteredFestivals.length;
+//         festivalCounter++
+//       ) {
+//         const festivalPlaceholder: FestivalPlaceholderTypes =
+//           prefilteredFestivals[festivalCounter];
+
+//         // Loop through genres to extract each genre value
+//         for (
+//           genreCounter = 0;
+//           genreCounter <= mappedGenres.length;
+//           genreCounter++
+//         ) {
+//           const genrePlaceholder: string = mappedGenres[genreCounter];
+//           genreValue = festivalPlaceholder[genrePlaceholder];
+
+//           if (genreCounter < mappedGenres.length) {
+//             result.push(genreValue);
+//             // console.log("01_result", genreValue, result);
+//           }
+//           if (genreCounter === mappedGenres.length) {
+//             let total = result.reduce(function (a, b) {
+//               return a + b;
+//             });
+//             result = [0];
+//             if (total > 100) {
+//               total = 100;
+//             }
+//             console.log(festivalPlaceholder.name, total);
+
+//             // Save result to local storage
+//             // localStorage.setItem(`${festivalPlaceholder.name}`, total);
+//             // localStorage.getItem(Immergut);
+//           }
+//         }
+//       }
+//     }
+//     festivalFilter();
+//   }, [searchQuery]);
+
+//   return (
+//     <div className={styles.wrapper}>
+//       <div className={styles.content}>
+//         <span className={"text-preline"}>
+//           Hi {localStorage.getItem("ActiveUser")}
+//         </span>
+//         <h2>Choose your favorite genres:</h2>
+//         <section className={styles.tags}>
+//           {tags.map((tag) => (
+//             <GenreTag tag={tag} key={tag.id} onClick={onTagClicked} />
+//           ))}
+//         </section>
+//       </div>
+//       <button type="submit" onClick={getSelectedGenre}>
+//         filter
+//       </button>
+//       {/* Show <FestivalCardMedium /> when festivalFilter is done */}
+//     </div>
+//   );
+// }
+// export default SelectGenre;
