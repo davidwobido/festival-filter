@@ -16,10 +16,12 @@ const initialTags = [
   { text: "classic", selected: false, id: 9 },
 ];
 
-function SelectGenre(): JSX.Element {
+function SelectGenre() {
   const [tags, setTags] = useState(initialTags);
   const [prefilteredFestivals, setPrefilteredFestivals] = useState([]);
   const [searchQuery, setsearchQuery] = useState("");
+  const [stateResult, setStateResult] = useState(0);
+  const [finalResult, setfinalResult] = useState();
 
   // Select Tag
   function onTagClicked(id: number): void {
@@ -31,11 +33,12 @@ function SelectGenre(): JSX.Element {
     setTags(newTags);
   }
 
-  // Get selected genre tags
+  // Get selected genre tags and set them as search Query
   function getSelectedGenre(): void {
     const selectedGenres = tags
       .filter((tag) => tag.selected === true)
       .map((genre) => genre.text);
+
     const selectedGenresList = selectedGenres.join("+");
     console.log(`To search : ${selectedGenresList}`);
     setsearchQuery(selectedGenresList);
@@ -43,68 +46,51 @@ function SelectGenre(): JSX.Element {
 
   useEffect(() => {
     async function getPrefilteredFestivals(): Promise<void> {
+      let genreCounter: number;
+      let genreValue: number;
+      const result = [];
+
+      //fetch
       const response = await fetch(`/api/festivals/${searchQuery}`);
       const body = await response.json();
       setPrefilteredFestivals(body);
+      console.log(prefilteredFestivals);
 
-      // Match and filter prefiltered festivals
-      async (): Promise<void> => {
-        await getPrefilteredFestivals();
-        const selectedGenres = tags.filter((tag) => tag.selected === true);
-        const mapGenres = selectedGenres.map((genre) => genre.text);
-        let counterFestivals: number;
-        let counterGenre: number;
-        const matchSummands: number[] = [];
-        let match: number;
-        // Iterate festivals
-        for (
-          counterFestivals = 0;
-          counterFestivals < prefilteredFestivals.length;
-          counterFestivals++
-        ) {
-          // Iterate each festival with selected genres
-          for (
-            counterGenre = 0;
-            counterGenre < mapGenres.length;
-            counterGenre++
-          ) {
-            const searchedGenre = mapGenres[counterGenre];
-            const result: number[] = [
-              prefilteredFestivals[counterFestivals][searchedGenre],
-            ];
-            if (counterGenre < mapGenres.length) {
-              matchSummands.push(...result);
-            }
-          }
+      // Extract genres to String Array
+      const selectedGenres = tags.filter((tag) => tag.selected === true);
+      const mappedGenres = selectedGenres.map((genre) => genre.text);
 
-          if (counterGenre === mapGenres.length) {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            const reducer: any = (
-              previousValue: number,
-              currentValue: number
-            ) => previousValue + currentValue;
-            match = matchSummands.reduce(reducer);
+      // example first festival (Will loop through all later on)
+      const festivalPlaceholder = prefilteredFestivals[1];
 
-            console.log(
-              "Festivalmatch:",
-              prefilteredFestivals[counterFestivals]["name"],
-              match
-            );
-            if (match < 50) {
-              console.log("will not be displayed");
-            }
-            if (match < 50 && match <= 70) {
-              console.log("FestivalCardMedium yellow");
-            }
-            if (match > 70) {
-              console.log("FestivalCardMedium green");
-            }
-            if (match > 100) {
-              console.log("FestivalCardMedium green, display match as 100");
-            }
-          }
+      // Loop through genres to extract each genre value
+      for (
+        genreCounter = 0;
+        genreCounter < mappedGenres.length;
+        genreCounter++
+      ) {
+        const genrePlaceholder = mappedGenres[genreCounter];
+        genreValue = festivalPlaceholder[genrePlaceholder];
+
+        if (genreCounter < mappedGenres.length) {
+          // result.splice(genreValue);
+          await setStateResult(genreValue + stateResult);
+          // console.log(stateResult);
+          // result.push(...genreValue);
+          console.log("SR:", stateResult);
+
+          console.log(
+            festivalPlaceholder.name,
+            ":",
+            genrePlaceholder,
+            ":",
+            genreValue
+          );
         }
-      };
+        // if (genreCounter === mappedGenres.length) {
+        //   function map result to mediumcard
+        // }
+      }
     }
     getPrefilteredFestivals();
   }, [searchQuery]);
@@ -123,8 +109,9 @@ function SelectGenre(): JSX.Element {
         </section>
       </div>
       <button type="submit" onClick={getSelectedGenre}>
-        getSelectedGenre
+        filter
       </button>
+      {/* {finalResult && <div>{finalResult}</div>} */}
     </div>
   );
 }
