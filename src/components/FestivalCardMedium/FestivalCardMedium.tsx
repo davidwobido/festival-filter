@@ -7,6 +7,7 @@ type FestivalCardMediumProps = {
   end: string;
   price: number;
   allacts: string;
+  value: number;
 };
 
 function FestivalCardMedium({
@@ -16,11 +17,12 @@ function FestivalCardMedium({
   end,
   allacts,
   price,
+  value,
 }: FestivalCardMediumProps) {
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
-        <span className={styles.match}>100%</span>
+        <span className={styles.match}>{value}%</span>
         <h4 className={styles.name}>{name}</h4>
         <div className={styles["location-wrapper"]}>
           <img src="../../../lib/Icon_Location.svg" />
