@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
 import styles from "./FilterResult.module.css";
 import FestivalCardMedium from "../../components/FestivalCardMedium/FestivalCardMedium";
+import { FestivalCardMediumProps } from "../../components/FestivalCardMedium/FestivalCardMedium";
+// type FestivalPlaceholderTypes = {
+//   [key: string]: string | number;
+// };
 
 type FestivalPlaceholderTypes = {
-  id: string;
+  _id: string;
   name: string;
   location: string;
   begin: string;
@@ -22,34 +26,40 @@ type FestivalPlaceholderTypes = {
   indie?: number;
   rock?: number;
   hiphop?: number;
+  value?: number;
 };
 
 function festivalFilter() {
   const [prefilteredFestivals, setPrefilteredFestivals] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedGenresState, setSelectedGenresState] = useState<string[]>([]);
+  const [selectedGenresState, setSelectedGenresState] = useState<
+    string[] | null
+  >([]);
   const [done, setDone] = useState<boolean>(false);
-  const [bestFitFestivals, setBestFitFestivals] = useState([]);
-  const [mediumFitFestivals, setMediumFitFestivals] = useState([]);
+  const [bestFitFestivals] = useState([]);
+  const [mediumFitFestivals] = useState([]);
   let total;
 
   function getGenres() {
     const selectedGenresString = localStorage.getItem("SelectedGenres");
-    const selectedGenres = selectedGenresString?.split(",");
-    setSelectedGenresState(selectedGenres);
+    if (selectedGenresString) {
+      const selectedGenres: string[] = selectedGenresString?.split(",");
+      setSelectedGenresState(selectedGenres);
+      console.log(typeof selectedGenres, "selected genres", selectedGenres);
 
-    // Get selected genre tags and set them as search Query
-    const selectedGenresList = selectedGenres?.join("+");
-    console.log(
-      "To search:",
-      selectedGenresList,
-      "typeof",
-      typeof selectedGenresList
-    );
-    if (selectedGenresList) {
-      setSearchQuery(selectedGenresList);
+      // Get selected genre tags and set them as search Query
+      const selectedGenresList = selectedGenres?.join("+");
+      console.log(
+        "To search:",
+        selectedGenresList,
+        "typeof",
+        typeof selectedGenresList
+      );
+      if (selectedGenresList) {
+        setSearchQuery(selectedGenresList);
+      }
+      console.log("searchQuery", searchQuery);
     }
-    console.log("searchQuery", searchQuery);
   }
 
   async function filterFunction(): Promise<void> {
@@ -62,48 +72,45 @@ function festivalFilter() {
     const response = await fetch(`/api/festivals/${searchQuery}`);
     const body = await response.json();
     setPrefilteredFestivals(body);
-
     console.log("prefilteredFestivals", prefilteredFestivals);
 
     if (selectedGenresState) {
-      const mappedGenres = selectedGenresState;
-      console.log(typeof mappedGenres);
-
       // Loop through festivals
       for (
         festivalCounter = 0;
         festivalCounter <= prefilteredFestivals.length;
         festivalCounter++
       ) {
-        const festivalPlaceholder: FestivalPlaceholderTypes =
+        const festivalPlaceholder: keyof FestivalPlaceholderTypes =
           prefilteredFestivals[festivalCounter];
 
         // Loop through genres to extract each genre value
         for (
           genreCounter = 0;
-          genreCounter <= mappedGenres.length;
+          genreCounter <= selectedGenresState.length;
           genreCounter++
         ) {
-          const genrePlaceholder: string = mappedGenres[genreCounter];
+          const genrePlaceholder = selectedGenresState[genreCounter];
           genreValue = festivalPlaceholder[genrePlaceholder];
+          console.log("festivalPlaceholder", festivalPlaceholder);
 
-          if (genreCounter < mappedGenres.length) {
+          if (genreCounter < selectedGenresState.length) {
             result.push(genreValue);
-            // console.log("01_result", genreValue, result);
           }
-          if (genreCounter === mappedGenres.length) {
+          if (genreCounter === selectedGenresState.length) {
             total = result.reduce(function (a, b) {
               return a + b;
             });
             result = [0];
 
             if (total >= 50 && total < 75) {
-              // Object.assign(festivalPlaceholder, { festivalValue: total });
+              // Add total fitting value to Object
+              Object.assign(festivalPlaceholder, { value: total });
               mediumFitFestivals.push(festivalPlaceholder);
               console.log("mediumFitFestivals:", mediumFitFestivals);
             }
             if (total >= 75) {
-              Object.assign(festivalPlaceholder, { festivalValue: total });
+              Object.assign(festivalPlaceholder, { value: total });
               bestFitFestivals.push(festivalPlaceholder);
               console.log("bestFitFestivals:", bestFitFestivals);
             }
@@ -112,7 +119,7 @@ function festivalFilter() {
               total = 100;
             }
 
-            console.log(festivalPlaceholder.name, total);
+            // console.log(festivalPlaceholder?.name, total);
 
             setDone(true);
           }
@@ -136,29 +143,29 @@ function festivalFilter() {
       <h2>{total}</h2>
 
       <button onClick={() => getGenres()}>DO</button>
-      {/* <h2>{bestFitFestivals}</h2>
-      <h2>{mediumFitFestivals}</h2> */}
 
-      {bestFitFestivals?.map((festival) => (
-        // eslint-disable-next-line react/jsx-key
+      {bestFitFestivals?.map((festival: FestivalCardMediumProps) => (
         <FestivalCardMedium
+          key={festival.key}
           name={festival.name}
           location={festival.location}
           begin={festival.begin}
           end={festival.end}
           price={festival.price}
           allacts={festival.allacts}
+          value={festival.value}
         />
       ))}
-      {mediumFitFestivals?.map((festival) => (
-        // eslint-disable-next-line react/jsx-key
+      {mediumFitFestivals?.map((festival: FestivalCardMediumProps) => (
         <FestivalCardMedium
+          key={festival.key}
           name={festival.name}
           location={festival.location}
           begin={festival.begin}
           end={festival.end}
           price={festival.price}
           allacts={festival.allacts}
+          value={festival.value}
         />
       ))}
 
@@ -171,30 +178,3 @@ function festivalFilter() {
   );
 }
 export default festivalFilter;
-
-// if (total >= 50 && total < 70) {
-//   console.log("festival placeholder:", festivalPlaceholder);
-//   setMediumFitFestivals(
-//     <FestivalCardMedium
-//       name={festivalPlaceholder.name}
-//       location={festivalPlaceholder.location}
-//       begin={festivalPlaceholder.begin}
-//       end={festivalPlaceholder.end}
-//       price={festivalPlaceholder.price}
-//       allacts={festivalPlaceholder.allacts}
-//     />
-//   );
-// }
-// if (total >= 70) {
-//   console.log("festival placeholder:", festivalPlaceholder);
-//   setBestFitFestivals(
-//     <FestivalCardMedium
-//       name={festivalPlaceholder.name}
-//       location={festivalPlaceholder.location}
-//       begin={festivalPlaceholder.begin}
-//       end={festivalPlaceholder.end}
-//       price={festivalPlaceholder.price}
-//       allacts={festivalPlaceholder.allacts}
-//     />
-//   );
-// }
