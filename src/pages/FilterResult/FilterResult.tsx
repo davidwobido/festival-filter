@@ -89,26 +89,41 @@ function festivalFilter() {
 
           if (genreCounter < mappedGenres.length) {
             result.push(genreValue);
-            console.log("01_result", genreValue, result);
+            // console.log("01_result", genreValue, result);
           }
           if (genreCounter === mappedGenres.length) {
             total = result.reduce(function (a, b) {
               return a + b;
             });
             result = [0];
+
             if (total >= 50 && total < 70) {
-              setMediumFitFestivals((finalFestivals) => [
-                ...finalFestivals,
-                festivalPlaceholder.name,
-              ]);
+              console.log("festival placeholder:", festivalPlaceholder);
+              setMediumFitFestivals(
+                <FestivalCardMedium
+                  name={festivalPlaceholder.name}
+                  location={festivalPlaceholder.location}
+                  begin={festivalPlaceholder.begin}
+                  end={festivalPlaceholder.end}
+                  price={festivalPlaceholder.price}
+                  allacts={festivalPlaceholder.allacts}
+                />
+              );
             }
             if (total >= 70) {
-              setBestFitFestivals((finalFestivals) => [
-                ...finalFestivals,
-                festivalPlaceholder.name,
-              ]);
-              console.log(typeof bestFitFestivals);
+              console.log("festival placeholder:", festivalPlaceholder);
+              setBestFitFestivals(
+                <FestivalCardMedium
+                  name={festivalPlaceholder.name}
+                  location={festivalPlaceholder.location}
+                  begin={festivalPlaceholder.begin}
+                  end={festivalPlaceholder.end}
+                  price={festivalPlaceholder.price}
+                  allacts={festivalPlaceholder.allacts}
+                />
+              );
             }
+
             if (total > 100) {
               total = 100;
             }
@@ -137,24 +152,15 @@ function festivalFilter() {
       <h2>{total}</h2>
 
       <button onClick={() => getGenres()}>DO</button>
-      <h2>{bestFitFestivals}</h2>
-      <h2>{mediumFitFestivals}</h2>
+      {/* <h2>{bestFitFestivals}</h2>
+      <h2>{mediumFitFestivals}</h2> */}
 
       {!done && (
         <span className={styles.intro}>sorry no festivals fit to you</span>
       )}
-      {done &&
-        prefilteredFestivals?.map((festival) => (
-          // eslint-disable-next-line react/jsx-key
-          <FestivalCardMedium
-            name={festival.name}
-            location={festival.location}
-            begin={festival.begin}
-            end={festival.end}
-            price={festival.price}
-            allacts={festival.allacts}
-          />
-        ))}
+      {done && bestFitFestivals}
+
+      {done && mediumFitFestivals}
     </div>
   );
 }
