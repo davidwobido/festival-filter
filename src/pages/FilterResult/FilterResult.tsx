@@ -97,31 +97,15 @@ function festivalFilter() {
             });
             result = [0];
 
-            if (total >= 50 && total < 70) {
-              console.log("festival placeholder:", festivalPlaceholder);
-              setMediumFitFestivals(
-                <FestivalCardMedium
-                  name={festivalPlaceholder.name}
-                  location={festivalPlaceholder.location}
-                  begin={festivalPlaceholder.begin}
-                  end={festivalPlaceholder.end}
-                  price={festivalPlaceholder.price}
-                  allacts={festivalPlaceholder.allacts}
-                />
-              );
+            if (total >= 50 && total < 75) {
+              // Object.assign(festivalPlaceholder, { festivalValue: total });
+              mediumFitFestivals.push(festivalPlaceholder);
+              console.log("mediumFitFestivals:", mediumFitFestivals);
             }
-            if (total >= 70) {
-              console.log("festival placeholder:", festivalPlaceholder);
-              setBestFitFestivals(
-                <FestivalCardMedium
-                  name={festivalPlaceholder.name}
-                  location={festivalPlaceholder.location}
-                  begin={festivalPlaceholder.begin}
-                  end={festivalPlaceholder.end}
-                  price={festivalPlaceholder.price}
-                  allacts={festivalPlaceholder.allacts}
-                />
-              );
+            if (total >= 75) {
+              Object.assign(festivalPlaceholder, { festivalValue: total });
+              bestFitFestivals.push(festivalPlaceholder);
+              console.log("bestFitFestivals:", bestFitFestivals);
             }
 
             if (total > 100) {
@@ -155,13 +139,62 @@ function festivalFilter() {
       {/* <h2>{bestFitFestivals}</h2>
       <h2>{mediumFitFestivals}</h2> */}
 
+      {bestFitFestivals?.map((festival) => (
+        // eslint-disable-next-line react/jsx-key
+        <FestivalCardMedium
+          name={festival.name}
+          location={festival.location}
+          begin={festival.begin}
+          end={festival.end}
+          price={festival.price}
+          allacts={festival.allacts}
+        />
+      ))}
+      {mediumFitFestivals?.map((festival) => (
+        // eslint-disable-next-line react/jsx-key
+        <FestivalCardMedium
+          name={festival.name}
+          location={festival.location}
+          begin={festival.begin}
+          end={festival.end}
+          price={festival.price}
+          allacts={festival.allacts}
+        />
+      ))}
+
       {!done && (
         <span className={styles.intro}>sorry no festivals fit to you</span>
       )}
       {done && bestFitFestivals}
-
       {done && mediumFitFestivals}
     </div>
   );
 }
 export default festivalFilter;
+
+// if (total >= 50 && total < 70) {
+//   console.log("festival placeholder:", festivalPlaceholder);
+//   setMediumFitFestivals(
+//     <FestivalCardMedium
+//       name={festivalPlaceholder.name}
+//       location={festivalPlaceholder.location}
+//       begin={festivalPlaceholder.begin}
+//       end={festivalPlaceholder.end}
+//       price={festivalPlaceholder.price}
+//       allacts={festivalPlaceholder.allacts}
+//     />
+//   );
+// }
+// if (total >= 70) {
+//   console.log("festival placeholder:", festivalPlaceholder);
+//   setBestFitFestivals(
+//     <FestivalCardMedium
+//       name={festivalPlaceholder.name}
+//       location={festivalPlaceholder.location}
+//       begin={festivalPlaceholder.begin}
+//       end={festivalPlaceholder.end}
+//       price={festivalPlaceholder.price}
+//       allacts={festivalPlaceholder.allacts}
+//     />
+//   );
+// }
