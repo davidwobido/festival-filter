@@ -39,7 +39,7 @@ function SelectGenre() {
   }
 
   useEffect(() => {
-    localStorage.setItem("SelectedGenres", selectedGenres.toString());
+    localStorage.setItem("SelectedGenres", selectedGenres.join("+"));
   }, [selectedGenres]);
 
   return (
