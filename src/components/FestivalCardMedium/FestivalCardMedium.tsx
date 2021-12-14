@@ -1,6 +1,6 @@
 import Button from "../Buttons/Button";
 import styles from "./FestivalCardMedium.module.css";
-type FestivalCardMediumProps = {
+export type FestivalCardMediumProps = {
   name: string;
   location: string;
   begin: string;
@@ -8,6 +8,7 @@ type FestivalCardMediumProps = {
   price: number;
   allacts: string;
   value: number;
+  key: string;
 };
 
 function FestivalCardMedium({
