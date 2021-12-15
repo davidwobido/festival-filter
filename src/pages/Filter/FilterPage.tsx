@@ -55,10 +55,12 @@ function SelectGenre() {
           ))}
         </section>
       </div>
-      <button type="submit" onClick={() => getSelectedGenre()}>
-        filter
+      <button
+        className={styles.filterbutton}
+        onClick={() => getSelectedGenre()}
+      >
+        Filter
       </button>
-      <h2>{localStorage.getItem("SelectedGenres")}</h2>
     </div>
   );
 }
