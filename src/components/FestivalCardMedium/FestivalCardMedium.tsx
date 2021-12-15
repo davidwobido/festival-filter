@@ -8,6 +8,7 @@ export type FestivalCardMediumProps = {
   price: number;
   allacts: string;
   value?: number;
+  color: "green" | "orange";
 };
 
 function FestivalCardMedium({
@@ -18,10 +19,11 @@ function FestivalCardMedium({
   allacts,
   price,
   value,
+  color,
 }: FestivalCardMediumProps) {
   return (
     <div className={styles.container}>
-      <div className={styles.wrapper}>
+      <div className={styles[color]}>
         <span className={styles.match}>{value}%</span>
         <h4 className={styles.name}>{name}</h4>
         <div className={styles["location-wrapper"]}>
