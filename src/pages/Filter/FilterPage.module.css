@@ -17,6 +17,12 @@
   max-width: 30rem;
 }
 
+.filterbutton {
+  composes: normal from "../../components/Buttons/Button.module.css";
+  font-family: "Krona One", sans-serif;
+  padding: 1rem 7rem;
+}
+
 .footer {
   position: absolute;
   bottom: 2rem;
