@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "./FilterResult.module.css";
 import FestivalCardMedium from "../../components/FestivalCardMedium/FestivalCardMedium";
-import { FestivalCardMediumProps } from "../../components/FestivalCardMedium/FestivalCardMedium";
 
 type FestivalPlaceholderTypes = {
   id: string;
@@ -23,7 +22,7 @@ type FestivalPlaceholderTypes = {
   indie?: number;
   rock?: number;
   hiphop?: number;
-  value?: number;
+  value: number;
 };
 
 type GenrePlaceholderTypes = {
@@ -132,9 +131,9 @@ function festivalFilter() {
                 newBestFitFestivals.push(festivalPlaceholder);
               }
             }
+            newBestFitFestivals.sort((a, b) => b.value - a.value);
+            newMediumFitFestivals.sort((a, b) => b.value - a.value);
 
-            console.log(festivalPlaceholder.name, total);
-            newBestFitFestivals.sort();
             setDone(true);
           }
         }
@@ -153,11 +152,10 @@ function festivalFilter() {
       <section className={styles.text}>
         <h1>Filtered!</h1>
         <span className={styles.intro}>
-          Here are your festival suggestions sorted by matching your choice.{" "}
+          Here are your festival suggestions sorted by matching your choice.
         </span>
       </section>
-
-      {bestFitFestivals.map((festival: FestivalCardMediumProps) => (
+      {bestFitFestivals.map((festival) => (
         <FestivalCardMedium
           key={festival.name}
           name={festival.name}
@@ -167,9 +165,11 @@ function festivalFilter() {
           price={festival.price}
           allacts={festival.allacts}
           value={festival.value}
+          color="green"
         />
       ))}
-      {mediumFitFestivals.map((festival: FestivalCardMediumProps) => (
+
+      {mediumFitFestivals.map((festival) => (
         <FestivalCardMedium
           key={festival.name}
           name={festival.name}
@@ -179,9 +179,9 @@ function festivalFilter() {
           price={festival.price}
           allacts={festival.allacts}
           value={festival.value}
+          color="orange"
         />
       ))}
-
       {!done && (
         <span className={styles.intro}>sorry no festivals fit to you</span>
       )}
