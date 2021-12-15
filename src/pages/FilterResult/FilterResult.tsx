@@ -118,7 +118,11 @@ function festivalFilter() {
               }
             }
             if (total >= 75) {
-              Object.assign(festivalPlaceholder, { value: total });
+              if (total > 100) {
+                Object.assign(festivalPlaceholder, { value: 100 });
+              } else if (total <= 100) {
+                Object.assign(festivalPlaceholder, { value: total });
+              }
               // Check if festival is already in Array
               if (
                 newBestFitFestivals
