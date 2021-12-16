@@ -11,13 +11,11 @@ function App() {
   return (
     <div className={styles.app}>
       <Routes>
-        <Route path="/" element={<App />}>
-          <Route index element={<StartPage />} />
-          <Route path="login" element={<NameInput />} />
-          <Route path="filter" element={<FilterPage />} />
-          <Route path="filtered" element={<FilterResult />} />
-          <Route path="all-festivals" element={<AllFestivals />} />
-        </Route>
+        <Route path="/" element={<StartPage />} />
+        <Route path="login" element={<NameInput />} />
+        <Route path="filter" element={<FilterPage />} />
+        <Route path="filtered" element={<FilterResult />} />
+        <Route path="all-festivals" element={<AllFestivals />} />
       </Routes>
     </div>
   );
