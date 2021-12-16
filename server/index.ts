@@ -22,18 +22,30 @@ app.get("/api/festivals/", async (_request, response) => {
   response.send(allFestivals);
 });
 
-// Read one festival with mongoDB
-app.get("/api/festivals/name/:name", async (request, response) => {
+// Search by genre
+app.get("/api/festivals/:genre", async (request, response) => {
   const festivalCollection = getFestivalCollection();
-  const festival = request.params.name;
+  const genres: string = request.params.genre;
+  const genresArray = genres.split("+");
 
-  const isFestivalKnown = await festivalCollection.findOne({
-    name: festival,
-  });
-  if (isFestivalKnown) {
-    response.status(200).send(isFestivalKnown);
-  } else {
-    response.status(404).send("Festival does not exist");
+  let counter;
+  const prefilteredFestivals: number[] = [];
+
+  for (counter = 0; counter < genresArray.length; counter++) {
+    const value = { $gt: 0 };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const query: any = {};
+    query[genresArray[counter]] = value;
+    const cursor = festivalCollection.find(query).sort({ name: 1 });
+
+    if (counter < genresArray.length) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const searchedFestivals: any = await cursor.toArray();
+      prefilteredFestivals.push(...searchedFestivals);
+    }
+  }
+  if (counter === genresArray.length) {
+    response.send(prefilteredFestivals);
   }
 });
 
