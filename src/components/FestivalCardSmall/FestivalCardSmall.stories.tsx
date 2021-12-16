@@ -11,5 +11,6 @@ export const Card = () => (
     location="Dinkelsbühl"
     begin="17.08.2022"
     end="20.08.2022"
+    toSearch={() => ""}
   />
 );

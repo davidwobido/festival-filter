@@ -24,6 +24,7 @@ app.get("/api/festivals/", async (_request, response) => {
 
 // Search by genre
 app.get("/api/festivals/:genre", async (request, response) => {
+
   const festivalCollection = getFestivalCollection();
   const genres: string = request.params.genre;
   const genresArray = genres.split("+");
