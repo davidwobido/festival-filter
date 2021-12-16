@@ -1,4 +1,5 @@
 import styles from "./FestivalCardLarge.module.css";
+import CloseIcon from "../../../lib/Icon_Close.svg";
 
 export type FestivalCardLargeProps = {
   name: string;
@@ -31,7 +32,8 @@ function FestivalCardLarge({
         <section className={styles.header}>
           <h3 className={styles.title}>{name}</h3>
           <img
-            src="../../../lib/Icon_Close.svg"
+            src={CloseIcon}
+            alt="Close"
             className={styles.close}
             onClick={close}
           />
