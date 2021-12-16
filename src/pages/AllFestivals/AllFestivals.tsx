@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import FestivalCardLarge, {
   FestivalCardLargeProps,
 } from "../../components/FestivalCardLarge/FestivalCardLarge";
@@ -93,6 +94,11 @@ function AllFestivals() {
           />
         )}
       </section>
+      <footer className={styles.footer}>
+        <Link to="/filter" className={styles.skip}>
+          Go to Filter
+        </Link>
+      </footer>
     </div>
   );
 }

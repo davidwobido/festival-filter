@@ -1,6 +1,7 @@
 import styles from "./FilterPage.module.css";
 import GenreTag from "../../components/GenreTag/GenreTag";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 // Genre tags
 const initialTags = [
@@ -55,12 +56,19 @@ function SelectGenre() {
           ))}
         </section>
       </div>
-      <button
-        className={styles.filterbutton}
-        onClick={() => getSelectedGenre()}
-      >
-        Filter
-      </button>
+      <Link to="/filtered">
+        <button
+          className={styles.filterbutton}
+          onClick={() => getSelectedGenre()}
+        >
+          Filter
+        </button>{" "}
+      </Link>
+      <footer className={styles.footer}>
+        <Link to="/all-festivals" className={styles.skip}>
+          Show all festivals
+        </Link>
+      </footer>
     </div>
   );
 }
