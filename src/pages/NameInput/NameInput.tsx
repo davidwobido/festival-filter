@@ -1,6 +1,7 @@
 import React from "react";
 import AddUser from "../../components/AddUser/AddUserForm";
 import styles from "./NameInput.module.css";
+import { Link } from "react-router-dom";
 
 function NameInput() {
   return (
@@ -12,7 +13,9 @@ function NameInput() {
           <AddUser />
         </div>
         <footer className={styles.footer}>
-          <a className={styles.skip}>Show all festivals</a>
+          <Link to="/all-festivals" className={styles.skip}>
+            Show all festivals
+          </Link>
         </footer>
       </div>
     </>

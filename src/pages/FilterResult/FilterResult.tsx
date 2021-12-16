@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./FilterResult.module.css";
 import FestivalCardMedium from "../../components/FestivalCardMedium/FestivalCardMedium";
+import { Link } from "react-router-dom";
 
 type FestivalPlaceholderTypes = {
   id: string;
@@ -185,6 +186,11 @@ function festivalFilter() {
       {!done && (
         <span className={styles.intro}>sorry no festivals fit to you</span>
       )}
+      <footer className={styles.footer}>
+        <Link to="/all-festivals" className={styles.skip}>
+          Show all festivals
+        </Link>
+      </footer>
     </div>
   );
 }

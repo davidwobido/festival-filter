@@ -15,3 +15,10 @@
   gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(9rem, 10rem));
 }
+
+.footer {
+  position: absolute;
+  bottom: 2rem;
+  display: grid;
+  justify-self: center;
+}
