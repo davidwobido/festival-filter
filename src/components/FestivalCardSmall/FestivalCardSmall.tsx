@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import styles from "./FestivalCardSmall.module.css";
+import LocationIcon from "../../../lib/Icon_Location.svg";
+import DateIcon from "../../../lib/Icon_Date.svg";
 
 export type FestivalCardSmallProps = {
   name: string;
@@ -28,11 +30,11 @@ function FestivalCardSmall({
       <div className={styles.wrapper}>
         <h5>{name}</h5>
         <div className={styles["location-wrapper"]}>
-          <img src="../../../lib/Icon_Location.svg" />
+          <img src={LocationIcon} alt="Location" />
           <span className={styles.location}> {location}</span>
         </div>
         <div className={styles["date-wrapper"]}>
-          <img src="../../../lib/Icon_Date.svg" />
+          <img src={DateIcon} alt="Date" />
           <span className={styles.date}>
             {begin} {end}
           </span>

@@ -1,5 +1,8 @@
 import Button from "../Buttons/Button";
 import styles from "./FestivalCardMedium.module.css";
+import LocationIcon from "../../../lib/Icon_Location.svg";
+import DateIcon from "../../../lib/Icon_Date.svg";
+
 export type FestivalCardMediumProps = {
   name: string;
   location: string;
@@ -27,11 +30,11 @@ function FestivalCardMedium({
         <span className={styles.match}>{value}%</span>
         <h4 className={styles.name}>{name}</h4>
         <div className={styles["location-wrapper"]}>
-          <img src="../../../lib/Icon_Location.svg" />
+          <img src={LocationIcon} alt="Location" />
           <span className={styles.location}>{location}</span>
         </div>
         <div className={styles["date-wrapper"]}>
-          <img src="../../../lib/Icon_Date.svg" />
+          <img src={DateIcon} alt="Date" />
           <span className={styles.date}>
             {begin}—{end}
           </span>
