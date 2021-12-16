@@ -49,6 +49,21 @@ app.get("/api/festivals/:genre", async (request, response) => {
   }
 });
 
+// Read one festival with mongoDB
+app.get("/api/festivals/name/:name", async (request, response) => {
+  const festivalCollection = getFestivalCollection(); // Datenbank
+  const festival = request.params.name; //Eingabe
+
+  const isFestivalKnown = await festivalCollection.findOne({
+    name: festival,
+  });
+  if (isFestivalKnown) {
+    response.status(200).send(isFestivalKnown);
+  } else {
+    response.status(404).send("Festival does not exist");
+  }
+});
+
 // Post festival with mongoDB
 app.post("/api/festivals", async (request, response) => {
   const festivalCollection = getFestivalCollection();
@@ -100,11 +115,6 @@ app.use(express.static("dist"));
 // Handle client routing, return all requests to the app
 app.get("*", (_request, response) => {
   response.sendFile(path.join(__dirname, "../index.html"));
-});
-
-// Say Hello
-app.get("/", (_req, res) => {
-  res.send("Hello World!");
 });
 
 // Connect to database

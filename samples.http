@@ -2,13 +2,13 @@
 GET http://localhost:3001/api/festivals HTTP/1.1
 
 
-### Get searched festivals
+### Get searched genre
 GET http://localhost:3001/api/festivals/Electro HTTP/1.1
 
 
 
 ### Get a single festival
-GET http://localhost:3001/api/festivals/Southside HTTP/1.1
+GET http://localhost:3001/api/festivals/name/ HTTP/1.1
 
 
 ### POST a festival
