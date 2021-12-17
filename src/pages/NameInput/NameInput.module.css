@@ -1,23 +1,12 @@
-.wrapper {
-  display: grid;
-  height: 100vh;
-  background-color: var(--color-primary-bg);
-}
-
 .content {
   display: grid;
   align-content: center;
   gap: 1rem;
+  height: calc(100% + -4rem);
   padding: 1.25rem;
+  justify-self: center;
 }
 
 .preline {
   composes: text-preline from global;
-}
-
-.footer {
-  position: absolute;
-  bottom: 2rem;
-  display: grid;
-  justify-self: center;
 }

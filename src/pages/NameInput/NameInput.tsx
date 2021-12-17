@@ -12,11 +12,6 @@ function NameInput() {
           <h2>Please tell us your name:</h2>
           <AddUser />
         </div>
-        <footer className={styles.footer}>
-          <Link to="/all-festivals" className={styles.skip}>
-            Show all festivals
-          </Link>
-        </footer>
       </div>
     </>
   );
