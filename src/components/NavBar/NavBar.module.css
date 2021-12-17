@@ -1,16 +1,125 @@
-.wrapper {
-  position: fixed;
+.navigation {
+  position: sticky;
+  top: 0;
+  height: 4rem;
+  width: 100vw;
+  margin: 0;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  justify-items: center;
   align-items: center;
-  width: 100%;
-  height: 5rem;
-  border-bottom: solid var(--color-neutral-grade) 0.0125em;
-  color: var(--color-primary-text);
+  justify-content: center;
+  overflow: visible;
+}
+
+.navbarbackground {
+  position: sticky;
+  top: 0;
+  width: 100vw;
+  height: 4rem;
+  margin: 0;
+  z-index: 99;
   background-color: var(--color-primary-bg);
 }
 
+.back {
+  position: absolute;
+  left: 1.25rem;
+  z-index: 100;
+  color: var(--color-primary-text);
+  font-weight: 300;
+  text-decoration: none;
+}
+
+.backicon {
+  height: 0.62rem;
+  padding-right: 0.1rem;
+}
+
 .logo {
-  height: 1.5rem;
+  position: absolute;
+  height: 0.8rem;
+  z-index: 100;
+}
+
+.link {
+  font-size: 2rem;
+  padding-right: 1.25rem;
+  color: var(--color-neutral-grade);
+  text-align: right;
+  text-decoration: none;
+  line-height: 110%;
+}
+
+.burger div {
+  display: block;
+  width: 1.3rem;
+  height: 0.0625rem;
+  margin: 0.3rem;
+  background-color: var(--color-primary-text);
+  transition: all 0.3s ease;
+}
+
+.user {
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+.navlinks {
+  position: absolute;
+  top: -9.9rem;
+  height: 14rem;
+  width: 100%;
+  display: grid;
+  align-content: center;
+  row-gap: 1rem;
+  padding-bottom: 1.5rem;
+  margin: 0;
+  border-bottom: 0.0125rem solid var(--color-neutral-grade);
+  background-color: var(--color-primary-bg);
+  justify-items: end;
+  z-index: 1;
+  transform: translateY(13.8rem);
+  transition: 0.5s ease-in-out;
+}
+
+.surface {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  content: "";
+  background: rgb(0 0 0 / 60%);
+  z-index: 0;
+  transition: 0.2s ease-in-out;
+}
+
+.burger {
+  position: absolute;
+  display: block;
+  right: 1.25rem;
+  z-index: 1000;
+  transform: translateY(0.1rem);
+}
+
+.open {
+  transform: translateX(0%);
+}
+
+.lineone {
+  transform: rotate(-45deg) translate(-4px, 4px);
+}
+
+.linetwo {
+  opacity: 0;
+}
+
+.linethree {
+  transform: rotate(+45deg) translate(-4px, -4px);
+}
+
+.logo,
+.burger,
+.navlinks,
+.burger div:hover {
+  cursor: pointer;
 }
