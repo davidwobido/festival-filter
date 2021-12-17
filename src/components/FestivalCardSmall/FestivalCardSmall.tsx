@@ -26,23 +26,21 @@ function FestivalCardSmall({
   }, [query]);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.wrapper}>
-        <h5>{name}</h5>
-        <div className={styles["location-wrapper"]}>
-          <img src={LocationIcon} alt="Location" />
-          <span className={styles.location}> {location}</span>
-        </div>
-        <div className={styles["date-wrapper"]}>
-          <img src={DateIcon} alt="Date" />
-          <span className={styles.date}>
-            {begin} {end}
-          </span>
-        </div>
-        <a onClick={() => setQuery(name)} className={styles.more}>
-          More
-        </a>
+    <div className={styles.wrapper}>
+      <h5>{name}</h5>
+      <div className={styles["location-wrapper"]}>
+        <img src={LocationIcon} alt="Location" />
+        <span className={styles.location}> {location}</span>
       </div>
+      <div className={styles["date-wrapper"]}>
+        <img src={DateIcon} alt="Date" />
+        <span className={styles.date}>
+          {begin} {end}
+        </span>
+      </div>
+      <a onClick={() => setQuery(name)} className={styles.more}>
+        More
+      </a>
     </div>
   );
 }

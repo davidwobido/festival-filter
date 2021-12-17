@@ -94,11 +94,6 @@ function AllFestivals() {
           />
         )}
       </section>
-      <footer className={styles.footer}>
-        <Link to="/filter" className={styles.skip}>
-          Go to Filter
-        </Link>
-      </footer>
     </div>
   );
 }
