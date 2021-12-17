@@ -45,27 +45,29 @@ function SelectGenre() {
   }
 
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.content}>
-        <span className={"text-preline"}>
-          Hi {localStorage.getItem("ActiveUser")}
-        </span>
-        <h2>Choose your favorite genres:</h2>
-        <section className={styles.tags}>
-          {tags.map((tag) => (
-            <GenreTag tag={tag} key={tag.id} onClick={onTagClicked} />
-          ))}
-        </section>
-      </div>
-      <button className={styles.filterbutton} onClick={() => handleClick()}>
-        Filter
-      </button>
+    <>
+      <main className={styles.wrapper}>
+        <div className={styles.content}>
+          <span className={"text-preline"}>
+            Hi {localStorage.getItem("ActiveUser")}
+          </span>
+          <h2>Choose your favorite genres:</h2>
+          <section className={styles.tags}>
+            {tags.map((tag) => (
+              <GenreTag tag={tag} key={tag.id} onClick={onTagClicked} />
+            ))}
+          </section>
+        </div>
+        <button className={styles.filterbutton} onClick={() => handleClick()}>
+          Filter
+        </button>
+      </main>
       <footer className={styles.footer}>
         <Link to="/all-festivals" className={styles.skip}>
           Show all festivals
         </Link>
       </footer>
-    </div>
+    </>
   );
 }
 export default SelectGenre;
