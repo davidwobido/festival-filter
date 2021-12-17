@@ -1,5 +1,6 @@
 .container {
   width: 330px;
+  z-index: 1;
 }
 
 .wrapper {

@@ -1,9 +1,9 @@
 .wrapper {
   display: grid;
-  width: 100vw;
   gap: 2rem;
   background-color: var(--color-primary-bg);
   padding: 1.25rem;
+  justify-items: center;
 }
 
 .intro {
@@ -12,6 +12,7 @@
 
 .list {
   display: grid;
+  align-items: center;
   gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(9rem, 10rem));
 }
