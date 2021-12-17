@@ -11,9 +11,11 @@ function NavBar() {
   function handleClick() {
     setMenu(!menu);
   }
+
   function handleLogoClick() {
     navigate("/filter");
   }
+
   function handleBackClick() {
     navigate("/navigate(-1)");
   }
