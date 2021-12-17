@@ -101,6 +101,12 @@ button {
   margin: 0;
 }
 
+ul {
+  list-style: none;
+  margin: none;
+  padding: 0;
+}
+
 /* Specific type classes to use CSS Modules dependencies in components */
 
 .text-intro {
