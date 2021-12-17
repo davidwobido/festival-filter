@@ -2,13 +2,20 @@ import styles from "./NavBar.module.css";
 import Logo from "../../../lib/FF_Logo_small.svg";
 import Back from "../../../lib/Icon_Back.svg";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function NavBar() {
   const [menu, setMenu] = useState(false);
+  const navigate = useNavigate();
 
   function handleClick() {
     setMenu(!menu);
+  }
+  function handleLogoClick() {
+    navigate("/filter");
+  }
+  function handleBackClick() {
+    navigate("/navigate(-1)");
   }
 
   return (
@@ -16,34 +23,45 @@ function NavBar() {
       <div className={styles.navbarbackground}></div>
       <div className={` ${menu ? styles.surface : ""} `} />
       <Link to="/filter" className={styles.back}>
-        <img className={styles.backicon} src={Back} /> Back
+        <img
+          className={styles.backicon}
+          src={Back}
+          onClick={() => handleBackClick}
+        />{" "}
+        Back
       </Link>
-      <img src={Logo} className={styles.logo} />
+
+      <img
+        src={Logo}
+        className={styles.logo}
+        onClick={() => handleLogoClick()}
+      />
+
       <ul
         className={`${styles.navlinks} ${menu ? "" : styles.open} `}
         onClick={() => handleClick()}
       >
         <li>
-          <Link className={styles.link} to="/filter">
+          <Link to="/filter" className={styles.link}>
             Filter
           </Link>
         </li>
         <li>
           <Link
-            className={styles.link}
             to="/all-festivals"
+            className={styles.link}
             onClick={() => handleClick()}
           >
             All Festivals
           </Link>
         </li>
         <li>
-          <Link className={styles.link} to="/" onClick={() => handleClick()}>
+          <Link to="/" className={styles.link} onClick={() => handleClick()}>
             About
           </Link>
         </li>
         <li>
-          <Link className={`${styles.link} ${styles.user}`} to="/login">
+          <Link to="/login" className={`${styles.link} ${styles.user}`}>
             Change User
           </Link>
         </li>
