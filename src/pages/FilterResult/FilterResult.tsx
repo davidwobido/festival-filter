@@ -99,7 +99,6 @@ function festivalFilter() {
 
           if (genreValue && genreCounter < mappedGenres.length) {
             result.push(genreValue);
-            // console.log("01_result", genreValue, result);
           }
           if (genreCounter === mappedGenres.length) {
             const total = result.reduce(function (a, b) {

@@ -1,7 +1,7 @@
 import styles from "./FilterPage.module.css";
 import GenreTag from "../../components/GenreTag/GenreTag";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 // Genre tags
 const initialTags = [
@@ -19,7 +19,7 @@ const initialTags = [
 
 function SelectGenre() {
   const [tags, setTags] = useState(initialTags);
-  const [selectedGenres, setSelectedGenres] = useState<string[]>([]);
+  const navigate = useNavigate();
 
   // Select Tag
   function onTagClicked(id: number): void {
@@ -36,12 +36,13 @@ function SelectGenre() {
     const selectedGenresLocal: string[] = tags
       .filter((tag) => tag.selected === true)
       .map((genre) => genre.text);
-    setSelectedGenres(selectedGenresLocal);
+    localStorage.setItem("SelectedGenres", selectedGenresLocal.toString());
   }
 
-  useEffect(() => {
-    localStorage.setItem("SelectedGenres", selectedGenres.toString());
-  }, [selectedGenres]);
+  function handleClick() {
+    getSelectedGenre();
+    navigate("/filtered");
+  }
 
   return (
     <div className={styles.wrapper}>
@@ -56,14 +57,9 @@ function SelectGenre() {
           ))}
         </section>
       </div>
-      <Link to="/filtered">
-        <button
-          className={styles.filterbutton}
-          onClick={() => getSelectedGenre()}
-        >
-          Filter
-        </button>{" "}
-      </Link>
+      <button className={styles.filterbutton} onClick={() => handleClick()}>
+        Filter
+      </button>
       <footer className={styles.footer}>
         <Link to="/all-festivals" className={styles.skip}>
           Show all festivals
