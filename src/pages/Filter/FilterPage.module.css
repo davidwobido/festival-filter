@@ -12,6 +12,9 @@
 
 .tags {
   max-width: 30rem;
+
+  /* margin of the tags is 0.35 */
+  transform: translateX(-0.35rem);
 }
 
 .filterbutton {
