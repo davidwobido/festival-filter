@@ -7,9 +7,14 @@ import { Link, useNavigate } from "react-router-dom";
 function NavBar() {
   const [menu, setMenu] = useState(false);
   const navigate = useNavigate();
+  const loggedInUser = localStorage.getItem("ActiveUser");
 
   function handleClick() {
     setMenu(!menu);
+  }
+
+  function handleLogOutClick() {
+    localStorage.setItem("ActiveUser", "");
   }
 
   return (
@@ -55,8 +60,12 @@ function NavBar() {
           </Link>
         </li>
         <li>
-          <Link to="/login" className={`${styles.link} ${styles.user}`}>
-            Change User
+          <Link
+            to="/login"
+            className={`${styles.link} ${styles.user}`}
+            onClick={() => handleLogOutClick()}
+          >
+            Logout {loggedInUser}
           </Link>
         </li>
       </ul>
