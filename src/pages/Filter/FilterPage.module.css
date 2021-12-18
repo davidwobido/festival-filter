@@ -17,8 +17,8 @@
 .filterbutton {
   composes: normal from "../../components/Buttons/Button.module.css";
   font-family: "Krona One", sans-serif;
-  padding: 0.9rem 5.5rem;
-  transform: translateY(-1.25rem);
+  padding: 0.75rem 5rem;
+  transform: translateY(-1.5rem);
 }
 
 .footer {
