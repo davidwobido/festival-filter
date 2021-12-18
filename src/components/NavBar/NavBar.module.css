@@ -8,6 +8,7 @@
   align-items: center;
   justify-items: center;
   overflow: visible;
+  z-index: 1;
 }
 
 .navbarbackground {
@@ -47,6 +48,7 @@
   text-align: right;
   text-decoration: none;
   line-height: 110%;
+  z-index: 100;
 }
 
 .burger div {
