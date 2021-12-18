@@ -12,36 +12,23 @@ function NavBar() {
     setMenu(!menu);
   }
 
-  function handleLogoClick() {
-    navigate("/filter");
-  }
-
-  function handleBackClick() {
-    navigate("/navigate(-1)");
-  }
-
   return (
     <nav className={styles.navigation}>
       <div className={styles.navbarbackground}></div>
       <div className={` ${menu ? styles.surface : ""} `} />
-      <Link to="/filter" className={styles.back}>
-        <img
-          className={styles.backicon}
-          src={Back}
-          onClick={() => handleBackClick}
-        />{" "}
-        Back
+      <Link to="/filter" className={styles.back} onClick={() => navigate(-1)}>
+        <img className={styles.backicon} src={Back} /> Back
       </Link>
 
       <img
         src={Logo}
         className={styles.logo}
-        onClick={() => handleLogoClick()}
+        // onClick={() => handleLogoClick()}
       />
 
       <ul
         className={`${styles.navlinks} ${menu ? "" : styles.open} `}
-        onClick={() => handleClick()}
+        onClick={() => navigate("/filter")}
       >
         <li>
           <Link to="/filter" className={styles.link}>
