@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import styles from "./FilterResult.module.css";
 import FestivalCardMedium from "../../components/FestivalCardMedium/FestivalCardMedium";
 import { Link } from "react-router-dom";
+import FestivalCardLarge, {
+  FestivalCardLargeProps,
+} from "../../components/FestivalCardLarge/FestivalCardLarge";
 
 type FestivalPlaceholderTypes = {
   id: string;
@@ -54,12 +57,7 @@ function festivalFilter() {
 
     // Get selected genre tags and set them as search Query
     const selectedGenresList = selectedGenres?.join("+");
-    console.log(
-      "To search:",
-      selectedGenresList,
-      "typeof",
-      typeof selectedGenresList
-    );
+
     let genreCounter: number;
     let festivalCounter: number;
     let genreValue: number | undefined;
@@ -150,19 +148,38 @@ function festivalFilter() {
     printFestival = true;
   } else printFestival = false;
 
-  console.log(printFestival);
-
   useEffect(() => {
     filterFunction();
   }, []);
 
+  // Large Festivalcard
+
+  // const [festivals, setFestivals] = useState<FestivalCardSmallProps[]>([]);
+  const [festival, setFestival] = useState<FestivalCardLargeProps | "">("");
+  const [query, setQuery] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function clickedFestival() {
+      if (query != "") {
+        const response = await fetch(`/api/festivals/name/${query}`);
+        const body = await response.json();
+        setFestival(body);
+      }
+    }
+    clickedFestival();
+  }, [query]);
+
+  function close() {
+    setFestival("");
+  }
+
   return (
     <>
-      {!printFestival && !done && (
+      {!printFestival && !done && !festival && (
         <p className={styles.loading}>Filter is working ...</p>
       )}
 
-      {!printFestival && done && (
+      {!printFestival && done && !festival && (
         <p className={styles["no-match"]}>
           Sorry we couldn’t find a match.
           <br />
@@ -172,7 +189,7 @@ function festivalFilter() {
         </p>
       )}
 
-      {printFestival && done && (
+      {printFestival && done && !festival && (
         <div className={styles.wrapper}>
           <section className={styles.text}>
             <h1>Filtered!</h1>
@@ -192,6 +209,7 @@ function festivalFilter() {
                 allacts={festival.allacts}
                 value={festival.value}
                 color="green"
+                toSearch={setQuery}
               />
             ))}
             {mediumFitFestivals.map((festival) => (
@@ -205,8 +223,26 @@ function festivalFilter() {
                 allacts={festival.allacts}
                 value={festival.value}
                 color="orange"
+                toSearch={setQuery}
               />
             ))}
+            <section>
+              {done && festival && (
+                <FestivalCardLarge
+                  close={() => close()}
+                  key={festival.name}
+                  name={festival.name}
+                  location={festival.location}
+                  begin={festival.begin}
+                  end={festival.end}
+                  visitors={festival.visitors}
+                  acts={festival.acts}
+                  price={festival.price}
+                  allacts={festival.allacts}
+                  website={festival.website}
+                />
+              )}
+            </section>
           </section>
         </div>
       )}
