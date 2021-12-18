@@ -133,11 +133,11 @@ function festivalFilter() {
             }
             newBestFitFestivals.sort((a, b) => b.value - a.value);
             newMediumFitFestivals.sort((a, b) => b.value - a.value);
-
-            setDone(true);
           }
         }
       }
+      setDone(true);
+
       setBestFitFestivals(newBestFitFestivals);
       setMediumFitFestivals(newMediumFitFestivals);
     }
@@ -148,49 +148,66 @@ function festivalFilter() {
   }, []);
 
   return (
-    <div className={styles.wrapper}>
-      <section className={styles.text}>
-        <h1>Filtered!</h1>
-        <span className={styles.intro}>
-          Here are your festival suggestions sorted by matching your choice.
-        </span>
-      </section>
-      {bestFitFestivals.map((festival) => (
-        <FestivalCardMedium
-          key={festival.name}
-          name={festival.name}
-          location={festival.location}
-          begin={festival.begin}
-          end={festival.end}
-          price={festival.price}
-          allacts={festival.allacts}
-          value={festival.value}
-          color="green"
-        />
-      ))}
+    <>
+      {mediumFitFestivals.length === 0 &&
+        bestFitFestivals.length === 0 &&
+        !done && <p className={styles.loading}>Filter is working ...</p>}
 
-      {mediumFitFestivals.map((festival) => (
-        <FestivalCardMedium
-          key={festival.name}
-          name={festival.name}
-          location={festival.location}
-          begin={festival.begin}
-          end={festival.end}
-          price={festival.price}
-          allacts={festival.allacts}
-          value={festival.value}
-          color="orange"
-        />
-      ))}
-      {!done && (
-        <span className={styles.intro}>sorry no festivals fit to you</span>
+      {mediumFitFestivals.length === 0 &&
+      bestFitFestivals.length === 0 &&
+      done ? (
+        <p className={styles["no-match"]}>
+          Sorry we couldn’t find a match.
+          <br />
+          <br />
+          We are constantly working to improve our database. Come back again
+          later.
+        </p>
+      ) : (
+        <div className={styles.wrapper}>
+          <section className={styles.text}>
+            <h1>Filtered!</h1>
+            <span className={styles.intro}>
+              Here are your festival suggestions sorted by matching your choice.
+            </span>
+          </section>
+          <section className={styles.list}>
+            {bestFitFestivals.map((festival) => (
+              <FestivalCardMedium
+                key={festival.name}
+                name={festival.name}
+                location={festival.location}
+                begin={festival.begin}
+                end={festival.end}
+                price={festival.price}
+                allacts={festival.allacts}
+                value={festival.value}
+                color="green"
+              />
+            ))}
+            {mediumFitFestivals.map((festival) => (
+              <FestivalCardMedium
+                key={festival.name}
+                name={festival.name}
+                location={festival.location}
+                begin={festival.begin}
+                end={festival.end}
+                price={festival.price}
+                allacts={festival.allacts}
+                value={festival.value}
+                color="orange"
+              />
+            ))}
+          </section>
+        </div>
       )}
+
       <footer className={styles.footer}>
         <Link to="/all-festivals" className={styles.skip}>
           Show all festivals
         </Link>
       </footer>
-    </div>
+    </>
   );
 }
 export default festivalFilter;
