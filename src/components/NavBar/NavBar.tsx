@@ -23,13 +23,10 @@ function NavBar() {
       <img
         src={Logo}
         className={styles.logo}
-        // onClick={() => handleLogoClick()}
+        onClick={() => navigate("/filter")}
       />
 
-      <ul
-        className={`${styles.navlinks} ${menu ? "" : styles.open} `}
-        onClick={() => navigate("/filter")}
-      >
+      <ul className={`${styles.navlinks} ${menu ? "" : styles.open} `}>
         <li>
           <Link to="/filter" className={styles.link}>
             Filter
