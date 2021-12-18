@@ -31,6 +31,8 @@ function SelectGenre() {
     setTags(newTags);
   }
 
+  const trueTags = tags.filter((tag) => tag.selected === true);
+
   // Get tags and map them to an string[]
   function getSelectedGenre(): void {
     const selectedGenresLocal: string[] = tags
@@ -48,7 +50,7 @@ function SelectGenre() {
     getSelectedGenre();
     navigate("/filtered");
   }
-
+  console.log(tags);
   return (
     <>
       <main className={styles.wrapper}>
@@ -63,7 +65,12 @@ function SelectGenre() {
             ))}
           </section>
         </div>
-        <button className={styles.filterbutton} onClick={() => handleClick()}>
+        <button
+          onClick={() => handleClick()}
+          className={`${styles.filterbutton} ${
+            trueTags.length === 0 ? styles["filterbutton--inactive"] : ""
+          }`}
+        >
           Filter
         </button>
       </main>
