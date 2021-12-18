@@ -65,14 +65,15 @@ function SelectGenre() {
             ))}
           </section>
         </div>
-        <button
-          onClick={() => handleClick()}
-          className={`${styles.filterbutton} ${
-            trueTags.length === 0 ? styles["filterbutton--inactive"] : ""
-          }`}
-        >
-          Filter
-        </button>
+        {trueTags.length === 0 ? (
+          <button className={`${styles.filterbutton} ${styles.inactive}`}>
+            Filter
+          </button>
+        ) : (
+          <button className={styles.filterbutton} onClick={() => handleClick()}>
+            Filter
+          </button>
+        )}
       </main>
       <footer className={styles.footer}>
         <Link to="/all-festivals" className={styles.skip}>

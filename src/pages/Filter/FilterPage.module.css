@@ -24,8 +24,8 @@
   transform: translateY(-1.5rem);
 }
 
-.filterbutton--inactive {
-  opacity: 0.5;
+.inactive {
+  opacity: 0.2;
 }
 
 .footer {
