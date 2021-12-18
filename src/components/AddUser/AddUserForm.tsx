@@ -1,11 +1,17 @@
 import { FormEvent, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./AddUser.module.css";
 
-function AddUser() {
+type NavigateToProps = {
+  navigateTo: string;
+};
+
+function AddUser({ navigateTo }: NavigateToProps): JSX.Element {
   const [user, setUser] = useState(
     () => localStorage.getItem("ActiveUser") || ""
   );
   const [loggedInUser, setLoggedInUser] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     localStorage.setItem("ActiveUser", user);
@@ -19,6 +25,7 @@ function AddUser() {
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
     setLoggedInUser(user);
+    navigate(navigateTo);
     console.log(user);
   }
 
