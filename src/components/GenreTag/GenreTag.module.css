@@ -6,8 +6,8 @@
 
 .tag {
   composes: text-button-small from global;
-  padding: 0.7rem 1.4rem;
-  margin: 0.2rem;
+  padding: 0.6rem 1.5rem;
+  margin: 0.35rem;
   border-radius: 1.875rem;
   box-shadow: 0 0 0.35em rgb(0 0 0 / 25%);
   border: var(--color-neutral-grade) solid 0.0625rem;

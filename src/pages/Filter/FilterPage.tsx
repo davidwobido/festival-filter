@@ -5,16 +5,16 @@ import { Link, useNavigate } from "react-router-dom";
 
 // Genre tags
 const initialTags = [
-  { text: "pop", selected: false, id: 0 },
-  { text: "hiphop", selected: false, id: 1 },
-  { text: "rock", selected: false, id: 2 },
-  { text: "indie", selected: false, id: 3 },
-  { text: "punk", selected: false, id: 4 },
-  { text: "metal", selected: false, id: 5 },
-  { text: "electronic", selected: false, id: 6 },
-  { text: "reggae", selected: false, id: 7 },
-  { text: "jazz", selected: false, id: 8 },
-  { text: "classic", selected: false, id: 9 },
+  { text: "Electronic", selected: false, id: 0 },
+  { text: "Pop", selected: false, id: 1 },
+  { text: "Rock", selected: false, id: 2 },
+  { text: "Indie", selected: false, id: 3 },
+  { text: "Punk", selected: false, id: 4 },
+  { text: "Metal", selected: false, id: 5 },
+  { text: "Classic", selected: false, id: 6 },
+  { text: "Reggae", selected: false, id: 7 },
+  { text: "Jazz", selected: false, id: 8 },
+  { text: "Hiphop", selected: false, id: 9 },
 ];
 
 function SelectGenre() {
@@ -36,7 +36,12 @@ function SelectGenre() {
     const selectedGenresLocal: string[] = tags
       .filter((tag) => tag.selected === true)
       .map((genre) => genre.text);
-    localStorage.setItem("SelectedGenres", selectedGenresLocal.toString());
+    // Set them as a lower case stringss local storage
+    const selectedGenresLocalString = selectedGenresLocal.toString();
+    localStorage.setItem(
+      "SelectedGenres",
+      selectedGenresLocalString.toLowerCase()
+    );
   }
 
   function handleClick() {

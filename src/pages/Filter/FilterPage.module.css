@@ -12,13 +12,16 @@
 
 .tags {
   max-width: 30rem;
+
+  /* margin of the tags is 0.35 */
+  transform: translateX(-0.35rem);
 }
 
 .filterbutton {
   composes: normal from "../../components/Buttons/Button.module.css";
   font-family: "Krona One", sans-serif;
-  padding: 0.9rem 5.5rem;
-  transform: translateY(-1.25rem);
+  padding: 0.75rem 5rem;
+  transform: translateY(-1.5rem);
 }
 
 .footer {
