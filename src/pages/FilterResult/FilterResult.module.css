@@ -26,9 +26,9 @@
 }
 
 .list {
-  display: grid;
   align-items: center;
   margin-top: 2rem;
+  display: grid;
   gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(9rem, 10rem));
 }

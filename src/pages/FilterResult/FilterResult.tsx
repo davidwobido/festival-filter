@@ -143,19 +143,26 @@ function festivalFilter() {
     }
   }
 
+  // Check if one Festival will be displayed
+  let printFestival;
+
+  if (mediumFitFestivals.length !== 0 || bestFitFestivals.length !== 0) {
+    printFestival = true;
+  } else printFestival = false;
+
+  console.log(printFestival);
+
   useEffect(() => {
     filterFunction();
   }, []);
 
   return (
     <>
-      {mediumFitFestivals.length === 0 &&
-        bestFitFestivals.length === 0 &&
-        !done && <p className={styles.loading}>Filter is working ...</p>}
+      {!printFestival && !done && (
+        <p className={styles.loading}>Filter is working ...</p>
+      )}
 
-      {mediumFitFestivals.length === 0 &&
-      bestFitFestivals.length === 0 &&
-      done ? (
+      {!printFestival && done && (
         <p className={styles["no-match"]}>
           Sorry we couldn’t find a match.
           <br />
@@ -163,7 +170,9 @@ function festivalFilter() {
           We are constantly working to improve our database. Come back again
           later.
         </p>
-      ) : (
+      )}
+
+      {printFestival && done && (
         <div className={styles.wrapper}>
           <section className={styles.text}>
             <h1>Filtered!</h1>
