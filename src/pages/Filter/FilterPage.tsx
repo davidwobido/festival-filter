@@ -36,7 +36,12 @@ function SelectGenre() {
     const selectedGenresLocal: string[] = tags
       .filter((tag) => tag.selected === true)
       .map((genre) => genre.text);
-    localStorage.setItem("SelectedGenres", selectedGenresLocal.toString());
+    // Set them as a lower case stringss local storage
+    const selectedGenresLocalString = selectedGenresLocal.toString();
+    localStorage.setItem(
+      "SelectedGenres",
+      selectedGenresLocalString.toLowerCase()
+    );
   }
 
   function handleClick() {
