@@ -10,7 +10,7 @@ function Loading() {
     if (animationElement.current) {
       Lottie.loadAnimation({
         container: animationElement.current,
-        loop: true,
+        loop: false,
         autoplay: true,
         animationData: animationData,
         rendererSettings: {
