@@ -28,8 +28,21 @@ function NavBar() {
 
       <ul className={`${styles.navlinks} ${menu ? "" : styles.open} `}>
         <li>
-          <Link to="/filter" className={styles.link}>
+          <Link
+            to="/filter"
+            className={styles.link}
+            onClick={() => handleClick()}
+          >
             Filter
+          </Link>
+        </li>
+        <li>
+          <Link
+            to="/filtered"
+            className={styles.link}
+            onClick={() => handleClick()}
+          >
+            Filter Result
           </Link>
         </li>
         <li>
@@ -39,11 +52,6 @@ function NavBar() {
             onClick={() => handleClick()}
           >
             All Festivals
-          </Link>
-        </li>
-        <li>
-          <Link to="/" className={styles.link} onClick={() => handleClick()}>
-            About
           </Link>
         </li>
         <li>
