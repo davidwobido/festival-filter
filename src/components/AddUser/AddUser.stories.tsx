@@ -7,4 +7,4 @@ export default {
   title: "Components/AddUser",
 };
 
-export const Default = () => <AddUser />;
+export const Default = () => <AddUser navigateTo="" />;
