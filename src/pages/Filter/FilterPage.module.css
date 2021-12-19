@@ -1,8 +1,11 @@
 .wrapper {
+  position: relative;
+  top: 4rem;
+  padding: 1.25rem;
   display: grid;
   align-items: center;
-  padding: 1.25rem;
   justify-items: center;
+  gap: 5rem;
 }
 
 .content {
@@ -21,7 +24,6 @@
   composes: normal from "../../components/Buttons/Button.module.css";
   font-family: "Krona One", sans-serif;
   padding: 0.75rem 5rem;
-  transform: translateY(-1.5rem);
 }
 
 .inactive {

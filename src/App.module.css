@@ -5,7 +5,3 @@
   grid-template-rows: 4rem 1fr;
   background-color: var(--color-primary-bg);
 }
-
-.content {
-  padding: 1.25rem;
-}
