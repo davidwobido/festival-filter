@@ -11,13 +11,16 @@ import styles from "./AllFestivals.module.css";
 function AllFestivals() {
   const [festivals, setFestivals] = useState<FestivalCardSmallProps[]>([]);
   const [search, setSearch] = useState("");
-  const [festival, setFestival] = useState<FestivalCardLargeProps | "">("");
-  const [query, setQuery] = useState<string | null>(null);
+  const [selectedFestival, setSelectedFestival] =
+    useState<FestivalCardLargeProps | null>(null);
+  const [query, setQuery] = useState<string>("");
 
+  // Search function
   const searchFestivals = festivals?.filter((festival) =>
     festival.name.toLocaleLowerCase().includes(search.toLowerCase())
   );
 
+  // Fetch all festivals
   useEffect(() => {
     async function getFestivals() {
       const response = await fetch("api/festivals");
@@ -27,72 +30,77 @@ function AllFestivals() {
     getFestivals();
   }, []);
 
+  // Large Festivalcard
   useEffect(() => {
     async function clickedFestival() {
       if (query != "") {
         const response = await fetch(`/api/festivals/name/${query}`);
         const body = await response.json();
-        setFestival(body);
+        setSelectedFestival(body);
       }
     }
     clickedFestival();
   }, [query]);
 
   function close() {
-    setFestival("");
+    setSelectedFestival(null);
   }
 
   return (
     <div className={styles.wrapper}>
-      {!festival && (
-        <>
-          <section className={styles.text}>
-            <h1>All Festivals</h1>
-
-            <span className={styles.intro}>
-              Here’s an overview of all festivals in our database sorted by
-              name.
-            </span>
-          </section>
-          <SearchBar onSearch={setSearch} />
-          <section className={styles.list}>
-            {searchFestivals?.length === 0 && (
-              <span className={styles["no-documents"]}>
-                No Docouments found
+      <main>
+        {!selectedFestival && (
+          <>
+            <section className={styles.text}>
+              <h1>All Festivals</h1>
+              <span className={styles.intro}>
+                Here’s an overview of all festivals in our database sorted by
+                name.
               </span>
-            )}
+            </section>
+            <section className={styles.search}>
+              <SearchBar onSearch={setSearch} />
+            </section>
+            <section className={styles.list}>
+              {/* {searchFestivals?.length === 0 && (
+                <span className={styles["no-documents"]}>
+                  No Docouments found
+                </span>
+              )} */}
 
-            {searchFestivals?.map((festival) => (
-              // eslint-disable-next-line react/jsx-key
-              <FestivalCardSmall
-                name={festival.name}
-                location={festival.location}
-                begin={festival.begin}
-                end={festival.end}
-                toSearch={setQuery}
-              />
-            ))}
-          </section>
-        </>
-      )}
-
-      <section>
-        {festival && (
-          <FestivalCardLarge
-            close={() => close()}
-            key=""
-            name={festival.name}
-            location={festival.location}
-            begin={festival.begin}
-            end={festival.end}
-            visitors={festival.visitors}
-            acts={festival.acts}
-            price={festival.price}
-            allacts={festival.allacts}
-            website={festival.website}
-          />
+              {searchFestivals?.map((festival) => (
+                // eslint-disable-next-line react/jsx-key
+                <FestivalCardSmall
+                  key={festival.name}
+                  name={festival.name}
+                  location={festival.location}
+                  begin={festival.begin}
+                  end={festival.end}
+                  toSearch={setQuery}
+                />
+              ))}
+            </section>
+          </>
         )}
-      </section>
+
+        <section>
+          {selectedFestival && (
+            <FestivalCardLarge
+              close={() => close()}
+              key={selectedFestival.name}
+              name={selectedFestival.name}
+              location={selectedFestival.location}
+              begin={selectedFestival.begin}
+              end={selectedFestival.end}
+              visitors={selectedFestival.visitors}
+              acts={selectedFestival.acts}
+              price={selectedFestival.price}
+              allacts={selectedFestival.allacts}
+              website={selectedFestival.website}
+            />
+          )}
+        </section>
+      </main>
     </div>
   );
 }
