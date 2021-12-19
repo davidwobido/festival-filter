@@ -1,25 +1,46 @@
 .wrapper {
+  position: relative;
+  padding: 1.25rem;
   display: grid;
+  justify-items: center;
   gap: 2rem;
   background-color: var(--color-primary-bg);
-  padding: 1.25rem;
-  justify-items: center;
 }
 
 .intro {
   composes: text-intro from global;
 }
 
+.no-match,
+.loading {
+  composes: text-intro from global;
+  opacity: 0.4;
+  text-align: center;
+  padding-top: 6rem;
+}
+
 .list {
+  margin-top: 2rem;
   display: grid;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(9rem, 10rem));
 }
 
 .footer {
+  position: relative;
+  width: 100%;
+  padding-top: 2rem;
+  display: grid;
+  justify-items: center;
+}
+
+.skip {
   position: absolute;
-  bottom: 2rem;
+  bottom: 0.75rem;
+}
+
+.festivalcardlarge {
   display: grid;
   justify-self: center;
 }

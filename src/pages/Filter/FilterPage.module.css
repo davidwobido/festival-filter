@@ -24,6 +24,10 @@
   transform: translateY(-1.5rem);
 }
 
+.inactive {
+  opacity: 0.2;
+}
+
 .footer {
   position: absolute;
   bottom: 2rem;

@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import styles from "./FilterResult.module.css";
 import FestivalCardMedium from "../../components/FestivalCardMedium/FestivalCardMedium";
 import { Link } from "react-router-dom";
+import FestivalCardLarge, {
+  FestivalCardLargeProps,
+} from "../../components/FestivalCardLarge/FestivalCardLarge";
 
 type FestivalPlaceholderTypes = {
   id: string;
@@ -54,27 +57,22 @@ function festivalFilter() {
 
     // Get selected genre tags and set them as search Query
     const selectedGenresList = selectedGenres?.join("+");
-    console.log(
-      "To search:",
-      selectedGenresList,
-      "typeof",
-      typeof selectedGenresList
-    );
+
     let genreCounter: number;
     let festivalCounter: number;
     let genreValue: number | undefined;
     let result: number[] = [];
 
-    //fetch prefiltered festivals
+    // fetch prefiltered festivals
     const response = await fetch(`/api/festivals/${selectedGenresList}`);
     const prefilteredFestivals = await response.json();
 
     if (selectedGenres) {
       const mappedGenres = selectedGenres;
-      console.log(typeof mappedGenres);
 
       const newMediumFitFestivals = [...mediumFitFestivals];
       const newBestFitFestivals = [...bestFitFestivals];
+
       // Loop through festivals
       for (
         festivalCounter = 0;
@@ -133,58 +131,124 @@ function festivalFilter() {
             }
             newBestFitFestivals.sort((a, b) => b.value - a.value);
             newMediumFitFestivals.sort((a, b) => b.value - a.value);
-
-            setDone(true);
           }
         }
       }
+      setDone(true);
+
       setBestFitFestivals(newBestFitFestivals);
       setMediumFitFestivals(newMediumFitFestivals);
     }
   }
 
+  // Check if one Festival will be displayed
+  let printFestival;
+
+  if (mediumFitFestivals.length !== 0 || bestFitFestivals.length !== 0) {
+    printFestival = true;
+  } else printFestival = false;
+
   useEffect(() => {
     filterFunction();
   }, []);
 
+  // Large Festivalcard
+
+  const [selectedFestival, setSelectedFestival] =
+    useState<FestivalCardLargeProps | null>(null);
+
+  const [query, setQuery] = useState<string | "">("");
+  useEffect(() => {
+    async function clickedFestival() {
+      if (query != "") {
+        const response = await fetch(`/api/festivals/name/${query}`);
+        const body = await response.json();
+        setSelectedFestival(body);
+      }
+    }
+    clickedFestival();
+  }, [query]);
+
+  function close() {
+    setSelectedFestival(null);
+  }
+
   return (
     <div className={styles.wrapper}>
-      <section className={styles.text}>
-        <h1>Filtered!</h1>
-        <span className={styles.intro}>
-          Here are your festival suggestions sorted by matching your choice.
-        </span>
-      </section>
-      {bestFitFestivals.map((festival) => (
-        <FestivalCardMedium
-          key={festival.name}
-          name={festival.name}
-          location={festival.location}
-          begin={festival.begin}
-          end={festival.end}
-          price={festival.price}
-          allacts={festival.allacts}
-          value={festival.value}
-          color="green"
-        />
-      ))}
+      <main>
+        {!printFestival && !done && !selectedFestival && (
+          <p className={styles.loading}>Filter is working ...</p>
+        )}
 
-      {mediumFitFestivals.map((festival) => (
-        <FestivalCardMedium
-          key={festival.name}
-          name={festival.name}
-          location={festival.location}
-          begin={festival.begin}
-          end={festival.end}
-          price={festival.price}
-          allacts={festival.allacts}
-          value={festival.value}
-          color="orange"
-        />
-      ))}
-      {!done && (
-        <span className={styles.intro}>sorry no festivals fit to you</span>
-      )}
+        {!printFestival && done && !selectedFestival && (
+          <p className={styles["no-match"]}>
+            Sorry we couldn’t find a match.
+            <br />
+            <br />
+            We are constantly working to improve our database. Come back again
+            later.
+          </p>
+        )}
+
+        {printFestival && done && !selectedFestival && (
+          <div>
+            <section className={styles.text}>
+              <h1>Filtered!</h1>
+              <span className={styles.intro}>
+                Here are your festival suggestions sorted by matching your
+                choice.
+              </span>
+            </section>
+            <section className={styles.list}>
+              {bestFitFestivals.map((festival) => (
+                <FestivalCardMedium
+                  key={festival.name}
+                  name={festival.name}
+                  location={festival.location}
+                  begin={festival.begin}
+                  end={festival.end}
+                  price={festival.price}
+                  allacts={festival.allacts}
+                  value={festival.value}
+                  color="green"
+                  toSearch={setQuery}
+                />
+              ))}
+              {mediumFitFestivals.map((festival) => (
+                <FestivalCardMedium
+                  key={festival.name}
+                  name={festival.name}
+                  location={festival.location}
+                  begin={festival.begin}
+                  end={festival.end}
+                  price={festival.price}
+                  allacts={festival.allacts}
+                  value={festival.value}
+                  color="orange"
+                  toSearch={setQuery}
+                />
+              ))}
+            </section>
+          </div>
+        )}
+        {printFestival && done && selectedFestival && (
+          <section className={styles.festivalcardlarge}>
+            <FestivalCardLarge
+              close={() => close()}
+              key={selectedFestival.name}
+              name={selectedFestival.name}
+              location={selectedFestival.location}
+              begin={selectedFestival.begin}
+              end={selectedFestival.end}
+              visitors={selectedFestival.visitors}
+              acts={selectedFestival.acts}
+              price={selectedFestival.price}
+              allacts={selectedFestival.allacts}
+              website={selectedFestival.website}
+            />
+          </section>
+        )}
+      </main>
       <footer className={styles.footer}>
         <Link to="/all-festivals" className={styles.skip}>
           Show all festivals

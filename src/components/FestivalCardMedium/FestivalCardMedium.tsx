@@ -2,6 +2,7 @@ import Button from "../Buttons/Button";
 import styles from "./FestivalCardMedium.module.css";
 import LocationIcon from "../../../lib/Icon_Location.svg";
 import DateIcon from "../../../lib/Icon_Date.svg";
+import { useEffect, useState } from "react";
 
 export type FestivalCardMediumProps = {
   name: string;
@@ -12,6 +13,7 @@ export type FestivalCardMediumProps = {
   allacts: string;
   value?: number;
   color: "green" | "orange";
+  toSearch: (value: string) => void;
 };
 
 function FestivalCardMedium({
@@ -23,7 +25,14 @@ function FestivalCardMedium({
   price,
   value,
   color,
+  toSearch,
 }: FestivalCardMediumProps) {
+  const [query, setQuery] = useState("");
+
+  useEffect(() => {
+    toSearch(query);
+  }, [query]);
+
   return (
     <div className={styles.container}>
       <div className={styles[color]}>
@@ -42,7 +51,7 @@ function FestivalCardMedium({
         <span className={styles.artists}>{allacts}</span>
         <span className={styles.price}>{price} €</span>
         <div className={styles.button}>
-          <Button size="small" text="More" />
+          <Button onClick={() => setQuery(name)} size="small" text="More" />
         </div>
       </div>
     </div>
