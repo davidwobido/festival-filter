@@ -2,8 +2,8 @@
   position: relative;
   padding: 1.25rem;
   display: grid;
-  gap: 2rem;
   justify-items: center;
+  gap: 2rem;
   background-color: var(--color-primary-bg);
 }
 
@@ -20,19 +20,19 @@
 }
 
 .list {
-  align-items: center;
   margin-top: 2rem;
   display: grid;
+  align-items: center;
+  justify-content: center;
   gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(9rem, 10rem));
 }
 
 .footer {
   position: relative;
-  display: grid;
-  justify-items: center;
   width: 100%;
   padding-top: 2rem;
+  display: grid;
+  justify-items: center;
 }
 
 .skip {

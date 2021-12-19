@@ -63,7 +63,7 @@ function festivalFilter() {
     let genreValue: number | undefined;
     let result: number[] = [];
 
-    //fetch prefiltered festivals
+    // fetch prefiltered festivals
     const response = await fetch(`/api/festivals/${selectedGenresList}`);
     const prefilteredFestivals = await response.json();
 
@@ -72,6 +72,7 @@ function festivalFilter() {
 
       const newMediumFitFestivals = [...mediumFitFestivals];
       const newBestFitFestivals = [...bestFitFestivals];
+
       // Loop through festivals
       for (
         festivalCounter = 0;
@@ -153,7 +154,6 @@ function festivalFilter() {
 
   // Large Festivalcard
 
-  // const [festivals, setFestivals] = useState<FestivalCardSmallProps[]>([]);
   const [selectedFestival, setSelectedFestival] =
     useState<FestivalCardLargeProps | null>(null);
 
