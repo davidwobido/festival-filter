@@ -69,7 +69,6 @@ function festivalFilter() {
 
     if (selectedGenres) {
       const mappedGenres = selectedGenres;
-      console.log(typeof mappedGenres);
 
       const newMediumFitFestivals = [...mediumFitFestivals];
       const newBestFitFestivals = [...bestFitFestivals];
@@ -158,7 +157,7 @@ function festivalFilter() {
   const [selectedFestival, setSelectedFestival] =
     useState<FestivalCardLargeProps | null>(null);
 
-  const [query, setQuery] = useState<string | null>(null);
+  const [query, setQuery] = useState<string | "">("");
   useEffect(() => {
     async function clickedFestival() {
       if (query != "") {
@@ -175,85 +174,87 @@ function festivalFilter() {
   }
 
   return (
-    <>
-      {!printFestival && !done && !selectedFestival && (
-        <p className={styles.loading}>Filter is working ...</p>
-      )}
+    <div className={styles.wrapper}>
+      <main>
+        {!printFestival && !done && !selectedFestival && (
+          <p className={styles.loading}>Filter is working ...</p>
+        )}
 
-      {!printFestival && done && !selectedFestival && (
-        <p className={styles["no-match"]}>
-          Sorry we couldn’t find a match.
-          <br />
-          <br />
-          We are constantly working to improve our database. Come back again
-          later.
-        </p>
-      )}
+        {!printFestival && done && !selectedFestival && (
+          <p className={styles["no-match"]}>
+            Sorry we couldn’t find a match.
+            <br />
+            <br />
+            We are constantly working to improve our database. Come back again
+            later.
+          </p>
+        )}
 
-      {printFestival && done && !selectedFestival && (
-        <div className={styles.wrapper}>
-          <section className={styles.text}>
-            <h1>Filtered!</h1>
-            <span className={styles.intro}>
-              Here are your festival suggestions sorted by matching your choice.
-            </span>
+        {printFestival && done && !selectedFestival && (
+          <div>
+            <section className={styles.text}>
+              <h1>Filtered!</h1>
+              <span className={styles.intro}>
+                Here are your festival suggestions sorted by matching your
+                choice.
+              </span>
+            </section>
+            <section className={styles.list}>
+              {bestFitFestivals.map((festival) => (
+                <FestivalCardMedium
+                  key={festival.name}
+                  name={festival.name}
+                  location={festival.location}
+                  begin={festival.begin}
+                  end={festival.end}
+                  price={festival.price}
+                  allacts={festival.allacts}
+                  value={festival.value}
+                  color="green"
+                  toSearch={setQuery}
+                />
+              ))}
+              {mediumFitFestivals.map((festival) => (
+                <FestivalCardMedium
+                  key={festival.name}
+                  name={festival.name}
+                  location={festival.location}
+                  begin={festival.begin}
+                  end={festival.end}
+                  price={festival.price}
+                  allacts={festival.allacts}
+                  value={festival.value}
+                  color="orange"
+                  toSearch={setQuery}
+                />
+              ))}
+            </section>
+          </div>
+        )}
+        {printFestival && done && selectedFestival && (
+          <section className={styles.festivalcardlarge}>
+            <FestivalCardLarge
+              close={() => close()}
+              key={selectedFestival.name}
+              name={selectedFestival.name}
+              location={selectedFestival.location}
+              begin={selectedFestival.begin}
+              end={selectedFestival.end}
+              visitors={selectedFestival.visitors}
+              acts={selectedFestival.acts}
+              price={selectedFestival.price}
+              allacts={selectedFestival.allacts}
+              website={selectedFestival.website}
+            />
           </section>
-          <section className={styles.list}>
-            {bestFitFestivals.map((festival) => (
-              <FestivalCardMedium
-                key={festival.name}
-                name={festival.name}
-                location={festival.location}
-                begin={festival.begin}
-                end={festival.end}
-                price={festival.price}
-                allacts={festival.allacts}
-                value={festival.value}
-                color="green"
-                toSearch={setQuery}
-              />
-            ))}
-            {mediumFitFestivals.map((festival) => (
-              <FestivalCardMedium
-                key={festival.name}
-                name={festival.name}
-                location={festival.location}
-                begin={festival.begin}
-                end={festival.end}
-                price={festival.price}
-                allacts={festival.allacts}
-                value={festival.value}
-                color="orange"
-                toSearch={setQuery}
-              />
-            ))}
-          </section>
-        </div>
-      )}
-      {printFestival && done && selectedFestival && (
-        <section>
-          <FestivalCardLarge
-            close={() => close()}
-            key={selectedFestival.name}
-            name={selectedFestival.name}
-            location={selectedFestival.location}
-            begin={selectedFestival.begin}
-            end={selectedFestival.end}
-            visitors={selectedFestival.visitors}
-            acts={selectedFestival.acts}
-            price={selectedFestival.price}
-            allacts={selectedFestival.allacts}
-            website={selectedFestival.website}
-          />
-        </section>
-      )}
-
+        )}
+      </main>
       <footer className={styles.footer}>
         <Link to="/all-festivals" className={styles.skip}>
           Show all festivals
         </Link>
       </footer>
-    </>
+    </div>
   );
 }
 export default festivalFilter;

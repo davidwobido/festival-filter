@@ -1,28 +1,22 @@
 .wrapper {
-  /* display: grid; */
-  gap: 2rem;
-  background-color: var(--color-primary-bg);
+  position: relative;
   padding: 1.25rem;
+  display: grid;
+  gap: 2rem;
   justify-items: center;
+  background-color: var(--color-primary-bg);
 }
 
 .intro {
   composes: text-intro from global;
 }
 
-.no-match {
-  composes: text-intro from global;
-  width: 60%;
-  opacity: 0.2;
-  display: grid;
-  align-self: center;
-  justify-self: center;
-  transform: translateY(-2rem);
-  text-align: center;
-}
-
+.no-match,
 .loading {
-  composes: no-match;
+  composes: text-intro from global;
+  opacity: 0.4;
+  text-align: center;
+  padding-top: 6rem;
 }
 
 .list {
@@ -34,8 +28,19 @@
 }
 
 .footer {
-  position: sticky;
-  bottom: 2rem;
+  position: relative;
+  display: grid;
+  justify-items: center;
+  width: 100%;
+  padding-top: 2rem;
+}
+
+.skip {
+  position: absolute;
+  bottom: 0.75rem;
+}
+
+.festivalcardlarge {
   display: grid;
   justify-self: center;
 }
