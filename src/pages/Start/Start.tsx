@@ -7,6 +7,7 @@ import LogoLarge from "../../../lib/FF_Logo_large.svg";
 
 function StartPage() {
   const [isReady, setIsReady] = useState(false);
+  const loggedInUser = localStorage.getItem("ActiveUser");
 
   useEffect(() => {
     setTimeout(() => {
@@ -24,7 +25,7 @@ function StartPage() {
       <section className={styles.content}>
         <span className={styles.preline}>Select. Filter. Match. </span>
         <h1 className={styles.headline}>Find your favourite festivals </h1>
-        <Link to="/login">
+        <Link to={loggedInUser ? "/filter" : "/login"}>
           <Button size="normal" text="Enter" />
         </Link>
       </section>
