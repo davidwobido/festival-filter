@@ -1,8 +1,14 @@
 .wrapper {
+  padding: 1.25rem;
   display: grid;
   gap: 2rem;
   background-color: var(--color-primary-bg);
-  padding: 1.25rem;
+  align-items: start;
+}
+
+main {
+  display: grid;
+  gap: 2rem;
 }
 
 .intro {

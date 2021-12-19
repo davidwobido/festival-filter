@@ -48,56 +48,59 @@ function AllFestivals() {
 
   return (
     <div className={styles.wrapper}>
-      {!selectedFestival && (
-        <>
-          <section className={styles.text}>
-            <h1>All Festivals</h1>
-
-            <span className={styles.intro}>
-              Here’s an overview of all festivals in our database sorted by
-              name.
-            </span>
-          </section>
-          <SearchBar onSearch={setSearch} />
-          <section className={styles.list}>
-            {searchFestivals?.length === 0 && (
-              <span className={styles["no-documents"]}>
-                No Docouments found
+      <main>
+        {!selectedFestival && (
+          <>
+            <section className={styles.text}>
+              <h1>All Festivals</h1>
+              <span className={styles.intro}>
+                Here’s an overview of all festivals in our database sorted by
+                name.
               </span>
-            )}
+            </section>
+            <section className={styles.search}>
+              <SearchBar onSearch={setSearch} />
+            </section>
+            <section className={styles.list}>
+              {/* {searchFestivals?.length === 0 && (
+                <span className={styles["no-documents"]}>
+                  No Docouments found
+                </span>
+              )} */}
 
-            {searchFestivals?.map((festival) => (
-              // eslint-disable-next-line react/jsx-key
-              <FestivalCardSmall
-                key={festival.name}
-                name={festival.name}
-                location={festival.location}
-                begin={festival.begin}
-                end={festival.end}
-                toSearch={setQuery}
-              />
-            ))}
-          </section>
-        </>
-      )}
-
-      <section>
-        {selectedFestival && (
-          <FestivalCardLarge
-            close={() => close()}
-            key={selectedFestival.name}
-            name={selectedFestival.name}
-            location={selectedFestival.location}
-            begin={selectedFestival.begin}
-            end={selectedFestival.end}
-            visitors={selectedFestival.visitors}
-            acts={selectedFestival.acts}
-            price={selectedFestival.price}
-            allacts={selectedFestival.allacts}
-            website={selectedFestival.website}
-          />
+              {searchFestivals?.map((festival) => (
+                // eslint-disable-next-line react/jsx-key
+                <FestivalCardSmall
+                  key={festival.name}
+                  name={festival.name}
+                  location={festival.location}
+                  begin={festival.begin}
+                  end={festival.end}
+                  toSearch={setQuery}
+                />
+              ))}
+            </section>
+          </>
         )}
-      </section>
+
+        <section>
+          {selectedFestival && (
+            <FestivalCardLarge
+              close={() => close()}
+              key={selectedFestival.name}
+              name={selectedFestival.name}
+              location={selectedFestival.location}
+              begin={selectedFestival.begin}
+              end={selectedFestival.end}
+              visitors={selectedFestival.visitors}
+              acts={selectedFestival.acts}
+              price={selectedFestival.price}
+              allacts={selectedFestival.allacts}
+              website={selectedFestival.website}
+            />
+          )}
+        </section>
+      </main>
     </div>
   );
 }
