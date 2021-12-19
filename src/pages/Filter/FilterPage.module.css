@@ -1,11 +1,11 @@
 .wrapper {
   position: relative;
-  top: 4rem;
+  top: 7rem;
   padding: 1.25rem;
   display: grid;
   align-items: center;
   justify-items: center;
-  gap: 5rem;
+  gap: 3.5rem;
 }
 
 .content {
@@ -24,6 +24,13 @@
   composes: normal from "../../components/Buttons/Button.module.css";
   font-family: "Krona One", sans-serif;
   padding: 0.75rem 5rem;
+  box-shadow: 0 0.4rem 1.4rem 0.4rem rgb(0 0 0 / 20%);
+}
+
+.filterbutton:active {
+  background-color: #f4b2fe;
+  transform: translateY(0.07rem);
+  transition: 0.1s ease-in-out;
 }
 
 .inactive {
