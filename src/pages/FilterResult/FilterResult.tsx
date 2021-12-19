@@ -155,31 +155,32 @@ function festivalFilter() {
   // Large Festivalcard
 
   // const [festivals, setFestivals] = useState<FestivalCardSmallProps[]>([]);
-  const [festival, setFestival] = useState<FestivalCardLargeProps | "">("");
-  const [query, setQuery] = useState<string | null>(null);
+  const [selectedFestival, setSelectedFestival] =
+    useState<FestivalCardLargeProps | null>(null);
 
+  const [query, setQuery] = useState<string | null>(null);
   useEffect(() => {
     async function clickedFestival() {
       if (query != "") {
         const response = await fetch(`/api/festivals/name/${query}`);
         const body = await response.json();
-        setFestival(body);
+        setSelectedFestival(body);
       }
     }
     clickedFestival();
   }, [query]);
 
   function close() {
-    setFestival("");
+    setSelectedFestival(null);
   }
 
   return (
     <>
-      {!printFestival && !done && !festival && (
+      {!printFestival && !done && !selectedFestival && (
         <p className={styles.loading}>Filter is working ...</p>
       )}
 
-      {!printFestival && done && !festival && (
+      {!printFestival && done && !selectedFestival && (
         <p className={styles["no-match"]}>
           Sorry we couldn’t find a match.
           <br />
@@ -189,7 +190,7 @@ function festivalFilter() {
         </p>
       )}
 
-      {printFestival && done && !festival && (
+      {printFestival && done && !selectedFestival && (
         <div className={styles.wrapper}>
           <section className={styles.text}>
             <h1>Filtered!</h1>
@@ -226,25 +227,25 @@ function festivalFilter() {
                 toSearch={setQuery}
               />
             ))}
-            <section>
-              {done && festival && (
-                <FestivalCardLarge
-                  close={() => close()}
-                  key={festival.name}
-                  name={festival.name}
-                  location={festival.location}
-                  begin={festival.begin}
-                  end={festival.end}
-                  visitors={festival.visitors}
-                  acts={festival.acts}
-                  price={festival.price}
-                  allacts={festival.allacts}
-                  website={festival.website}
-                />
-              )}
-            </section>
           </section>
         </div>
+      )}
+      {printFestival && done && selectedFestival && (
+        <section>
+          <FestivalCardLarge
+            close={() => close()}
+            key={selectedFestival.name}
+            name={selectedFestival.name}
+            location={selectedFestival.location}
+            begin={selectedFestival.begin}
+            end={selectedFestival.end}
+            visitors={selectedFestival.visitors}
+            acts={selectedFestival.acts}
+            price={selectedFestival.price}
+            allacts={selectedFestival.allacts}
+            website={selectedFestival.website}
+          />
+        </section>
       )}
 
       <footer className={styles.footer}>
