@@ -69,6 +69,7 @@ function AllFestivals() {
             {searchFestivals?.map((festival) => (
               // eslint-disable-next-line react/jsx-key
               <FestivalCardSmall
+                key={festival.name}
                 name={festival.name}
                 location={festival.location}
                 begin={festival.begin}
@@ -84,7 +85,7 @@ function AllFestivals() {
         {selectedFestival && (
           <FestivalCardLarge
             close={() => close()}
-            key=""
+            key={selectedFestival.name}
             name={selectedFestival.name}
             location={selectedFestival.location}
             begin={selectedFestival.begin}
