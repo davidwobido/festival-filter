@@ -41,11 +41,11 @@ function FestivalCardLarge({
 
         <section className={styles.list}>
           <div className={styles.column}>
-            <span className={styles.item}>Location</span>
-            <span className={styles.item}>Date</span>
-            <span className={styles.item}>Visitors</span>
-            <span className={styles.item}>Acts</span>
-            <span className={styles.item}>Price</span>
+            <span className={styles.itemkey}>Location</span>
+            <span className={styles.itemkey}>Date</span>
+            <span className={styles.itemkey}>Visitors</span>
+            <span className={styles.itemkey}>Acts</span>
+            <span className={styles.itemkey}>Price</span>
             <a href={website} className={styles.url}>
               Website
             </a>
@@ -62,7 +62,7 @@ function FestivalCardLarge({
         </section>
         <section className={styles.acts}>
           <h4>Acts</h4>
-          <p>{allacts}</p>
+          <p className={styles.allacts}>{allacts}</p>
         </section>
       </div>
     </div>

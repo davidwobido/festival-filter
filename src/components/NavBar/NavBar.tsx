@@ -79,8 +79,3 @@ function NavBar() {
 }
 
 export default NavBar;
-
-// <div className={styles.wrapper}>
-//   <a>Back</a>
-//   <p>Placeholder</p>
-// </div>>
