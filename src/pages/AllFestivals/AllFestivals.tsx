@@ -11,13 +11,16 @@ import styles from "./AllFestivals.module.css";
 function AllFestivals() {
   const [festivals, setFestivals] = useState<FestivalCardSmallProps[]>([]);
   const [search, setSearch] = useState("");
-  const [festival, setFestival] = useState<FestivalCardLargeProps | "">("");
-  const [query, setQuery] = useState<string | null>(null);
+  const [selectedFestival, setSelectedFestival] =
+    useState<FestivalCardLargeProps | null>(null);
+  const [query, setQuery] = useState<string>("");
 
+  // Search function
   const searchFestivals = festivals?.filter((festival) =>
     festival.name.toLocaleLowerCase().includes(search.toLowerCase())
   );
 
+  // Fetch all festivals
   useEffect(() => {
     async function getFestivals() {
       const response = await fetch("api/festivals");
@@ -27,24 +30,25 @@ function AllFestivals() {
     getFestivals();
   }, []);
 
+  // Large Festivalcard
   useEffect(() => {
     async function clickedFestival() {
       if (query != "") {
         const response = await fetch(`/api/festivals/name/${query}`);
         const body = await response.json();
-        setFestival(body);
+        setSelectedFestival(body);
       }
     }
     clickedFestival();
   }, [query]);
 
   function close() {
-    setFestival("");
+    setSelectedFestival(null);
   }
 
   return (
     <div className={styles.wrapper}>
-      {!festival && (
+      {!selectedFestival && (
         <>
           <section className={styles.text}>
             <h1>All Festivals</h1>
@@ -77,19 +81,19 @@ function AllFestivals() {
       )}
 
       <section>
-        {festival && (
+        {selectedFestival && (
           <FestivalCardLarge
             close={() => close()}
             key=""
-            name={festival.name}
-            location={festival.location}
-            begin={festival.begin}
-            end={festival.end}
-            visitors={festival.visitors}
-            acts={festival.acts}
-            price={festival.price}
-            allacts={festival.allacts}
-            website={festival.website}
+            name={selectedFestival.name}
+            location={selectedFestival.location}
+            begin={selectedFestival.begin}
+            end={selectedFestival.end}
+            visitors={selectedFestival.visitors}
+            acts={selectedFestival.acts}
+            price={selectedFestival.price}
+            allacts={selectedFestival.allacts}
+            website={selectedFestival.website}
           />
         )}
       </section>
