@@ -1,4 +1,4 @@
-// import Button from "../Buttons/Button";
+import Button from "../Buttons/Button";
 import styles from "./FestivalCardMedium.module.css";
 import LocationIcon from "../../../lib/Icon_Location.svg";
 import DateIcon from "../../../lib/Icon_Date.svg";
@@ -50,12 +50,9 @@ function FestivalCardMedium({
         </div>
         <span className={styles.artists}>{allacts}</span>
         <span className={styles.price}>{price} €</span>
-        <a onClick={() => setQuery(name)} className={styles.more}>
-          More
-        </a>
-        {/* <div className={styles.button}>
-          <Button size="small" text="More" />
-        </div> */}
+        <div className={styles.button}>
+          <Button onClick={() => setQuery(name)} size="small" text="More" />
+        </div>
       </div>
     </div>
   );
