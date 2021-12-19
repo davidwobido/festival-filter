@@ -1,4 +1,3 @@
-import React from "react";
 import AllFestivals from "./AllFestivals";
 
 export default {

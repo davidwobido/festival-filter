@@ -19,7 +19,6 @@ function AddUser({ navigateTo }: NavigateToProps): JSX.Element {
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
     navigate(navigateTo);
-    console.log(user);
   }
 
   return (

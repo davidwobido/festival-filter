@@ -63,7 +63,7 @@ function festivalFilter() {
     let genreValue: number | undefined;
     let result: number[] = [];
 
-    // fetch prefiltered festivals
+    // Fetch prefiltered festivals
     const response = await fetch(`/api/festivals/${selectedGenresList}`);
     const prefilteredFestivals = await response.json();
 
@@ -153,7 +153,6 @@ function festivalFilter() {
   }, []);
 
   // Large Festivalcard
-
   const [selectedFestival, setSelectedFestival] =
     useState<FestivalCardLargeProps | null>(null);
 

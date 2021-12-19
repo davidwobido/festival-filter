@@ -61,15 +61,17 @@ function AllFestivals() {
             <section className={styles.search}>
               <SearchBar onSearch={setSearch} />
             </section>
-            <section className={styles.list}>
-              {/* {searchFestivals?.length === 0 && (
-                <span className={styles["no-documents"]}>
-                  No Docouments found
-                </span>
-              )} */}
+            {searchFestivals?.length === 0 && (
+              <p className={styles["no-match"]}>
+                Sorry we couldn’t find a match. <br />
+                <br />
+                We are constantly working to improve our database. Come back
+                again later.
+              </p>
+            )}
 
+            <section className={styles.list}>
               {searchFestivals?.map((festival) => (
-                // eslint-disable-next-line react/jsx-key
                 <FestivalCardSmall
                   key={festival.name}
                   name={festival.name}

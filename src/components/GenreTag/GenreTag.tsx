@@ -13,7 +13,6 @@ type GenreTagProps = {
 function GenreTag({ tag, onClick }: GenreTagProps): JSX.Element {
   return (
     <button
-      // className={tag.selected ? styles.tag_selected : styles.tag_unselected}
       className={`${styles.tag} ${
         tag.selected
           ? styles["tag--state-selected"]

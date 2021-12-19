@@ -34,13 +34,23 @@
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
-.item {
+.item,
+.itemkey {
   composes: text-info from global;
+  color: var(--color-primary-bg);
   padding: 0.25rem 0;
   border-bottom: 0.1rem solid rgb(0 0 0 / 10%);
+}
+
+.itemkey {
+  font-weight: bold;
 }
 
 .url {
   composes: text-info from global;
   padding: 0.25rem 0;
+}
+
+.allacts {
+  color: var(--color-primary-bg);
 }

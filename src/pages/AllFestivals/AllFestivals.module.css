@@ -22,3 +22,10 @@ main {
   grid-template-columns: repeat(auto-fit, minmax(9rem, 9.9rem));
   justify-items: center;
 }
+
+.no-match {
+  composes: text-intro from global;
+  opacity: 0.4;
+  text-align: center;
+  padding-top: 2rem;
+}
