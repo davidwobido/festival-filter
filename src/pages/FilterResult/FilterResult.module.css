@@ -1,5 +1,7 @@
 .wrapper {
   position: relative;
+  height: max-content;
+  top: 4rem;
   padding: 1.25rem;
   display: grid;
   justify-items: center;

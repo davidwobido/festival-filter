@@ -1,5 +1,5 @@
 .navigation {
-  position: sticky;
+  position: fixed;
   top: 0;
   height: 4rem;
   width: 100vw;
@@ -12,7 +12,7 @@
 }
 
 .navbarbackground {
-  position: sticky;
+  position: fixed;
   top: 0;
   width: 100vw;
   height: 4rem;
