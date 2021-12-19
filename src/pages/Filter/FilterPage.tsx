@@ -50,7 +50,6 @@ function SelectGenre() {
     getSelectedGenre();
     navigate("/filtered");
   }
-  console.log(tags);
   return (
     <>
       <main className={styles.wrapper}>
