@@ -1,8 +1,6 @@
+<img width="30%" alt="logo" src="https://festival-filter.herokuapp.com/assets/FF_Logo_large.84373c15.svg">
 
-<img width="30%" align="right" alt="logo" src="https://festival-filter.herokuapp.com/assets/FF_Logo_large.84373c15.svg">
-
-
-# Festival Filter 
+# Festival Filter
 
 Find your favourite festivals. With the filter function, a festival rating is calculated based on selected genres to suggest the festivals that best suit you. The overview page offers the possibility to browse through all festivals or to search for specific ones. The detail pages present information such as the line up or the number of visitors.
 
@@ -42,7 +40,6 @@ npm run server:dev: Runs the server in devt mode.
 npm run storybook: Runs storybook in dev mode.
 npm run dev: Uses concurrently to run your server, client and storybook all at once in dev mode.
 ```
-
 
 You can configure the server port by setting the `PORT` environment variable. Creating a `.env` file is supported. You can copy `.env.example` to `.env`.
 
