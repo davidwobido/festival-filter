@@ -44,8 +44,8 @@ function FestivalCardLarge({
             <span className={styles.itemkey}>Location</span>
             <span className={styles.itemkey}>Date</span>
             <span className={styles.itemkey}>Visitors</span>
-            <span className={styles.itemkey}>Acts</span>
             <span className={styles.itemkey}>Price</span>
+            <span className={styles.itemkey}>Acts</span>
             <a href={website} className={styles.url}>
               Website
             </a>
