@@ -1,7 +1,5 @@
 <img width="30%" alt="logo" src="https://festival-filter.herokuapp.com/assets/FF_Logo_large.84373c15.svg">
 
-# Festival Filter
-
 Find your favourite festivals. With the filter function, a festival rating is calculated based on selected genres to suggest the festivals that best suit you. The overview page offers the possibility to browse through all festivals or to search for specific ones. The detail pages present information such as the line up or the number of visitors.
 
 ### You can test the app here:
