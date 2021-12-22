@@ -51,6 +51,14 @@
   z-index: 100;
 }
 
+.link:hover {
+  color: var(--color-primary-accent);
+}
+
+.link:active {
+  opacity: 0.75;
+}
+
 .burger div {
   display: block;
   width: 1.3rem;

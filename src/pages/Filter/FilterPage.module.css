@@ -27,6 +27,10 @@
   box-shadow: 0 0.4rem 1.4rem 0.4rem rgb(0 0 0 / 20%);
 }
 
+.filterbutton:hover {
+  cursor: pointer;
+}
+
 .filterbutton:active {
   background-color: #f4b2fe;
   transform: translateY(0.07rem);
