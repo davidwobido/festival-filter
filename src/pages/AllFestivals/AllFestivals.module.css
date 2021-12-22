@@ -9,10 +9,9 @@
   align-items: start;
 }
 
-main {
+.main {
   display: grid;
   gap: 2rem;
-  width: 43rem;
   justify-self: center;
 }
 
@@ -34,4 +33,13 @@ main {
   opacity: 0.4;
   text-align: center;
   padding-top: 2rem;
+}
+
+@media screen and (min-width: 800px) {
+  .main {
+    display: grid;
+    gap: 2rem;
+    justify-self: center;
+    width: 43rem;
+  }
 }

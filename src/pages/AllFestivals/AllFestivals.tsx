@@ -48,7 +48,7 @@ function AllFestivals() {
 
   return (
     <div className={styles.wrapper}>
-      <main>
+      <main className={styles.main}>
         {!selectedFestival && (
           <>
             <section className={styles.text}>
