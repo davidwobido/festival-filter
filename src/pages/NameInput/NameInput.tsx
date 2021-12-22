@@ -9,7 +9,8 @@ function NameInput() {
 
       <div className={styles.content}>
         <span className={styles.preline}>Hello</span>
-        <h2>Tell us your name</h2> <AddUser navigateTo="/filter" />
+        <h2 className={styles.headline}>Tell us your name</h2>
+        <AddUser navigateTo="/filter" />
       </div>
     </div>
   );
