@@ -125,3 +125,13 @@
 .burger div:hover {
   cursor: pointer;
 }
+
+@media screen and (min-width: 800px) {
+  .burger {
+    right: 2.5rem;
+  }
+
+  .back {
+    left: 2.5rem;
+  }
+}
