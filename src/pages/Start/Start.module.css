@@ -5,6 +5,7 @@
   display: grid;
   background-image: url("../../../lib/Start_Page.jpg");
   background-repeat: no-repeat;
+  background-position: 0 70%;
   background-size: cover;
 }
 
@@ -12,7 +13,7 @@
   position: absolute;
   display: grid;
   justify-self: center;
-  width: 40%;
+  width: 13rem;
   padding-top: 2rem;
 }
 
@@ -21,7 +22,7 @@
   justify-items: start;
   align-content: center;
   gap: 1rem;
-  padding: 1.25rem;
+  padding: 1.5rem;
 }
 
 .preline {
@@ -30,4 +31,20 @@
 
 .headline {
   max-width: 19rem;
+}
+
+@media screen and (min-width: 800px) {
+  .content {
+    padding: 8%;
+  }
+
+  .preline {
+    font-size: 1.2rem;
+    composes: text-preline from global;
+  }
+
+  .headline {
+    max-width: 100%;
+    font-size: 4rem;
+  }
 }
