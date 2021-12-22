@@ -24,6 +24,7 @@ main {
   row-gap: 0.8rem;
   grid-template-columns: repeat(auto-fit, minmax(9rem, 9.9rem));
   justify-items: center;
+  justify-content: center;
 }
 
 .no-match {
