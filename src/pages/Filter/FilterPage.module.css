@@ -43,3 +43,16 @@
   display: grid;
   justify-self: center;
 }
+
+@media screen and (min-width: 423px) {
+  .wrapper {
+    position: unset;
+    height: inherit;
+    align-content: center;
+    gap: 8.5rem;
+  }
+
+  .tags {
+    max-width: 35rem;
+  }
+}
