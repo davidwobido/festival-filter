@@ -9,9 +9,10 @@
   align-items: start;
 }
 
-main {
+.main {
   display: grid;
   gap: 2rem;
+  justify-self: center;
 }
 
 .intro {
@@ -24,6 +25,7 @@ main {
   row-gap: 0.8rem;
   grid-template-columns: repeat(auto-fit, minmax(9rem, 9.9rem));
   justify-items: center;
+  justify-content: center;
 }
 
 .no-match {
@@ -31,4 +33,13 @@ main {
   opacity: 0.4;
   text-align: center;
   padding-top: 2rem;
+}
+
+@media screen and (min-width: 800px) {
+  .main {
+    display: grid;
+    gap: 2rem;
+    justify-self: center;
+    width: 43rem;
+  }
 }

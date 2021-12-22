@@ -174,7 +174,7 @@ function festivalFilter() {
 
   return (
     <div className={styles.wrapper}>
-      <main>
+      <main className={styles.main}>
         {!printFestival && !done && !selectedFestival && (
           <p className={styles.loading}>Filter is working ...</p>
         )}

@@ -1,7 +1,3 @@
-.preline {
-  composes: text-preline from global;
-}
-
 .wrapper {
   position: relative;
   height: 100vh;
@@ -9,15 +5,8 @@
   display: grid;
   background-image: url("../../../lib/Start_Page.jpg");
   background-repeat: no-repeat;
+  background-position: 0 70%;
   background-size: cover;
-}
-
-.logo {
-  position: absolute;
-  display: grid;
-  justify-self: center;
-  width: 40%;
-  padding-top: 2rem;
 }
 
 .content {
@@ -25,4 +14,23 @@
   align-content: center;
   gap: 1rem;
   padding: 1.25rem;
+}
+
+.preline {
+  composes: text-preline from global;
+}
+
+.logo {
+  position: absolute;
+  display: grid;
+  justify-self: center;
+  width: 13rem;
+  padding-top: 2rem;
+}
+
+@media screen and (min-width: 800px) {
+  .content {
+    width: 50rem;
+    justify-self: center;
+  }
 }
