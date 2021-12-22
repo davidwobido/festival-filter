@@ -12,6 +12,8 @@
 main {
   display: grid;
   gap: 2rem;
+  width: 43rem;
+  justify-self: center;
 }
 
 .intro {
