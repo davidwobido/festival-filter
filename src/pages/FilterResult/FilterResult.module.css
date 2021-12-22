@@ -46,3 +46,22 @@
   display: grid;
   justify-self: center;
 }
+
+@media screen and (min-width: 800px) {
+  .wrapper {
+    display: grid;
+    justify-items: center;
+  }
+
+  .main {
+    width: 43rem;
+    justify-self: center;
+  }
+
+  .list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
