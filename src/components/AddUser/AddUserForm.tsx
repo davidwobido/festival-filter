@@ -1,10 +1,7 @@
 import { FormEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./AddUser.module.css";
-
-type NavigateToProps = {
-  navigateTo: string;
-};
+import { NavigateToProps } from "../../../types";
 
 function AddUser({ navigateTo }: NavigateToProps): JSX.Element {
   const [user, setUser] = useState(

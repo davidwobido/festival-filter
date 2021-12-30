@@ -1,9 +1,6 @@
 import React, { FormEvent, useState } from "react";
 import styles from "./SearchBar.module.css";
-
-type SearchBarProps = {
-  onSearch: (value: string) => void;
-};
+import { SearchBarProps } from "../../../types";
 
 function SearchBar({ onSearch }: SearchBarProps): JSX.Element {
   const [value, setValue] = useState("");

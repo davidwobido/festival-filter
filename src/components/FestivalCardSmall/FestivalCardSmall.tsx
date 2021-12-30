@@ -3,14 +3,7 @@ import { useEffect } from "react";
 import styles from "./FestivalCardSmall.module.css";
 import LocationIcon from "../../../lib/Icon_Location.svg";
 import DateIcon from "../../../lib/Icon_Date.svg";
-
-export type FestivalCardSmallProps = {
-  name: string;
-  location: string;
-  begin: string;
-  end: string;
-  toSearch: (value: string) => void;
-};
+import { FestivalCardSmallProps } from "../../../types";
 
 function FestivalCardSmall({
   name,

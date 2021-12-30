@@ -1,14 +1,6 @@
 import styles from "./GenreTag.module.css";
 import "../../globals.css";
-
-type GenreTagProps = {
-  tag: {
-    text: string;
-    selected: boolean;
-    id: number;
-  };
-  onClick: (value: number) => void;
-};
+import { GenreTagProps } from "../../../types";
 
 function GenreTag({ tag, onClick }: GenreTagProps): JSX.Element {
   return (

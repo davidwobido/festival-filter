@@ -1,18 +1,6 @@
 import styles from "./FestivalCardLarge.module.css";
 import CloseIcon from "../../../lib/Icon_Close.svg";
-
-export type FestivalCardLargeProps = {
-  name: string;
-  location: string;
-  begin: string;
-  end: string;
-  visitors: number;
-  acts: number;
-  price: number;
-  allacts: string;
-  website: string;
-  close?: () => void;
-};
+import { FestivalCardLargeProps } from "../../../types";
 
 function FestivalCardLarge({
   name,
