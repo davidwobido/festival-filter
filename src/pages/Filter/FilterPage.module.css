@@ -31,12 +31,6 @@
   cursor: pointer;
 }
 
-.filterbutton:active {
-  background-color: #f4b2fe;
-  transform: translateY(0.07rem);
-  transition: 0.1s ease-in-out;
-}
-
 .inactive {
   opacity: 0.2;
 }
