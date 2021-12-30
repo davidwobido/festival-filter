@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
-import FestivalCardLarge, {
-  FestivalCardLargeProps,
-} from "../../components/FestivalCardLarge/FestivalCardLarge";
-import FestivalCardSmall, {
-  FestivalCardSmallProps,
-} from "../../components/FestivalCardSmall/FestivalCardSmall";
+import FestivalCardLarge from "../../components/FestivalCardLarge/FestivalCardLarge";
+import FestivalCardSmall from "../../components/FestivalCardSmall/FestivalCardSmall";
+import { FestivalCardSmallProps, FestivalCardLargeProps } from "../../../types";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import styles from "./AllFestivals.module.css";
 

@@ -2,45 +2,12 @@ import { useEffect, useState } from "react";
 import styles from "./FilterResult.module.css";
 import FestivalCardMedium from "../../components/FestivalCardMedium/FestivalCardMedium";
 import { Link } from "react-router-dom";
-import FestivalCardLarge, {
+import FestivalCardLarge from "../../components/FestivalCardLarge/FestivalCardLarge";
+import {
+  FestivalPlaceholderTypes,
+  GenrePlaceholderTypes,
   FestivalCardLargeProps,
-} from "../../components/FestivalCardLarge/FestivalCardLarge";
-
-type FestivalPlaceholderTypes = {
-  id: string;
-  name: string;
-  location: string;
-  begin: string;
-  end: string;
-  visitors: number;
-  acts: number;
-  price: number;
-  allacts: string;
-  electronic?: number;
-  metal?: number;
-  reggae?: number;
-  pop?: number;
-  classic?: number;
-  jazz?: number;
-  punk?: number;
-  indie?: number;
-  rock?: number;
-  hiphop?: number;
-  value: number;
-};
-
-type GenrePlaceholderTypes = {
-  electronic?: number;
-  metal?: number;
-  reggae?: number;
-  pop?: number;
-  classic?: number;
-  jazz?: number;
-  punk?: number;
-  indie?: number;
-  rock?: number;
-  hiphop?: number;
-};
+} from "../../../types";
 
 function festivalFilter() {
   const [done, setDone] = useState<boolean>(false);

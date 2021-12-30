@@ -1,11 +1,6 @@
 import styles from "./Button.module.css";
 import "../../globals.css";
-
-type ButtonProps = {
-  size: "normal" | "wide" | "small";
-  text: string;
-  onClick?: () => void;
-};
+import { ButtonProps } from "../../../types";
 
 function Button({ size, text, ...props }: ButtonProps): JSX.Element {
   return (

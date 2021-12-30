@@ -3,18 +3,7 @@ import styles from "./FestivalCardMedium.module.css";
 import LocationIcon from "../../../lib/Icon_Location.svg";
 import DateIcon from "../../../lib/Icon_Date.svg";
 import { useEffect, useState } from "react";
-
-export type FestivalCardMediumProps = {
-  name: string;
-  location: string;
-  begin: string;
-  end: string;
-  price: number;
-  allacts: string;
-  value?: number;
-  color: "green" | "orange";
-  toSearch: (value: string) => void;
-};
+import { FestivalCardMediumProps } from "../../../types";
 
 function FestivalCardMedium({
   name,
