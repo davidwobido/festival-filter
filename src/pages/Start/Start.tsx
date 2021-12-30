@@ -4,6 +4,7 @@ import Button from "../../components/Buttons/Button";
 import { Link } from "react-router-dom";
 import Loading from "../Loading/Loading";
 import LogoLarge from "../../../lib/FF_Logo_large.svg";
+import Div100vh from "react-div-100vh";
 
 function StartPage() {
   const [isReady, setIsReady] = useState(false);
@@ -20,7 +21,7 @@ function StartPage() {
   }
 
   return (
-    <div className={styles.wrapper}>
+    <Div100vh className={styles.wrapper}>
       <img src={LogoLarge} className={styles.logo} />
       <section className={styles.content}>
         <span className={styles.preline}>Select. Filter. Match. </span>
@@ -29,7 +30,7 @@ function StartPage() {
           <Button size="normal" text="Enter" />
         </Link>
       </section>
-    </div>
+    </Div100vh>
   );
 }
 

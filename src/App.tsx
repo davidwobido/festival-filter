@@ -2,13 +2,14 @@ import "./globals.css";
 import styles from "./App.module.css";
 import { Outlet } from "react-router-dom";
 import NavBar from "./components/NavBar/NavBar";
+import Div100vh from "react-div-100vh";
 
 function App() {
   return (
-    <div className={styles.app}>
+    <Div100vh className={styles.app}>
       <NavBar />
       <Outlet />
-    </div>
+    </Div100vh>
   );
 }
 
