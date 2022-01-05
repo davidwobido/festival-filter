@@ -11,9 +11,6 @@ if (!process.env.MONGODB_URI) {
 const port = process.env.PORT || 3001;
 const app = express();
 
-// Serve production bundle
-app.use(express.static("dist"));
-
 // For parsing application/json
 app.use(express.json());
 
@@ -111,6 +108,9 @@ app.delete("/api/festival/:name", async (request, response) => {
     response.status(404).send("Festival does not exist");
   }
 });
+
+// Serve production bundle
+app.use(express.static("dist"));
 
 // Handle client routing, return all requests to the app
 app.get("*", (_request, response) => {
