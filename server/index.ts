@@ -114,7 +114,7 @@ app.use(express.static("dist"));
 
 // Handle client routing, return all requests to the app
 app.get("*", (_request, response) => {
-  response.sendFile(path.join(__dirname, "../index.html"));
+  response.sendFile(path.join(__dirname, "../dist/index.html"));
 });
 
 // Connect to database
