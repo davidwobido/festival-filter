@@ -110,11 +110,11 @@ app.delete("/api/festival/:name", async (request, response) => {
 });
 
 // Serve production bundle
-app.use(express.static("dist"));
+app.use(express.static("dist/app"));
 
 // Handle client routing, return all requests to the app
 app.get("*", (_request, response) => {
-  response.sendFile(path.join(__dirname, "../index.html"));
+  response.sendFile(path.join(__dirname + "app/index.html"));
 });
 
 // Connect to database

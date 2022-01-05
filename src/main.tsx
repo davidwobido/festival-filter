@@ -14,11 +14,11 @@ ReactDOM.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<StartPage />} />
-        <Route path="login" element={<NameInput />} />
+        <Route path="/login" element={<NameInput />} />
         <Route path="/" element={<App />}>
-          <Route path="filter" element={<FilterPage />} />
-          <Route path="filter-result" element={<FilterResult />} />
-          <Route path="all-festivals" element={<AllFestivals />} />
+          <Route path="/filter" element={<FilterPage />} />
+          <Route path="/filtered" element={<FilterResult />} />
+          <Route path="/all-festivals" element={<AllFestivals />} />
         </Route>
       </Routes>
     </BrowserRouter>
