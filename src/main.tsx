@@ -15,7 +15,7 @@ ReactDOM.render(
       <Routes>
         <Route path="/" element={<StartPage />} />
         <Route path="login" element={<NameInput />} />
-        <Route path="festival-filter" element={<App />}>
+        <Route path="/" element={<App />}>
           <Route path="filter" element={<FilterPage />} />
           <Route path="filter-result" element={<FilterResult />} />
           <Route path="all-festivals" element={<AllFestivals />} />
